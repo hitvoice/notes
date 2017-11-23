@@ -1,6 +1,3 @@
-[Tmux Reference](http://wiki.fast.ai/index.php/Tmux)
-[A Quick and Easy Guide to tmux](http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
-
 ```sh
 # create
 tmux new -s SessionName
@@ -66,6 +63,11 @@ set-option -g base-index 1
 # Reload tmux config
 bind r source-file ~/.tmux.conf
 ```
+and run
 ```sh
 tmux source-file ~/.tmux.conf
 ```
+
+## Reference
+- [Tmux Reference](http://wiki.fast.ai/index.php/Tmux)
+- [A Quick and Easy Guide to tmux](http://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
