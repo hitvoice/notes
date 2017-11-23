@@ -1,10 +1,3 @@
-# Docker
-
-（安装指令见底部）
-
-常用命令
-----
-
 ### info
 
 `docker images`
@@ -29,7 +22,7 @@
 
 new container:
 
-`docker run -it —-rm --name [container-name] [image-name]`​ (leave the console using ​`exit`​)
+`docker run -it —-rm --name [container-name] [image-name]` (leave the console using `exit`)
 
 a concrete example with a shared folder:
 
@@ -37,17 +30,17 @@ a concrete example with a shared folder:
 
 resume:
 
-`​docker start `[container-name]
+`docker start [container-name]`
 
-docker attach [container-name]
+`docker attach [container-name]`
 
 run a script inside a container:
 
-`​docker run -it —-rm -v `pwd`:/home/data `[image-name] /bin/sh -c “YOUR COMMANDS”`​`​ (`​`​start at location “/“​)
+``docker run -it —-rm -v `pwd`:/home/data [image-name] /bin/sh -c “YOUR COMMANDS”``
 
 (daemon)
 
-`docker run -d —-rm ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done”`
+`docker run -d —-rm ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"`
 
 (web)
 
@@ -88,16 +81,11 @@ Dockerfile
 
 ```
 # This is a comment
-FROM ubuntu:14.04
-MAINTAINER Kate Smith <ksmith@example.com>
+FROM ubuntu:16.04
+MAINTAINER Runqi Yang <runqiyang@gmail.com>
 RUN apt-get update && apt-get install -y ruby ruby-dev
 RUN gem install sinatra
-
 ```
-
-    启动：(Mac) 运行docker桌面版程序 （linux）[安装指南](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
-
-    [国内镜像加速](https://www.docker-cn.com/registry-mirror)
 
 ### 安装nvidia-docker
 
@@ -118,3 +106,7 @@ sudo usermod -aG docker ${USER}
 ```sh
 id -nG
 ```
+
+### resources
+- [linux installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
+- [国内镜像加速](https://www.docker-cn.com/registry-mirror)
