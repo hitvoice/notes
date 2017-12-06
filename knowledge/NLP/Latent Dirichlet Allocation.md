@@ -75,7 +75,7 @@ L(\gamma,\phi;\alpha,\beta)=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]-\
 $$
 So minimizing the KL divergence is equivalent to maximizing the function $L$ as the lower bound of $\log p(w|\alpha,\beta)$:
 $$
-(\gamma^*,\phi^*)=\underset{\gamma,\phi}{\operatorname{argmax}} L(\gamma,\phi;\alpha,\beta)
+(\gamma^\*,\phi^\*)=\underset{\gamma,\phi}{\operatorname{argmax}} L(\gamma,\phi;\alpha,\beta)
 $$
 ## Parameter estimation
 Variational EM algorithm:
@@ -87,15 +87,15 @@ A few more steps:
 $$
 \begin{align}
 L(\gamma,\phi;\alpha,\beta)
-&{}=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]-\operatorname E_q[\log q(\theta,z)]\\
+&{}=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]-\operatorname E_q[\log q(\theta,z)]\\\\
 &{}=\operatorname E_q[\log p(\theta|\alpha)]+\operatorname E_q[p(z|\theta)]+\operatorname E_q[p(w|z,\beta)]-\operatorname E_q[\log q(\theta)]-\operatorname E_q[\log q(z)]
 \end{align}
 $$
 Struggle through **heavy math** to compute each term and we finally get ($\psi$ is the digamma function):
-![img](resources/lda-e.png)
+<img src="resources/lda-e.png" width="500">
 Taking derivatives of this function and set derivatives to zero yields the update formulas.
 The variational inference algorithm update $\gamma$ and $\phi$ alternately until convergence:
-![img](resources/lda-vi.png)
+<img src="resources/lda-vi.png" width="500">
 ### M-step
 Maximize $L(\gamma,\phi;\alpha,\beta)$ with respect to $\beta$:
 $$
@@ -132,7 +132,7 @@ due to conjugate prior. Note that the normalizer of the first term is omitted, b
 
 
 Algorithm:
-![img](resources/lda-gb2.png)
+<img src="resources/lda-gb2.png" width="500">
 Comparisons and discussions for MCMC and Variational Bayes see [Variational Bayes](Variational%20Bayes.md).
 
 
