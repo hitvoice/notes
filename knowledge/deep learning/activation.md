@@ -11,7 +11,7 @@ An interesting property is $1-f(z) = f(-z)$ (which can be seen intuitively from 
 ### Hyperbolic tangent (rescaled sigmoid)
 $$
 \begin{align}
-f(z) &= \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}\\
+f(z) &= \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}\\\\
      &= 2\operatorname{Sigmoid}(2z)-1.
 \end{align}
 $$
@@ -28,8 +28,8 @@ $$
 \begin{align}
 f(z)= 
 \begin{cases} 
--1 \ &\mbox{if } x<-1 \\
-0    &\mbox{if } -1<=x<=1\\
+-1 \ &\mbox{if } x<-1 \\\\
+0    &\mbox{if } -1<=x<=1\\\\
 1    &\mbox{if } x>1
 \end{cases}
 \end{align}
@@ -60,7 +60,7 @@ $$
 \begin{align}
 f(z)= 
 \begin{cases} 
-x \ &\mbox{if } x\geq 0 \\
+x \ &\mbox{if } x\geq 0 \\\\
 \alpha (e^x-1)    &\mbox{if }x<0
 \end{cases}
 \end{align}
@@ -74,7 +74,9 @@ If $k=2$, it simplifies to
 $$
 f(z) = \max(W_1^Tx+b_1, W_2^Tx+b_2)
 $$
-![img](resources/maxout.png)
+
+<img src="resources/maxout.png" width="700">
+
 All slope methods are special cases of this form. The Maxout neuron therefore enjoys all the benefits of a ReLU unit (linear regime of operation, no saturation) and does not have its drawbacks (dying ReLU). However, unlike the ReLU neurons it multiplies the number of parameters for every single neuron, leading to a high total number of parameters.
 ### Indentical function
 It's equivalant to compute:
