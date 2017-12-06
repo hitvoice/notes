@@ -33,16 +33,24 @@ $$
 where $k=\operatorname{argmax}_{j\neq t}\hat y_j$. Hinge loss attempts to score the correct class above all other classes with a margin of at least 1.
 #### Ranking Loss (hinge)
 The goal is to score correct items above incorrect ones, given pairs of correct and incorrect items $x_p$ and $x_n$. Such training situations arise when we have only positive examples, and generate negative examples by corrupting a positive example.
+
+<div>
 $$
 J(\theta)=
 \frac{1}{m} \sum_{i=1}^m\max \left( 0,1- \left( h_{\theta}(x^{(i)}_p)-h_{\theta}(x^{(i)}_n)\right) \right)
 $$
+</div>
+
 The objective is to score correct inputs over incorrect ones with a margin of at least 1.
 #### Ranking Loss (log)
+
+<div>
 $$
 J(\theta)=
 \frac{1}{m} \sum_{i=1}^m\log \left( 1+ \exp\left(-\left( h_{\theta}(x^{(i)}_p)-h_{\theta}(x^{(i)}_n)\right)\right) \right)
 $$
+</div>
+
 #### Rating Prediction
 Assume that all the ratings lie in $[1,K]$. Real-valued scores are allowed for ground-truth ratings that are an average over the evaluations of several human annotators. 
 Using a softmax layer as the last layer, we get a probability output $\hat p$, which is seen as the probability of each discrete integer rating. We predict the scoring by $\hat y = r^T\hat p$, where $r^T=[1\ 2\ \dots\ K]$, and optimize the model over the following cost function:
@@ -71,10 +79,10 @@ for $1\leq i\leq K$. For example, if $K=5$ and $y=3.6$, $p=[0, 0, 0.4, 0.6, 0]$.
 $$
 \begin{align*}
 \underset{\theta}{\operatorname{argmin}}\mathcal{L}(\theta)&=
-\underset{\theta}{\operatorname{argmin}}\sum H(p(y'),p_\theta(y_t|x))\\
+\underset{\theta}{\operatorname{argmin}}\sum H(p(y'),p_\theta(y_t|x))\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum 
--(1-\epsilon)\log p_\theta(y_t|x)-\sum_{i\neq t}\frac{\epsilon}{c-1}\log p_\theta(y_i|x)\\
-&=\underset{\theta}{\operatorname{argmin}}\sum -(1-\epsilon+\frac{\epsilon}{c-1})\log p_\theta(y_t|x)-\sum_i\frac{\epsilon}{c-1}\log p_\theta(y_i|x)\\
+-(1-\epsilon)\log p_\theta(y_t|x)-\sum_{i\neq t}\frac{\epsilon}{c-1}\log p_\theta(y_i|x)\\\\
+&=\underset{\theta}{\operatorname{argmin}}\sum -(1-\epsilon+\frac{\epsilon}{c-1})\log p_\theta(y_t|x)-\sum_i\frac{\epsilon}{c-1}\log p_\theta(y_i|x)\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum
 -\log p_\theta(y_t|x)-\frac{\epsilon}{c-1-(c-2)\epsilon}\sum_i\log p_\theta(y_i|x)
 \end{align*}
@@ -87,17 +95,17 @@ Then
 \begin{align*}
 \underset{\theta}{\operatorname{argmin}}\mathcal{L}(\theta)
 &=\underset{\theta}{\operatorname{argmin}}\sum
--\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)\\
+-\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum
--\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)-\log c\\
+-\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)-\log c\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum
--\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)c\\
+-\log p_\theta(y_t|x)-\frac{\alpha}{c}\sum_i\log p_\theta(y_i|x)c\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum
--\log p_\theta(y_t|x)+\frac{\alpha}{c}\sum_i\log \frac{1/c}{p_\theta(y_i|x)}\\
+-\log p_\theta(y_t|x)+\frac{\alpha}{c}\sum_i\log \frac{1/c}{p_\theta(y_i|x)}\\\\
 &=\underset{\theta}{\operatorname{argmin}}\sum
--\log p_\theta(y_t|x)+\alpha D_{KL}(u\|p_\theta(y\mid x))\\
+-\log p_\theta(y_t|x)+\alpha D_{KL}(u\|p_\theta(y\mid x))\\\\
 &=\underset{\theta}{\operatorname{argmin}}-\sum
-\log p_\theta(y_t|x)-\alpha D_{KL}(u\|p_\theta(y\mid x))\\
+\log p_\theta(y_t|x)-\alpha D_{KL}(u\|p_\theta(y\mid x))\\\\
 \end{align*}
 
 ### reference
