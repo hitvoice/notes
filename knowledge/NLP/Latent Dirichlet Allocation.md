@@ -7,9 +7,12 @@
 
 ## Specification
 original version:
-![img](resources/lda.png)
+
+<img src="resources/lda.png" width="500">
+
 smoothed version:
-![img](resources/smoothed-lda.png)
+
+<img src="resources/smoothed-lda.png" width="500">
 
 Parameters for original version:
 * $K$: number of topics
@@ -22,7 +25,7 @@ Parameters for original version:
 
 Parameters for smoothed version:
 $$
-{\begin{array}{lcl}{\boldsymbol  \alpha }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\{\boldsymbol  \beta }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\{\boldsymbol  \theta }_{{d=1\dots M}}&\sim &\operatorname {Dirichlet}_{K}({\boldsymbol  \alpha })\\{\boldsymbol  \phi }_{{k=1\dots K}}&\sim &\operatorname {Dirichlet}_{V}({\boldsymbol  \beta })\\z_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{K}({\boldsymbol  \theta }_{d})\\w_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{V}({\boldsymbol  \phi }_{{z_{{dn}}}})\\\end{array}}
+{\begin{array}{lcl}{\boldsymbol  \alpha }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\{\boldsymbol  \beta }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\{\boldsymbol  \theta }_{{d=1\dots M}}&\sim &\operatorname {Dirichlet}_{K}({\boldsymbol  \alpha })\\\\{\boldsymbol  \phi }_{{k=1\dots K}}&\sim &\operatorname {Dirichlet}_{V}({\boldsymbol  \beta })\\\\ z_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{K}({\boldsymbol  \theta }_{d})\\\\ w_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{V}({\boldsymbol  \phi }_{{z_{{dn}}}})\\\\ \end{array}}
 $$
 
 
