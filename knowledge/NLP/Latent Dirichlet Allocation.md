@@ -53,19 +53,17 @@ q(\theta,z|\gamma,\phi)=q(\theta,\gamma)\prod_{n=1}^Nq(z_n|\phi_n)
 $$
 and optimize:
 $$
-(\gamma^*,\phi^*)=\underset{\gamma,\phi}{\operatorname{argmin}} 
-D_{\mathrm{KL}}(q(\theta,z|\gamma,\phi)\|p(\theta,z|w,\alpha,\beta))
+(\gamma^*,\phi^*)=\underset{\gamma,\phi}{\operatorname{argmin}} D_{\mathrm{KL}}(q(\theta,z|\gamma,\phi)\|p(\theta,z|w,\alpha,\beta))
 $$
+
 to minimize the difference between the variational distribution and the true posterior distribution.
 Play with the formula above and we will get:
 $$
-D_{\mathrm{KL}}(q\|p)+L(\gamma,\phi;\alpha,\beta)=\log p(w|\alpha,\beta)=
-\text{constant for }\gamma,\phi
+D_{\mathrm{KL}}(q\|p)+L(\gamma,\phi;\alpha,\beta)=\log p(w|\alpha,\beta)=\text{constant for }\gamma,\phi
 $$
 where
 $$
-L(\gamma,\phi;\alpha,\beta)=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]
--\operatorname E_q[\log q(\theta,z)]
+L(\gamma,\phi;\alpha,\beta)=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]-\operatorname E_q[\log q(\theta,z)]
 $$
 So minimizing the KL divergence is equivalent to maximizing the function $L$ as the lower bound of $\log p(w|\alpha,\beta)$:
 $$
