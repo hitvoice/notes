@@ -20,7 +20,12 @@ A online demo to interatively training your own neural network on a toy dataset 
 
 ### Model
 Most common design involves the stacking of affine transformations followed by element-wise non-linearity.
-![img](resources/nn.png)
+
+<div align="center">
+<img src="resources/nn.png" width="600">
+</div>
+
+
 Forward propagation:
 $$
 \begin{align}
@@ -33,9 +38,6 @@ The input layer can be embeddings of raw entities, which can be treated as resul
 
 ### Further Reading
 [Neural Network Architectures](https://culurciello.github.io/tech/2016/06/04/nets.html)
-
-
-
 
 ### Reference
 - [Stanford CS224d Lecture 5](http://cs224d.stanford.edu/lectures/CS224d-Lecture5.pdf)
