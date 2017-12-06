@@ -1,2 +1,2 @@
 # notes
-Tech notes a machine learning engineer actually refers to.
+Share some tech notes for machine learning engineers.
