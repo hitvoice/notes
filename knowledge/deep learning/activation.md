@@ -75,7 +75,9 @@ $$
 f(z) = \max(W_1^Tx+b_1, W_2^Tx+b_2)
 $$
 
+<div align="center">
 <img src="resources/maxout.png" width="700">
+</div>
 
 All slope methods are special cases of this form. The Maxout neuron therefore enjoys all the benefits of a ReLU unit (linear regime of operation, no saturation) and does not have its drawbacks (dying ReLU). However, unlike the ReLU neurons it multiplies the number of parameters for every single neuron, leading to a high total number of parameters.
 ### Indentical function
