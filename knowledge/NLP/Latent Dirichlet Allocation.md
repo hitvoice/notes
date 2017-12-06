@@ -99,6 +99,7 @@ Taking derivatives of this function and set derivatives to zero yields the updat
 The variational inference algorithm update $\gamma$ and $\phi$ alternately until convergence:
 
 <img src="resources/lda-vi.png" width="500">
+
 ### M-step
 Maximize $L(\gamma,\phi;\alpha,\beta)$ with respect to $\beta$:
 $$
