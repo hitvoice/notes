@@ -14,7 +14,8 @@ Formally, given some large $r \times c$ images $x_{large}$, we first train a spa
 
 ### Pooling
 After obtaining our convolved features as described earlier, we decide the size of the region, say $m\times n$ to pool our convolved features over. Then, we divide our convolved features into disjoint $m\times n$ regions, and take the mean (or maximum) feature activation over these regions to obtain the pooled convolved features. These pooled features can then be used for classification.
-![Pooling_schematic.gif](resources/pool.gif)
+
+<img src="resources/pool.gif" width="600">
 
 ### Architecture
 A CNN consists of a number of convolutional and subsampling layers optionally followed by fully connected layers. The architecture of a CNN is designed to take advantage of the 2D structure of an input image (or other 2D input such as a speech signal). This is achieved with local connections and tied weights followed by some form of pooling which results in translation invariant features.
