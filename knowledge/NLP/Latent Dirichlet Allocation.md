@@ -85,16 +85,19 @@ Variational EM algorithm:
 ### E-step: variational inference
 A few more steps:
 $$
-\begin{align}
+\begin{align*}
 L(\gamma,\phi;\alpha,\beta)
 &{}=\operatorname E_q[\log p(\theta,z,w|\alpha,\beta)]-\operatorname E_q[\log q(\theta,z)]\\\\
 &{}=\operatorname E_q[\log p(\theta|\alpha)]+\operatorname E_q[p(z|\theta)]+\operatorname E_q[p(w|z,\beta)]-\operatorname E_q[\log q(\theta)]-\operatorname E_q[\log q(z)]
-\end{align}
+\end{align*}
 $$
 Struggle through **heavy math** to compute each term and we finally get ($\psi$ is the digamma function):
+
 <img src="resources/lda-e.png" width="500">
+
 Taking derivatives of this function and set derivatives to zero yields the update formulas.
 The variational inference algorithm update $\gamma$ and $\phi$ alternately until convergence:
+
 <img src="resources/lda-vi.png" width="500">
 ### M-step
 Maximize $L(\gamma,\phi;\alpha,\beta)$ with respect to $\beta$:
@@ -127,12 +130,16 @@ and input this Hessian Matrix and the derivative to **Newton Method** to get $\a
 ## Gibbs Sampling
 (for smoothed version)
 Theoretical analysis:
-![img](resources/lda-gb.png)
+
+<img src="resources/lda-gb.png" width="500">
+
 due to conjugate prior. Note that the normalizer of the first term is omitted, because the sum is the length of each document, which is fixed, while the second denominator might change after each update.
 
 
 Algorithm:
+
 <img src="resources/lda-gb2.png" width="500">
+
 Comparisons and discussions for MCMC and Variational Bayes see [Variational Bayes](Variational%20Bayes.md).
 
 
