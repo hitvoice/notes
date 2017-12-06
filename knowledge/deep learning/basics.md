@@ -24,8 +24,8 @@ Most common design involves the stacking of affine transformations followed by e
 Forward propagation:
 $$
 \begin{align}
-z^{(l+1)} &= W^{(l)} a^{(l)} + b^{(l)}   \\
-a^{(l+1)} &= f(z^{(l+1)})\\
+z^{(l+1)} &= W^{(l)} a^{(l)} + b^{(l)}   \\\\
+a^{(l+1)} &= f(z^{(l+1)})\\\\
 h_{W,b}(x) &= a^{(n_l)}
 \end{align}
 $$
