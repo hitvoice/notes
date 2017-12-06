@@ -24,10 +24,18 @@ Parameters for original version:
 * $\theta$: $M\times K$, topic distribution of documents
 
 Parameters for smoothed version:
+<div>
 $$
-{\begin{array}{lcl}{\boldsymbol  \alpha }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\{\boldsymbol  \beta }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\{\boldsymbol  \theta }_{{d=1\dots M}}&\sim &\operatorname {Dirichlet}_{K}({\boldsymbol  \alpha })\\\\{\boldsymbol  \phi }_{{k=1\dots K}}&\sim &\operatorname {Dirichlet}_{V}({\boldsymbol  \beta })\\\\ z_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{K}({\boldsymbol  \theta }_{d})\\\\ w_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{V}({\boldsymbol  \phi }_{{z_{{dn}}}})\\\\ \end{array}}
+{\begin{array}{lcl}
+ {\boldsymbol  \alpha }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\
+ {\boldsymbol  \beta }&\sim &{\text{A Dirichlet hyperprior, either a constant or a random variable}}\\\\
+ {\boldsymbol  \theta }_{{d=1\dots M}}&\sim &\operatorname {Dirichlet}_{K}({\boldsymbol  \alpha })\\\\
+ {\boldsymbol  \phi }_{{k=1\dots K}}&\sim &\operatorname {Dirichlet}_{V}({\boldsymbol  \beta })\\\\ 
+ z_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{K}({\boldsymbol  \theta }_{d})\\\\ 
+ w_{{d=1\dots M,n=1\dots N_{d}}}&\sim &\operatorname {Categorical}_{V}({\boldsymbol  \phi }_{{z_{{dn}}}})
+ \end{array}}
 $$
-
+</div>
 
 In the orginal version,
 Joint distribution:
@@ -53,7 +61,7 @@ q(\theta,z|\gamma,\phi)=q(\theta,\gamma)\prod_{n=1}^Nq(z_n|\phi_n)
 $$
 and optimize:
 $$
-(\gamma^*,\phi^*)=\underset{\gamma,\phi}{\operatorname{argmin}} D_{\mathrm{KL}}(q(\theta,z|\gamma,\phi)\|p(\theta,z|w,\alpha,\beta))
+(\gamma^\*,\phi^\*)=\underset{\gamma,\phi}{\operatorname{argmin}} D_{\mathrm{KL}}(q(\theta,z|\gamma,\phi)\|p(\theta,z|w,\alpha,\beta))
 $$
 
 to minimize the difference between the variational distribution and the true posterior distribution.
