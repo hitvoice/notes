@@ -1,7 +1,7 @@
 The basic update rule for gradient descent:
 $$
 \begin{align}
-W_{ij}^{(l)} &= W_{ij}^{(l)} - \alpha \frac{\partial}{\partial W_{ij}^{(l)}} J(W,b) \\
+W_{ij}^{(l)} &= W_{ij}^{(l)} - \alpha \frac{\partial}{\partial W_{ij}^{(l)}} J(W,b) \\\\
 b_{i}^{(l)} &= b_{i}^{(l)} - \alpha \frac{\partial}{\partial b_{i}^{(l)}} J(W,b)
 \end{align}
 $$
@@ -17,7 +17,7 @@ The computation of the partial derivative for a single example is as follows (an
 
 $$
 \begin{align}
-\nabla_{W^{(l)}} J(W,b;x,y) &= \delta^{(l+1)} (a^{(l)})^T+\lambda W^{(l)}, \\
+\nabla_{W^{(l)}} J(W,b;x,y) &= \delta^{(l+1)} (a^{(l)})^T+\lambda W^{(l)}, \\\\
 \nabla_{b^{(l)}} J(W,b;x,y) &= \delta^{(l+1)}.
 \end{align}
 $$
@@ -43,8 +43,8 @@ For embeddings, one will often use the random initialization approach to initial
 ## optimization algorithm
 On smaller datasets (or a small optimization problem like neural style transfer) L-BFGS or Conjugate Gradients win. On large datasets, mini-batch SGD usually wins over all batch methods.
 Typical size of each mini batch : 20 to 1000. If full-batch training is affordable, use L-BFGS. If mini-batch is the case, Adam is the most common choice. Other choices includeSGD with momentum, RMSProp, AdaDelta and so on.
-![img](resources/adam.png)
 
+<img src="resources/adam.png" width="700">
 
 Most mini-batch optimization algorithms have the learning rate hyperparameter. Strategies include fixed learning rate, learning rate decay, cyclic learning rate (with snapshot ensemble). Common learning rate decay schemes:
 - step decay, say decaying learning rate by half every few epochs
@@ -55,7 +55,9 @@ $$
 - 1/t decay
 $$\alpha=\alpha_0/(1+kt)$$
 
-![img](resources/lr.jpg)
+<div align="center">
+ <img src="resources/lr.png" width="500">
+</div>
 
 **Batch normalizaion** is a standard strategy for optimization. Let $H$ be a minibatch of activation of a layer, we replace it with
 $$
@@ -88,7 +90,10 @@ A network with even one hidden layer is sufficient to fit the training set. Deep
 * ...
 
 Efficiently search for hyper-parameter configurations: random hyperparameter search.
-![img](resources/random-search.png)
+
+<div align="center">
+ <img src="resources/random-search.png" width="500">
+</div>
 
 ## regulariazation
 A visualization of training/validation error with time is helpful for diagnostics. When the training error keeps going down and down, even &lt;1%, and the validation error gets stuck, it's likely that the model is memorizing all the training data and is overfitting.
