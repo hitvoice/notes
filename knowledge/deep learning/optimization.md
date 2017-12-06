@@ -1,9 +1,9 @@
 The basic update rule for gradient descent:
 $$
-\begin{align}
+\begin{align*}
 W_{ij}^{(l)} &= W_{ij}^{(l)} - \alpha \frac{\partial}{\partial W_{ij}^{(l)}} J(W,b) \\\\
 b_{i}^{(l)} &= b_{i}^{(l)} - \alpha \frac{\partial}{\partial b_{i}^{(l)}} J(W,b)
-\end{align}
+\end{align*}
 $$
 
 where $\alpha$ is the learning rate. The **back propagation** algorithm gives an efficient way to compute these partial derivatives. The idea behind back propagation is that we can re-use derivatives computed for higher layers in computing derivatives for lower layers (in terms of back propagated error).
@@ -16,10 +16,10 @@ The computation of the partial derivative for a single example is as follows (an
 4. Compute the desired partial derivatives for a single training example:
 
 $$
-\begin{align}
+\begin{align*}
 \nabla_{W^{(l)}} J(W,b;x,y) &= \delta^{(l+1)} (a^{(l)})^T+\lambda W^{(l)}, \\\\
 \nabla_{b^{(l)}} J(W,b;x,y) &= \delta^{(l+1)}.
-\end{align}
+\end{align*}
 $$
 
 The $\bullet$ denotes the element-wise product operator (also called the Hadamard product). The same extension goes for $f(\cdot)$ and $f'(\cdot)$. $\lambda$ is the regularization parameter. The partial derivatives are then sum up (and normalized by the number of training examples if they should match the cost function) to get the partial derivative w.r.t a whole batch (or minibatch). Since the back propagation is hard to implement and prone to tiny errors and bugs, remember to perform [gradient checking](http://ufldl.stanford.edu/wiki/index.php/Gradient_checking_and_advanced_optimization) after implementation. View [this](resources/gradient-checking.png) common asked question about gradient checking.
