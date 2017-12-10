@@ -1,3 +1,4 @@
+### Basics
 ```sh
 # mostly used
 git add -A
@@ -51,7 +52,7 @@ git checkout -- xx.py # discard recent changes and go back to the latest commit
 git checkout -- . # discard all recent changes and go back to the latest commit
 git reset --hard master@{"10 minutes ago"} # recover from some terrible mistake
 ```
-work with git-lfs:
+### work with git-lfs:
 ```sh
 # install (on Mac)
 brew install git-lfs
@@ -65,6 +66,7 @@ git lfs track "*.psd"
 # (optional) link to SourceTree
 ln -s /usr/local/bin/git-lfs /Applications/SourceTree.app/Contents/Resources/git_local/bin
 ```
+### editor and difftool
 set vim as the default editor (sometimes the default editor is nano):
 ```sh
 git config --global core.editor "vim"
@@ -74,6 +76,8 @@ set Xcode FileMerge (opendiff) as default difftool:
 sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 git config --global merge.tool opendiff
 ```
+### commit message conventions
+Here's a [example convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) from AngularJS.
 
 ### .gitignore
 .gitignore format：
@@ -109,8 +113,8 @@ doc/*.txt
 # ignore all .pdf files in the doc/ directory and any of its subdirectories
 doc/**/*.pdf
 ```
+### account settings
 ```sh
-# account settings
 git config user.name # show username
 git config user.email
 
