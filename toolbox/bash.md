@@ -91,6 +91,12 @@ do
     python process.py ${i}.txt
 done
 
+# check script input argument
+if [[ $# -eq 0 ]] ; then
+    echo 'error: no argument provided'
+    exit 1
+fi
+
 # regex example
 files="models/ssd_mobilenet_train/*.meta"
 regex="ckpt\-([0-9]+)\.meta"
