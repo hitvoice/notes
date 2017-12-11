@@ -90,6 +90,19 @@ do
     echo $i
     python process.py ${i}.txt
 done
+
+# regex example
+files="models/ssd_mobilenet_train/*.meta"
+regex="ckpt\-([0-9]+)\.meta"
+for f in $files
+do
+    if [[ $f =~ $regex ]]
+    then
+        name="${BASH_REMATCH[1]}" # get the model id (group 1)
+        mkdir -p dumps/$name
+        # command to dump the model (omitted)
+    fi
+done
 ```
 
 ## resources
