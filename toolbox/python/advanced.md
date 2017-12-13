@@ -25,14 +25,15 @@ for i in tqdm(iterable):
 # 不规则的迭代手动更新：
 with tqdm(total=100) as pbar:
   for i in range(10):
-    tqdm.update(10)
+    pbar.update(10)
+    time.sleep(0.5)
 
 # annotation
 t = trange(100)
 for i in t:
     t.set_description('GEN %i' % i)
     t.set_postfix(loss=random(), gen=randint(1,999), str='h', lst=[1, 2])
-    sleep(0.1)
+    time.sleep(0.1)
 # GEN 97:  98%|█████████▊| 98/100 [00:10<00:00,  9.61it/s, gen=260, loss=0.749, lst=[1, 2], str=h]
 
 # nested progress bars
