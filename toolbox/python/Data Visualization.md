@@ -7,6 +7,7 @@ height, width, channel = img.shape  # color in channels: BGR
 cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color=(255, 255, 255), thickness=2)
 cv2.putText(img, '%.2f' % box['score'], (xmin, ymax), # put text in lower left corner of the rect
             fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(255, 255, 255), thickness=1) 
+cv2.line(img, (100, 100), (100, 200), color=(32, 32, 32), thickness=2)
 cv2.imshow('window_title', img)
 cv2.waitkey(0) # in milliseconds, 0 means wait forever, return ASCII code (int)
 cv2.imwrite('xxx.jpg', img)
