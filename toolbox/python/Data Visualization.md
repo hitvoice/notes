@@ -1,3 +1,16 @@
+## opencv
+```python
+import cv2
+img = cv2.imread('xxx.png') # `img` is a numpy array
+height, width, channel = img.shape  # color in channels: BGR
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color=(255, 255, 255), thickness=2)
+cv2.putText(img, '%.2f' % box['score'], (xmin, ymax), # put text in lower left corner of the rect
+            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(255, 255, 255), thickness=1) 
+cv2.imshow('window_title', img)
+cv2.waitkey(0) # in milliseconds, 0 means wait forever, return ASCII code (int)
+cv2.imwrite('xxx.jpg', img)
+```
 matplotlib
 ----------
 
@@ -90,7 +103,12 @@ ax.set_yticklabels(["$%.1f$" % y for y in yticks], fontsize=18);
 
 ax.grid(True)
 ax.grid(color='b', alpha=0.5, linestyle='dashed', linewidth=0.5)
-ax.text(0.15, 0.2, r"$y=x^2$", fontsize=20, color="blue") # text annotation
+# text annotation
+ax.text(0.15, 0.2, r"$y=x^2$", fontsize=20, color="blue", bbox=dict(facecolor="grey", alpha=0.5))
+# Chinese (or other foreign) text
+from matplotlib.font_manager import FontProperties
+fp = FontProperties(fname='/usr/share/fonts/PingFang.ttc')
+ax.text(..., fontproperties=fp)
 font = {'family': 'serif', # "Times New Roman"
         'color':  'darkred',
         'weight': 'bold',
@@ -101,7 +119,8 @@ plt.plot((x1, x2), (y1, y2), 'k-') # draw a line (can be vertical)
 # draw a rectangle
 import matplotlib
 ax = plt.gca()
-r = matplotlib.patches.Rectangle((.5, .5), .25, .1, fill=False) # lower left at (.5,.5), h, w
+r = matplotlib.patches.Rectangle((.5, .5), .25, .1, fill=False,  # lower left at (.5,.5), h, w
+                                 edgecolor=(0,1,1), linewidth=1.5)
 ax.add_artist(r)
 ```
 
@@ -130,7 +149,7 @@ column.value_counts().plot.bar()
 
 ### Venn Diagram
 
-`​pip install matplotlib_venn`
+`pip install matplotlib_venn`
 
 ```python
 from matplotlib_venn import venn2, venn3
@@ -140,10 +159,6 @@ venn2([set_1, set_2], set_labels = ('labelA', 'labelB')) # use venn3 for 3 sets
 ### 2 scales (different y axis) 
 
 [example](https://matplotlib.org/examples/api/two_scales.html)
-
----
-
--------
 
 seaborn 
 --------
@@ -160,9 +175,7 @@ iris = sns.load_dataset('iris')
 ```
 
 ### **distribution plots**
-
-![](resources/plots1.png)
-
+<img src="resources/plots1.png" width=500>
 
 ```python
 sns.distplot(tips['total_bill'])
@@ -182,8 +195,7 @@ sns.rugplot(tips['total_bill']) # a dash mark for every point on a univariate di
 ```
 
 ### categorical plots
-
-![](resources/plots2.png)
+<img src="resources/plots2.png" width=500>
 
 ```python
 sns.barplot(x='sex',y='total_bill',data=tips)
@@ -334,15 +346,13 @@ def f(w,b,grid,title,color):
 interact(f, w=(-1.,1.,.1), b=(-3,3,1), grid=False, title='Enter title',
          color={'red':'r','blue':'b', 'green':'g'},continuous_update=False);
 ```
-
-![](resources/widgets.png)
+<img src="resources/widgets.png" width=500>
 
 For more types of widgets, click [here](https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html).
 
 Matplotlib Colortable
 ---------------------
-
-![](resources/colors.jpg)
+<img src="resources/colors.jpg" width=500>
 
 ## Other Resources
 - [tutorial](http://www.labri.fr/perso/nrougier/teaching/matplotlib/) 
