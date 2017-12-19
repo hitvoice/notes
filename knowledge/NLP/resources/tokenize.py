@@ -29,3 +29,10 @@ X_raw = [tokenize(line) for line in lines]
 vectorizer = TfidfVectorizer(
     token_pattern=r"(?u)\b\w+\b", min_df=2, stop_words=stop_words)
 X = vectorizer.fit_transform(X_raw)
+
+# get raw document frequency from idf values
+id2w = {i: w for w, i in vectorizer.vocabulary_.items()}
+# when smooth_idf=True
+word_idf = [(id2w[i], int(np.round((len(X_raw) + 1) / np.exp(x - 1) - 1))) for i, x in enumerate(vectorizer.idf_)]
+# when smooth_idf=False
+word_idf = [(id2w[i], int(np.round(len(X_raw) / np.exp(x - 1)))) for i, x in enumerate(vectorizer.idf_)]
