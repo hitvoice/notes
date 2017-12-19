@@ -56,7 +56,7 @@ $$
 $$\alpha=\alpha_0/(1+kt)$$
 
 <div align="center">
- <img src="resources/lr.png" width="500">
+ <img src="resources/lr.jpg" width="500">
 </div>
 
 **Batch normalizaion** is a standard strategy for optimization. Let $H$ be a minibatch of activation of a layer, we replace it with
