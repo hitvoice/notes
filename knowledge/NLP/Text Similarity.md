@@ -32,10 +32,14 @@ $$
 * parameter $b\in [0,1]$: control length normalization
 
 Illustration for $\frac{1+k}{1+k/x}$:
-![img](resources/bm25.png)
+<div align="center">
+    <img src="resources/bm25.png", width=500>
+</div>
 
 ### IDF: Penalizing Popular Terms
-![img](resources/idf.png)
+<div align="center">
+    <img src="resources/idf.png", width=500>
+</div>
 ### Code example
 
 ```python
