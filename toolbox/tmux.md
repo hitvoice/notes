@@ -18,13 +18,13 @@ Inside a session, press Ctrl+A, then:
 ```sh
 d      # detach
 ```
-Panel actions:
+Pane actions:
 ```sh
 |      # vertical splilt
 -      # horizontal split
-x      # kill panel
-Up/Down/Left/Right # move between panels
-ESC + Up/Down/Left/Right # resize current panel
+x      # kill pane
+Up/Down/Left/Right # move between panes
+ESC + Up/Down/Left/Right # resize current pane
 [      # enter scroll mode, use arrow up/down/mouse wheel to scroll, press `q` to quit
 ```
 Window actions:
@@ -36,7 +36,7 @@ w      # list windows and select
 ```
 Others:
 ```sh
-tmux break-pane # move current panel to a new window
+tmux break-pane # move current pane to a new window
 ```
 
 ### Setup Notes
