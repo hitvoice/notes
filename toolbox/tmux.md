@@ -17,6 +17,7 @@ man tmux
 Inside a session, press Ctrl+A, then:
 ```sh
 d      # detach
+s      # list sessions and select
 ```
 Pane actions:
 ```sh
