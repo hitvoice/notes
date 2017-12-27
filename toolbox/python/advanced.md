@@ -151,7 +151,7 @@ random.randint(0,100) # 产生[0,100]之间的随机数
 random.randrange(0, 101, 2) # even integer in [0,100]
 random.random() # [0.0,1.0)
 random.uniform(0.5, 0.8) # [0.5,0.8]
-random.shuffle([1, 2, 3, 4, 5])
+random.shuffle([1, 2, 3, 4, 5]) # 注意python2和python3中尽管设置了同一个随机种子,shuffle的结果会不一样！
 random.sample(range(100),  3) # 无放回采样，不会重复
 random.sample(arr, len(arr)) # 非原位shuffle
 
