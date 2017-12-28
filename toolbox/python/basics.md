@@ -166,6 +166,7 @@ q.pop()
 q.popleft()
 
 # 优先级队列
+# https://docs.python.org/3/library/heapq.html
 import heapq
 heapq.nlargest(10, s, key=str.lower)
 heapq.nsmallest(100, arr)
