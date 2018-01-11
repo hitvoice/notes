@@ -89,11 +89,7 @@ RUN gem install sinatra
 
 ### 安装nvidia-docker
 
-```sh
-wget https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
-sudo dpkg -i nvidia-docker*.deb && rm nvidia-docker*.deb
-nvidia-docker run --rm nvidia/cuda nvidia-smi
-```
+[link](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0))
 
 ### 不用sudo执行docker
 
