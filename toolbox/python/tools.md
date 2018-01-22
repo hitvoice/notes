@@ -161,7 +161,9 @@ import pandas as pd
 
 ```python
 try:
-    r = requests.get(url, timeout=5)
+    r = requests.get(url, timeout=10)
+    # 如果网页编码不是utf-8需要像下面这样设置
+    # r.encoding = 'gb2312'
     html = r.text
     soup = BeautifulSoup(html, 'lxml')
 except requests.exceptions.Timeout as e:
@@ -176,6 +178,8 @@ title = soup.find(class_='core_title_txt').text
 posts = [p.text for p in soup.find_all(id=re.compile("post_content_"))] # id="post_content_137"
 next_page_url =
     [urljoin(url, a['href']) for a in soup.find_all('a', href=True) if a.text=='下一页'][0]
+# 如果Chrome复制下来的selector是这样 body > div.mainWarp > div > div.main > div > div > ul.zsList
+soup.body.find('div', class_='mainWarp').div.find('div', class_='main').div.div.find('ul', class_='zsList')
 ```
 
 ## Other tools
