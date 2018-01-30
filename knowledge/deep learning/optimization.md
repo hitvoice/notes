@@ -99,7 +99,7 @@ Efficiently search for hyper-parameter configurations: random hyperparameter sea
 A visualization of training/validation error with time is helpful for diagnostics. When the training error keeps going down and down, even &lt;1%, and the validation error gets stuck, it's likely that the model is memorizing all the training data and is overfitting.
 
 * Simple first step: Reduce model size by lowering number of units and layers and other parameters
-* Standard L1 or L2 regularization on weights ($\alpha$ can be different on different layers if the computational cost is acceptable).
+* Standard L1 or L2 regularization on weights ($\lambda$ can be different on different layers if the computational cost is acceptable). L2 regularization is also called "weight decay" because parameters will be multiplied by $1-\alpha\lambda/m$ after each update ($\alpha$ is the learning rate and $m$ is the batch size).
 * Constrain L2 norms of weight vectors to fixed number $s$. If $\|W\|_2^2>s$, then rescale it so that $\|W\|_2^2=s$.
 * Sparse activation by L1 regularizer.
 * Dataset augmentation (discussed later)
@@ -178,4 +178,5 @@ Solutions for dead neurons:
 - [Random Search for Hyper-Parameter Optimization](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
 - [A primer on neural network models for natural language processing](http://arxiv.org/pdf/1510.00726)
 - [Deep Learning Book](http://www.deeplearningbook.org/)
+- [deeplearning.ai Course 2](https://www.coursera.org/learn/deep-neural-network/home/welcome)
 
