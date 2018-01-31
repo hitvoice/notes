@@ -185,6 +185,7 @@ np.argsort(arr)
 ```python
 A.dot(B)
 A.T # transpose, taking transpose of a vector does nothing.
+np.linarg.norm(A)
 ```
 
 **broadcasting**
