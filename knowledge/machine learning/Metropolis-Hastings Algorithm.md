@@ -15,6 +15,7 @@ In order to generate the desired Markov chain, we use the Metropolis-Hastings Al
 <img src="resources/mh-alg.png" width="400">
 </div>
 which ensures the fraction of time spent in each state $x$ is proportional to $p^*(x)$. 
+
 $\widetilde p(x)$ is unnormalized $p^*(x)$. $q$ is called a **kernel** or a **proposal distribution**, which propose a value that can be accepted or reject.
 Why it works: satisfying detailed balance.
 
@@ -26,5 +27,5 @@ q(x'|x)=p(x_i'|x_{-i})\mathrm{II}(x'_{-i}=x_{-i})
 $$
 In Gibbs sampling, the acceptance probability $\alpha\equiv1$.
 
-###reference
+### reference
 Book: Machine Learning - A Probabilistic Perspective(Chapter 24)
