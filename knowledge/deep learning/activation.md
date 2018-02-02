@@ -10,10 +10,10 @@ whose derivative is $f'(z) = f(z) (1-f(z))$ ($=a(1-a)$ in implementation). The d
 An interesting property is $1-f(z) = f(-z)$ (which can be seen intuitively from the plot above).
 ### Hyperbolic tangent (rescaled sigmoid)
 $$
-\begin{align}
+\begin{align*}
 f(z) &= \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}\\\\
      &= 2\operatorname{Sigmoid}(2z)-1.
-\end{align}
+\end{align*}
 $$
 
 whose derivative is $f'(z) = 1- (f(z))^2$ ($=1-a^2$ in implementation).
@@ -25,14 +25,14 @@ Another drawback of sigmoid/tanh is that $\exp$ is a bit computational expensive
 
 ### Hard tanh
 $$
-\begin{align}
+\begin{align*}
 f(z)= 
 \begin{cases} 
 -1 \ &\mbox{if } x<-1 \\\\
 0    &\mbox{if } -1<=x<=1\\\\
 1    &\mbox{if } x>1
 \end{cases}
-\end{align}
+\end{align*}
 $$
 Hard tangent performs silimarly to tanh, but is computationally cheaper.
 
@@ -57,13 +57,13 @@ $$
 
 #### Exponential linear units (ELU)
 $$
-\begin{align}
+\begin{align*}
 f(z)= 
 \begin{cases} 
 x \ &\mbox{if } x\geq 0 \\\\
 \alpha (e^x-1)    &\mbox{if }x<0
 \end{cases}
-\end{align}
+\end{align*}
 $$
 
 #### Maxout networks
