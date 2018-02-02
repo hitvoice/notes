@@ -13,7 +13,7 @@ J(\theta)=
 $$
 where $t$ is the index of the correct class. When using cross-entropy loss, it is assumed that the network’s output is transformed using the softmax transformation, in which case increasing the mass assigned to the correct class means decreasing the mass assigned to all the other classes.
 
-Label smoothing regularizes a model based on a softmax with $k$ output values by replacing the hard 0 and 1 classification targets with targets of $\frac{\epsilon}{k-1}$ and $1−\epsilon$, respectively. Besides this uniform smoothing, "unigram smoothing" distributes the remaining probability mass proportionally to the marginal probability of classes. It prevents the model to learn larger and larger weights, making more extreme predictions forever to reach the unreachable 0 and 1 target without discouraging correct classification (unlike weight decay). Label smoothing is equivalent to adding the KL divergence between the uniform distribution $u$ and the network's predicted distribution $p_{\theta}$ to the negative log-likelihood:
+Label smoothing regularizes a model based on a softmax with $k$ output values by replacing the hard 0 and 1 classification targets with targets of $\frac{\epsilon}{k-1}$ and $1−\epsilon$, respectively. Besides this uniform smoothing, "unigram smoothing" distributes the remaining probability mass proportionally to the marginal probability of classes. It prevents the model to learn larger and larger weights, making more extreme predictions forever to reach the unreachable 0 and 1 target without discouraging correct classification (unlike weight decay). Label smoothing is equivalent to adding the KL divergence between the uniform distribution $u$ and the network's predicted distribution $p_{\theta}$ to the negative log-likelihood:
 $$
 \mathcal{L}(\theta) = -\sum\log p_\theta(y\mid x) - D_{KL}(u\|p_\theta(y\mid x)).
 $$
@@ -63,14 +63,14 @@ J(\theta)=\frac{1}{m}\sum_{k=1}^m
 $$
 The sparse target distribution $p$ is defined as:
 $$
-\begin{align}
+\begin{align*}
 p_i = 
 \begin{cases} 
-1-\left(y-\lfloor y\rfloor\right), \ &i=\lfloor y\rfloor \\
-y-\lfloor y\rfloor,    &i=\lfloor y\rfloor+1\\
+1-\left(y-\lfloor y\rfloor\right), \ &i=\lfloor y\rfloor \\\\
+y-\lfloor y\rfloor,    &i=\lfloor y\rfloor+1\\\\
 0    &\mbox{otherwise }
 \end{cases}
-\end{align}
+\end{align*}
 $$
 for $1\leq i\leq K$. For example, if $K=5$ and $y=3.6$, $p=[0, 0, 0.4, 0.6, 0]$. See [this paper](http://arxiv.org/pdf/1503.00075.pdf).
 
