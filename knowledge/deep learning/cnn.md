@@ -21,10 +21,8 @@ After obtaining our convolved features as described earlier, we decide the size 
 A CNN consists of a number of convolutional and subsampling layers optionally followed by fully connected layers. The architecture of a CNN is designed to take advantage of the 2D structure of an input image (or other 2D input such as a speech signal). This is achieved with local connections and tied weights followed by some form of pooling which results in translation invariant features.
 
 ### Back Propagation
-**propagate error through a pooling layer**
-The weight $W$ is $\frac{1}{mn}$ in mean pooling and 1 for the maximun, 0 for others in max pooling. The bias is 0. 
-**update weights in a convolutional layer**
-convolve the iuput of the convolutional layer with the incoming error.
+- **propagate error through a pooling layer**: The weight $W$ is $\frac{1}{mn}$ in mean pooling and 1 for the maximun, 0 for others in max pooling. The bias is 0. 
+- **update weights in a convolutional layer**: convolve the iuput of the convolutional layer with the incoming error.
 
 ### reference
 - http://deeplearning.stanford.edu/tutorial/
