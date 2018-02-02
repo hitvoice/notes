@@ -22,9 +22,11 @@ Why it works: satisfying detailed balance.
 In practice it's hard to tell whether the Markov chain has reached its stationary distribution (computationally intractable), though there are a handful of diagnosing tricks. Samples collected before the chain has reached its stationary distribution do not come from $p^*$, and are usually thrown away. The initial period, whose samples will be ignored, is called the **burn-in phase**.
 
 special case: Gibbs sampling.
+
 $$
 q(x'|x)=p(x_i'|x_{-i})\mathrm{II}(x'_{-i}=x_{-i})
 $$
+
 In Gibbs sampling, the acceptance probability $\alpha\equiv1$.
 
 ### reference
