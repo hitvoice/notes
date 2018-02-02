@@ -57,11 +57,11 @@ $$
 - 1/t decay
 $$\alpha=\alpha_0/(1+kt)$$
 
+In the definitions above, $k$ is called the decay rate and $t$ is the number of epochs.
+
 <div align="center">
  <img src="resources/lr.jpg" width="500">
 </div>
-
-In the definitions above, $k$ is called the decay rate and $t$ is the number of epochs.
 
 **Batch normalizaion** is a standard strategy for optimization. Let $H$ be a minibatch of activation of a layer, we replace it with
 $$
@@ -182,5 +182,5 @@ Solutions for dead neurons:
 - [Random Search for Hyper-Parameter Optimization](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
 - [A primer on neural network models for natural language processing](http://arxiv.org/pdf/1510.00726)
 - [Deep Learning Book](http://www.deeplearningbook.org/)
-- [deeplearning.ai Course 2](https://www.coursera.org/learn/deep-neural-network/home/welcome)
+- [deeplearning.ai Course 2: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/learn/deep-neural-network/home/welcome)
 
