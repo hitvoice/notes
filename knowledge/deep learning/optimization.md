@@ -46,6 +46,8 @@ Typical size of each mini batch : 20 to 1000. If full-batch training is affordab
 
 <img src="resources/adam.png" width="700">
 
+Adam is the abbreviation for "adaptive moment estimation".Because $(1-\epsilon)^{1/\epsilon} \approx 1/e$, if beta1=0.99, it takes $1/(1-0.99)=100$ iterations to make the first_moment small enough (<37% of the original value). The first_moment acts as exponential weighted averages of derivatives, and the second_moment aims to damp out the value in the oscillating directions. In practice, beta1 and beta2 are rarely tuned, while different choices of the learning rate (and learning rate scheduling) may affect the optimization process in a more noticable way.
+
 Most mini-batch optimization algorithms have the learning rate hyperparameter. Strategies include fixed learning rate, learning rate decay, cyclic learning rate (with snapshot ensemble). Common learning rate decay schemes:
 - step decay, say decaying learning rate by half every few epochs
 - exponential decay
@@ -58,6 +60,8 @@ $$\alpha=\alpha_0/(1+kt)$$
 <div align="center">
  <img src="resources/lr.jpg" width="500">
 </div>
+
+In the definitions above, $k$ is called the decay rate and $t$ is the number of epochs.
 
 **Batch normalizaion** is a standard strategy for optimization. Let $H$ be a minibatch of activation of a layer, we replace it with
 $$
@@ -114,7 +118,7 @@ A visualization of training/validation error with time is helpful for diagnostic
 * Adding noise to the weights can be interpreted as a stochastic implementation of a Bayesian inference over the weights, which reflect the uncertainty of a probability distribution. It can also be interpreted as pushing the model to points that are not merely minima, but minima surrounded by flat regions. It has been shown to be an effective in the context of RNN.
 
 ### Early Stopping
-Save parameters after each, say 3 epoch (or 1/3 epoch for a large dataset like ImageNet) and use parameters that give best validation error. To reuse data in validation set, there are 2 strategies:
+Save parameters after each, say 3 epochs (or 1/3 epoch for a large dataset like ImageNet) and use parameters that give best validation error. To reuse data in validation set, there are 2 strategies:
 * initialize the model again and retrain on all of the data for the same number of steps determined by early stopping (not optimal).
 * keep the parameters and continue training using all of the data until the average loss function on the validation set falls below the value of the training set objective when early stopping (not guaranteed to terminate).
 
