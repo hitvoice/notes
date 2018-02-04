@@ -4,7 +4,11 @@
 Fully connected networks are computationally expensive when the number of input units is large. Locally connected networks, in which each hidden unit will connect to only a small contiguous region of pixels in the input, are feasible for high resolution images.
 Natural images have the property of being ”stationary”, meaning that the statistics of one part of the image are the same as any other part. This suggests that the features that we learn at one part of the image can also be applied to other parts of the image, and we can use the same features at all locations.
 ### Convolution
-Formally, given some large $r \times c$ images $x_{large}$, we first train a sparse autoencoder on small $a \times b$ patches $x_{small}$ sampled from these images, learning $k$ features $f = \sigma(W^{(1)}x_{small} + b^{(1)})$ (where $\sigma$ is the sigmoid function), given by the weights $W^{(1)}$ and biases $b^{(1)}$ from the visible units to the hidden units. For every $a \times b$ patch $x_s$ in the large image, we compute $f_s = \sigma(W^{(1)}x_s + b^{(1)})$, giving us $f_{convolved}$, a $k \times (r - a + 1) \times (c - b + 1)$ array of convolved features.
+The dimension after convolution is
+$$
+n = \lfloor\frac{n_{\text{prev}} - \text{filter} + 2\times \text{pad}}{\text{stride}}\rfloor + 1.
+$$
+The shape of $W$ is (f, f, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 ![Convolution_schematic.gif](resources/conv.gif)
 
 ### Motivation of pooling
