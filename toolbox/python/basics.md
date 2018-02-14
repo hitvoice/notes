@@ -362,8 +362,8 @@ class Subclass(Superclass):
         #在类的对象像函数一样被调用时调用
         return arg
 
-    #自定义属性操作
-    def __setattr__(self, name, value):
+    #自定义属性操作，使用vars(x)可以得到包含所有自定义属性和值的映射的字典
+    def __setattr__(self, name, value):
       #在使用self.xxx = value时触发，为了避免无尽递归，最后用如下方式把值存进去
       super().__setattr__(name, value)
 
