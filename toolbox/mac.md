@@ -18,6 +18,12 @@
 
 [清华源](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)（或者直接用默认源开翻墙）
 
+coding.net源：
+```sh
+cd "$(brew --repo)" && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
+cd $home && brew update
+```
+
 ```sh
 brew install cloc
 brew upgrade mongodb
@@ -52,7 +58,7 @@ source /etc/bashrc
 
 ### 安装字体/查看现有字体
 
-​将字体文件拖动到`/Library/Fonts/`
+将字体文件拖动到`/Library/Fonts/`
 
 
 ### PyCharm中运行jupyter报错no such kernel named python3
