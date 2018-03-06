@@ -326,6 +326,10 @@ raise CustomException
 class Superclass:
     def __init__(self,value = defaultValue):
         pass
+    
+    def some_interface(self):
+        # 如果需要留一个待实现的接口
+        raise NotImplementedError
 
 
 class Subclass(Superclass):
