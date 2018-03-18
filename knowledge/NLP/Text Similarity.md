@@ -40,6 +40,7 @@ Illustration for $\frac{1+k}{1+k/x}$:
 <div align="center">
     <img src="resources/idf.png", width=500>
 </div>
+
 ### Code example
 
 ```python
