@@ -1,13 +1,13 @@
 # Cross Entropy
 
 $$
-H(p,q)=\operatorname {E}\_{p}[-\log q]=H(p)+D_{{{\mathrm  {KL}}}}(p\|q),\!
+H(p,q)=\operatorname {E}\_{p}[-\log q]=H(p)+D_{{{\mathrm  {KL}}}}(p\|q)
 $$
 
 For discrete $p$ and $q$ this means:
 
 $$
-H(p,q)=-\sum_{x}p(x)\,\log q(x).\!
+H(p,q)=-\sum_{x}p(x)\,\log q(x)
 $$
 As a distance measure between probability distributions, cross entropy has the unfortunate property that distributions with long tails are often modeled poorly with too much weight given to the unlikely events. Furthermore, for the measure to be bounded it requires that distribution Q be properly normalized. This sometimes presents a computational bottleneck if normalizer of Q is expensive to compute.
 
@@ -19,9 +19,10 @@ $$
 
 Because the probability of the data label $y_i$ is 0 or 1 and is fixed, so in the softmax regression, the cross-entropy loss is expressed as:
 $$
-\begin{align}
-J(\theta) = - \left[ \sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}\right]
-\end{align}
+\begin{align*}
+J(\theta) = - 
+\left\[\sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}\right\]
+\end{align*}
 $$
 
 ### reference
