@@ -8,9 +8,9 @@ To see why we tend to choose the conjugate prior as the prior, consider the proo
 $$
 \begin{align}
 p(\theta\mid x)
-&=\frac{p(\theta,x)}{p(x)}\\
-&=\frac{p(\theta)p(x\mid \theta)}{p(x)}\quad \text{(conditional prob.)}\\
-&=\frac{p(\theta)p(x\mid \theta)}{\int{p(\theta,x)\mathrm{d}\theta}}\quad \text{(marginal distribution)}\\
+&=\frac{p(\theta,x)}{p(x)}\\\\
+&=\frac{p(\theta)p(x\mid \theta)}{p(x)}\quad \text{(conditional prob.)}\\\\
+&=\frac{p(\theta)p(x\mid \theta)}{\int{p(\theta,x)\mathrm{d}\theta}}\quad \text{(marginal distribution)}\\\\
 &=\frac{p(\theta)p(x\mid \theta)}{\int{p(\theta)p(x\mid \theta)\mathrm{d}\theta}}\quad \text{(conditional prob.)}
 \end{align}
 $$
