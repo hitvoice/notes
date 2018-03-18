@@ -7,7 +7,9 @@ $$
 * $H$: Base distribution
 * $\alpha$: concentration parameter
 
-![dp0](resources/dp0.png)
+<div align="center">
+<img src="resources/dp0.png" width="500">
+</div>
 
 Properties (derive from the mean and variance of the Dirichlet distribution)
 $$
@@ -26,15 +28,25 @@ Constructive definition: Stick-breaking constructioin
 * $\pi_k=\beta_k\prod_{l=1}^{k-1}(1-\beta_l)$
 * $G=\sum_{k=1}^\infty\pi_k\delta_{\theta_k}$
 
-![dp](resources/dp1.png)
+<div align="center">
+<img src="resources/dp1.png" width="500">
+</div>
 
 The result stick-breaking sampling has the property:
 $$
 (\sum_{A_1}\pi_{l_1},\dots,\sum_{A_K}\pi_{l_K}) \sim \operatorname{Dir}(\alpha H(A_1),\dots, \alpha H(A_K ))
 $$
-![dp](resources/dp2.png)
+
+<div align="center">
+<img src="resources/dp2.png" width="500">
+</div>
+
 Examples of different $\alpha$:
-![dp](resources/dp3.png)
+
+<div align="center">
+<img src="resources/dp3.png" width="500">
+</div>
+
 Posterior:
 $$
 G|\theta_1,\theta_2,\dots,\theta_n\sim \operatorname{DP}\left(
