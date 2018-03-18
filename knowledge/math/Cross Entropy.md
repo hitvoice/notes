@@ -1,17 +1,20 @@
 # Cross Entropy
 
 $$
-H(p,q)=\operatorname {E}_{p}[-\log q]=H(p)+D_{{{\mathrm  {KL}}}}(p\|q),\!
+H(p,q)=\operatorname {E}\_{p}[-\log q]=H(p)+D_{{{\mathrm  {KL}}}}(p\|q),\!
 $$
+
 For discrete $p$ and $q$ this means:
+
 $$
-H(p,q)=-\sum _{x}p(x)\,\log q(x).\!
+H(p,q)=-\sum_{x}p(x)\,\log q(x).\!
 $$
 As a distance measure between probability distributions, cross entropy has the unfortunate property that distributions with long tails are often modeled poorly with too much weight given to the unlikely events. Furthermore, for the measure to be bounded it requires that distribution Q be properly normalized. This sometimes presents a computational bottleneck if normalizer of Q is expensive to compute.
 
 Logistic loss in the logistic regression is sometimes called cross-entropy loss, which measures the similarity between the prection and actual data labels:
 $$
-{\begin{aligned}L({\mathbf  {w}})\ &=\ {\frac  1N}\sum _{{n=1}}^{N}H(p_{n},q_{n})\ =\ -{\frac  1N}\sum _{{n=1}}^{N}\ {\bigg [}y_{n}\log {\hat  y}_{n}+(1-y_{n})\log(1-{\hat  y}_{n}){\bigg ]}\,,\end{aligned}}
+{\begin{aligned}L({\mathbf {w}})\ &=\ {\frac  1N}\sum_{{n=1}}^{N}H(p_{n},q_{n})\ =\ -{\frac  1N}\sum_{{n=1}}^{N}\ 
+{\bigg [}y_{n}\log {\hat y}\_{n}+(1-y_{n})\log(1-{\hat  y}\_{n}){\bigg ]}\,,\end{aligned}}
 $$
 
 Because the probability of the data label $y_i$ is 0 or 1 and is fixed, so in the softmax regression, the cross-entropy loss is expressed as:
