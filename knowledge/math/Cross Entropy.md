@@ -21,7 +21,7 @@ Because the probability of the data label $y_i$ is 0 or 1 and is fixed, so in th
 $$
 J(\theta) = - 
 \bigg [ 
-\sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
+\sum_{i=1}^{m} \sum_{k=1}^{K}  1\left{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
 \bigg ]
 $$
 
