@@ -31,7 +31,7 @@ I(X;Y)
 &{}=\int p(x|y)p(y)\log\frac{p(x|y)}{p(x)} \mathrm dx \mathrm dy\\\\
 &{}=\int p(y)\left(\int p(x|y)\log \frac{p(x|y)}{p(x)}\mathrm dx\right)\mathrm dy\\\\
 &{}=\operatorname {E}\_{Y}\{D_{\mathrm {KL} }(p(x|y)\|p(x))\}
-\end{aligned}}
+\end{align*}}
 $$
 Thus, MI can also be understood as the expectation of the Kullback–Leibler divergence of the univariate distribution p(x) of X from the conditional distribution p(x|y) of X given Y: the more different the distributions p(x|y) and p(x) are on average, the greater the information gain.
 
