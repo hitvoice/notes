@@ -6,13 +6,13 @@ To see a conclusion of conjugate distributions of all frequently-used likelyhood
 
 To see why we tend to choose the conjugate prior as the prior, consider the proof of the conjugate prior:
 $$
-\begin{align}
+\begin{align*}
 p(\theta\mid x)
 &=\frac{p(\theta,x)}{p(x)}\\\\
 &=\frac{p(\theta)p(x\mid \theta)}{p(x)}\quad \text{(conditional prob.)}\\\\
 &=\frac{p(\theta)p(x\mid \theta)}{\int{p(\theta,x)\mathrm{d}\theta}}\quad \text{(marginal distribution)}\\\\
 &=\frac{p(\theta)p(x\mid \theta)}{\int{p(\theta)p(x\mid \theta)\mathrm{d}\theta}}\quad \text{(conditional prob.)}
-\end{align}
+\end{align*}
 $$
 Recall that prior distribution is the probability distribution over probabilites. So $p(\theta)$ is the probability of seeing $\theta$ (the model parameter) in the prior distribution. If prior distribution is not the conjugate prior, the form of posterior distribution (can be told from the equation above) will be very complex and computationally intractable.
 
