@@ -19,10 +19,10 @@ In Euclidean space with an orthonormal basis $G(\phi)$ is simply the identity ma
 $$
 {\left(\mathcal{I} \left(\theta \right) \right)}\_{i, j}=
 \operatorname{E}
-\left\\\[\left.
+\left [ \left.
  \left(\frac{\partial}{\partial\theta_i} \log f(X;\theta)\right)
  \left(\frac{\partial}{\partial\theta_j} \log f(X;\theta)\right)
-\right|\theta\right\\\].
+\right|\theta\right ].
 $$
 ### The Story
 In gradient ascent (of the evidence lower bound in variational inference), we want to maximize:
