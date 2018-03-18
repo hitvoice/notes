@@ -162,6 +162,7 @@ np.percentile(arr, [25,50,75], axis=0) # with interpolation
 np.count_nonzero(arr)
 np.isnan(arr)
 np.unique(arr)
+np.unique(arr, return_counts=True) # value counts
 
 np.array_equal(arr1, arr2) # True if two arrays have the same shape and elements
 np.allclose(arr1, arr2) # True if 2 arrays are nearly the same (due to numerical issues)
