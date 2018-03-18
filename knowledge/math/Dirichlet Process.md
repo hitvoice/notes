@@ -68,4 +68,4 @@ At any positive-integer time $n$, the value of the process is a partition $B_n$ 
 
 ### Reference
 - Nonparametric Baysian Models: http://videolectures.net/mlss09uk_teh_nbm/
-0 Chinese restaurant process: https://en.wikipedia.org/wiki/Chinese_restaurant_process
+- Chinese restaurant process: https://en.wikipedia.org/wiki/Chinese_restaurant_process
