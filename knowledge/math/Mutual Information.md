@@ -5,7 +5,7 @@ $$
 I(X; Y)= H(X) – H(X|Y) = H(Y)-H(Y|X) = H(X) + H(Y) - H(X,Y)
 $$
 <div align="center">
-![img](resources/mi.png)
+<img src="resources/mi.png">
 </div>
 
 Properties
@@ -15,7 +15,7 @@ Properties
 
 Formally:
 $$
-{\displaystyle I(X;Y)=\int_{Y}\int_{X}p(x,y)\log {\left({\frac {p(x,y)}{p(x)\,p(y)}}\right)} \mathrm dx\, \mathrm dy}
+{\displaystyle I(X;Y)=\int_{Y}\int_{X}p(x,y)\log {\left({\frac {p(x,y)}{p(x)\,p(y)}}\right)} \mathrm dx \mathrm dy}
 $$
 
 Expressed by [KL Divergence](../machine%20learning/KL%20Divergence.md):
