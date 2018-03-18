@@ -7,11 +7,11 @@ $$
 $$
 which results in the following explicit formula:
 $$
-\begin{aligned}
+\begin{align*}
 \Pr(\mathbf {x} \mid {\boldsymbol {\alpha }})
-&{}={\frac {\left(n!\right)\Gamma \left(\alpha _{0}\right)}{\Gamma \left(n+\alpha _{0}\right)}}\prod _{k=1}^{K}{\frac {\Gamma (x_{k}+\alpha _{k})}{\left(x_{k}!\right)\Gamma (\alpha _{k})}}\\
+&{}={\frac {\left(n!\right)\Gamma \left(\alpha _{0}\right)}{\Gamma \left(n+\alpha _{0}\right)}}\prod _{k=1}^{K}{\frac {\Gamma (x_{k}+\alpha _{k})}{\left(x_{k}!\right)\Gamma (\alpha _{k})}}\\\\
 &{}={\frac {nB\left(\alpha _{0},n\right)}{\prod _{k:x_{k}>0}x_{k}B\left(\alpha _{k},x_{k}\right)}}
-\end{aligned}
+\end{align*}
 $$
 where $\alpha _{0}$ is defined as the sum ${\displaystyle \alpha _{0}=\sum \alpha _{k}}$ The latter form emphasizes the fact that zero count categories can be ignored in the calculation.
 ### Related distributions
