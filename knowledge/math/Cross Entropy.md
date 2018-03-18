@@ -7,7 +7,7 @@ $$
 For discrete $p$ and $q$ this means:
 
 $$
-H(p,q)=-\sum_{x}p(x)\,\log q(x)
+H(p,q)=-\sum_{x}p(x)\log q(x)
 $$
 As a distance measure between probability distributions, cross entropy has the unfortunate property that distributions with long tails are often modeled poorly with too much weight given to the unlikely events. Furthermore, for the measure to be bounded it requires that distribution Q be properly normalized. This sometimes presents a computational bottleneck if normalizer of Q is expensive to compute.
 
