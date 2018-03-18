@@ -3,7 +3,7 @@
 It is a multivariate generalization of the [beta distribution](Beta%20Distribution.md). A $k$-dimensional Dirichlet random variable $x$ can take values in the $(k − 1)$-simplex (a $k$-vector $x$ lies in the $(k − 1)$-simplex if $x_i \geq 0$, $\sum_{i=1}^k x_i = 1$).
 
 PDF:
-$$ f\left(x_{1},\cdots ,x_{K};\alpha _{1},\cdots ,\alpha _{K}\right)={\frac {1}{\mathrm {B} ({\boldsymbol {\alpha }})}}\prod _{i=1}^{K}x_{i}^{\alpha _{i}-1}$$
+$$ f\left(x_{1},\cdots ,x_{K};\alpha_{1},\cdots ,\alpha_{K}\right)={\frac {1}{\mathrm {B} ({\boldsymbol {\alpha }})}}\prod_{i=1}^{K}x_{i}^{\alpha_{i}-1}$$
 
 where the parameter $\boldsymbol\alpha$ is a $k$-vector with components $\alpha_i > 0$ and the **multivariate Beta function** acts as the normalizing constant:
 
