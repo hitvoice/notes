@@ -11,7 +11,7 @@ Its general CDF function does not have an analytic expression.
 
 ## Applications
 Beta Distribution is the [conjugate prior](Conjugate%20Prior.md) of many discrete distributions, including the Bernoulli and binomial distribution, in **Bayesian inference**.
-The parameters, $\alpha$ and $\beta$, can be intuitively interpreted as positive and negative "psudo samples". The posterior hyperparameters of Bernoulli likelihood are simply $\alpha +\sum _{i=1}^{n}x_{i},\,\beta +n-\sum _{i=1}^{n}x_{i}\!$.
+The parameters, $\alpha$ and $\beta$, can be intuitively interpreted as positive and negative "psudo samples". The posterior hyperparameters of Bernoulli likelihood are simply $\alpha +\sum_{i=1}^{n}x_{i},\,\beta +n-\sum_{i=1}^{n}x_{i}\!$.
 
 ## Properties
 ### mode
@@ -30,4 +30,5 @@ Beta Distribution: [https://en.wikipedia.org/wiki/Beta_distribution](https://en.
 The followings are the illustrations of the hyperparameters.
 ![ex1.png](resources/beta1.png)
 ![ex2.png](resources/beta2.png)
+
 Note that y axis stands for probability density, which can exceed 1 with no surprise (probability is the integral of probability density).
