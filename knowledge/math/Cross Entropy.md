@@ -13,17 +13,17 @@ As a distance measure between probability distributions, cross entropy has the u
 
 Logistic loss in the logistic regression is sometimes called cross-entropy loss, which measures the similarity between the prection and actual data labels:
 $$
-\begin{aligned*}
+\begin{align*}
 L({\mathbf {w}})\ &={\frac  1N}\sum_{{n=1}}^{N}H(p_{n},q_{n})\\\\
 &=-{\frac  1N}\sum_{{n=1}}^{N}\ 
 {\bigg [}y_{n}\log {\hat y}\_{n}+(1-y_{n})\log(1-{\hat  y}\_{n}){\bigg ]}
-\end{aligned*}
+\end{align*}
 $$
 
 Because the probability of the data label $y_i$ is 0 or 1 and is fixed, so in the softmax regression, the cross-entropy loss is expressed as:
 $$
 J(\theta) = - 
-\sum_{i=1}^{m} \sum_{k=1}^{K} 1 \left \{ y^{(i)}=k \right \} 
+\sum_{i=1}^{m} \sum_{k=1}^{K} 1 \left \\\{ y^{(i)}=k \right \\\} 
 \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
 $$
 
