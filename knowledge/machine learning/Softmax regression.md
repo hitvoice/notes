@@ -32,7 +32,7 @@ $$
 Optimize with gradient descent:
 $$
 \begin{align*}
-\nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left [ x^{(i)} \left( 1\{ y^{(i)} = k\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right) \right ]  }
+\nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left [ x^{(i)} \left ( 1\\\{ y^{(i)} = k\\\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right ) \right ]  }
 \end{align*}
 $$
 
