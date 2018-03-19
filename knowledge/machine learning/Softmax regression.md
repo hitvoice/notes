@@ -4,46 +4,47 @@ Hypothesis:
 ($x$: $m\times d$, $\theta$: $d\times K$)
 
 $$
-\begin{align}
+\begin{align*}
 h_\theta(x) =
 \begin{bmatrix}
-P(y = 1 | x; \theta) \\
-P(y = 2 | x; \theta) \\
-\vdots \\
+P(y = 1 | x; \theta) \\\\
+P(y = 2 | x; \theta) \\\\
+\vdots \\\\
 P(y = K | x; \theta)
 \end{bmatrix}
-=
-\frac{1}{ \sum_{j=1}^{K}{\exp(\theta^{(j)\top} x) }}
+= \frac{1}{ \sum_{j=1}^{K}{\exp(\theta^{(j)\top} x) }}
 \begin{bmatrix}
-\exp(\theta^{(1)\top} x ) \\
-\exp(\theta^{(2)\top} x ) \\
-\vdots \\
-\exp(\theta^{(K)\top} x ) \\
+\exp(\theta^{(1)\top} x ) \\\\
+\exp(\theta^{(2)\top} x ) \\\\
+\vdots \\\\
+\exp(\theta^{(K)\top} x ) \\\\
 \end{bmatrix}
-\end{align}
+\end{align*}
 $$
+
 Cost function ([cross entropy loss](../math/Cross%20Entropy.md)):
+
 $$
-\begin{align}
+\begin{align*}
 J(\theta) = -  \sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
-\end{align}
+\end{align*}
 $$
 Optimize with gradient descent:
 $$
-\begin{align}
-\nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left[ x^{(i)} \left( 1\{ y^{(i)} = k\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right) \right]  }
-\end{align}
+\begin{align*}
+\nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left [ x^{(i)} \left( 1\{ y^{(i)} = k\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right) \right ]  }
+\end{align*}
 $$
 
 ### Redundancy of Parameters
 The actual number of parameters are just $(K-1)n$, rather than $Kn$, because probabilities always sum to 1. We can find that subtracting $\psi$ from every $\theta(j)$ does not affect our hypothesis’ predictions at all:
 $$
-\begin{align}
+\begin{align*}
 P(y^{(i)} = k | x^{(i)} ; \theta)
-&= \frac{\exp((\theta^{(k)}-\psi)^\top x^{(i)})}{\sum_{j=1}^K \exp( (\theta^{(j)}-\psi)^\top x^{(i)})}  \\
-&= \frac{\exp(\theta^{(k)\top} x^{(i)}) \exp(-\psi^\top x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)}) \exp(-\psi^\top x^{(i)})} \\
+&= \frac{\exp((\theta^{(k)}-\psi)^\top x^{(i)})}{\sum_{j=1}^K \exp( (\theta^{(j)}-\psi)^\top x^{(i)})}  \\\\
+&= \frac{\exp(\theta^{(k)\top} x^{(i)}) \exp(-\psi^\top x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)}) \exp(-\psi^\top x^{(i)})} \\\\
 &= \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}.
-\end{align}
+\end{align*}
 $$
 So one can instead set $\theta(K)=\vec 0$ and optimize only with respect to the remaining parameters.
 Note that $J(\theta)$ is still convex, but the Hessian is singular, which causes a straightforward implementation of Newton’s method to run into numerical problems.
