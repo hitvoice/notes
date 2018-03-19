@@ -29,10 +29,10 @@ Analytical gradient is more error prone to implement, though it's much faster th
 The objectives of deep architectures have a long shallow ravine leading to the optimum and steep walls on the sides. The negative gradient of standard SGD will point down one of the steep sides rather than along the ravine towards the optimum and thus can lead to very slow convergence. 
 Momentum is one method for pushing the objective more quickly along the shallow ravine. The momentum update is given by
 
-\begin{align}
-v &= \gamma v+ \alpha \nabla_{\theta} J(\theta; x^{(i)},y^{(i)}) \\
+\begin{align*}
+v &= \gamma v+ \alpha \nabla_{\theta} J(\theta; x^{(i)},y^{(i)}) \\\\
 \theta &= \theta - v
-\end{align}
+\end{align*}
 
 In the above equation $v$ is the current velocity vector which is of the same dimension as the parameter vector $\theta$, which is initialized to 0. The learning rate $\alpha$ is as described above, although when using momentum $\alpha$ may need to be smaller since the magnitude of the gradient will be larger. Finally momentum $\gamma \in (0,1]$ determines for how many iterations the previous gradients are incorporated into the current update. Generally $\gamma$ is set to 0.5 until the initial learning stabilizes and then is increased to 0.9 or higher.
 
