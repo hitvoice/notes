@@ -26,7 +26,7 @@ Cost function ([cross entropy loss](../math/Cross%20Entropy.md)):
 
 $$
 \begin{align*}
-J(\theta) = -  \sum_{i=1}^{m} \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
+J(\theta) = -  \sum_{i=1}^{m} \sum_{k=1}^{K}  1\left \\\{ y^{(i)} = k\right \\\} \log \frac{\exp(\theta^{(k)\top} x^{(i)})}{\sum_{j=1}^K \exp(\theta^{(j)\top} x^{(i)})}
 \end{align*}
 $$
 Optimize with gradient descent:
