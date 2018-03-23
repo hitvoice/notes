@@ -507,6 +507,8 @@ import contextlib
 with contextlib.closing(urllib.urlopen("https://www.python.org/")) as front_page:
     for line in front_page:
         print line
+with contextlib.ExitStack(): # an empty context lib
+    pass
 
 # pprint
 from pprint import pprint, pformat
