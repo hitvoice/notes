@@ -278,6 +278,36 @@ def function_name(parameter1 = default_value1,parameter2,*rest_parameter，**res
 #查看文档字符串
 function_name.__doc__
 help(function_name)
+# 指定参数/返回值类型
+# 方法1 annotation
+from typing import List, Dict, Set
+
+def func(a: Dict[str, int], b: List[int], c: Set[str]) -> str:
+    return f'{len(a)} - {len(b) + len(c)}'
+
+# 方法2 docstring
+def func2(a, b, c):
+    """
+    :param a: describe a...
+    :type a: dict[str, int]
+    :param b: describe b...
+    :type b: list[int]
+    :param c: describe c...
+    :type c: set[str]
+    :rtype: str
+    """
+    return f'{len(a)} - {len(b) + len(c)}'
+   
+# 或者
+def func2(a, b, c):
+    """
+    :param dict[str, int] a: describe a...
+    :param list[int] b: describe b...
+    :param set[str] c: describe c...
+    :rtype: str
+    """
+    return f'{len(a)} - {len(b) + len(c)}'
+
 #函数嵌套
 def func1(para1):
     def func2(para2):#此func2对外不可见
@@ -374,7 +404,8 @@ class Subclass(Superclass):
 
     def __getattr__(self, name):
       # 找到时不会触发，传入找不到的名字时才触发；如果还是个非法名字，raise AttributeError
-      return None
+      # 可以用hasattr(self, 'attr_name')检查目前是否有这个attr（变量或函数均可）
+      return None
 
     #静态属性，按照SubClass.static_variable访问
     static_variable = []
@@ -453,23 +484,29 @@ def inorder(t):
     for x in inorder(t.right):
       yield x
 
-#lambda表达式
+# lambda表达式
 list(filter(lambda word: word[0]=='s', words)) # 选出以s开头的词
 list(map(lambda x:x*2, [1,2,3]))
 max(d.keys(), key=lambda x: d[x]) # get the max-valued key
 
-#读写文本文件
+# 读写文本文件
 with open(filename) as f:
 	for line in f: # f.readlines()，两者读取进来都是带有'\n'结尾的，需要注意！
 	  if line == '\n':
 	    continue
 		print(line, end='')
-#多个文件
+# 多个文件
 with open(fn1) as f1, open(fn2) as f2:
   pass
-#如果遇到包含可忽略的编码错误的文件：
+# 如果遇到包含可忽略的编码错误的文件：
 with open(filename, encoding='utf-8', errors='ignore') as f
-#如果sublime text可以看见python读进来却是乱码，可以尝试手工打开文件并选择save with encoding:utf-8
+# 如果sublime text可以看见python读进来却是乱码，可以尝试手工打开文件并选择save with encoding:utf-8
+
+# 如果遇到有些库不支持with
+import contextlib
+with contextlib.closing(urllib.urlopen("https://www.python.org/")) as front_page:
+    for line in front_page:
+        print line
 
 # pprint
 from pprint import pprint, pformat
