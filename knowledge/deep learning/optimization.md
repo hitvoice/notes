@@ -62,7 +62,7 @@ $$
 $$
 \alpha = \alpha_0 \max(\epsilon, k-ct)
 $$
-$\epsilon$ is the minimun amount of learning rate. $k$ and $c$ provide the offset and slope of the decay.
+$\alpha_0\epsilon$ is the minimun amount of learning rate. $k$ and $c$ provide the offset and slope of the decay.
 
 - 1/t decay
 $$\alpha=\alpha_0/(1+kt)$$
@@ -70,9 +70,10 @@ In the definitions above, $k$ is called the decay rate and $t$ is the number of 
 
 - Inversed sigmoid decay
 $$
-\alpha = \frac{k}{k+\exp (i/k)} (k \geq 1)
+\alpha = \frac{k}{k+\exp (i/k)}\ (k \geq 1)
 $$
 
+Relation between the learning rate and convergence:
 <div align="center">
  <img src="resources/lr.jpg" width="300">
 </div>
