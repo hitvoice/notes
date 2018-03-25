@@ -52,15 +52,29 @@ Most mini-batch optimization algorithms have the learning rate hyperparameter. S
 - step decay, say decaying learning rate by half every few epochs
 - exponential decay
 $$
-\alpha=\alpha_0\mathrm{e}^{-kt}
+\alpha=\alpha_0\mathrm{e}^{-kt}\ (k>0)
 $$
+or 
+$$
+\alpha=\alpha_0 k^t\ (k<1)
+$$
+- linear decay
+$$
+\alpha = \alpha_0 \max(\epsilon, k-ct)
+$$
+$\epsilon$ is the minimun amount of learning rate. $k$ and $c$ provide the offset and slope of the decay.
+
 - 1/t decay
 $$\alpha=\alpha_0/(1+kt)$$
-
 In the definitions above, $k$ is called the decay rate and $t$ is the number of epochs.
 
+- Inversed sigmoid decay
+$$
+\alpha = \frac{k}{k+\exp (i/k)} (k \geq 1)
+$$
+
 <div align="center">
- <img src="resources/lr.jpg" width="500">
+ <img src="resources/lr.jpg" width="300">
 </div>
 
 **Batch normalizaion** is a standard strategy for optimization. Let $H$ be a minibatch of activation of a layer, we replace it with
