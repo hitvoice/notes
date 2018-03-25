@@ -27,6 +27,7 @@ cd $home && brew update
 ```sh
 brew install cloc
 brew upgrade mongodb
+brew remove cloc
 ```
 
 ### 系统路径（MAC）
