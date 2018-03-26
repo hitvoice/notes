@@ -7,6 +7,7 @@ git push
 
 cd project_repo; git init # setup a new local repo
 git clone xxx.git # clone a remote repo
+git clone xxx.git new_name # clone a remote repo using "new_name" as the folder name
 git status
 git status -s
 git diff # between staged and unstaged files
