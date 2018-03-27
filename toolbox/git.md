@@ -8,6 +8,7 @@ git push
 cd project_repo; git init # setup a new local repo
 git clone xxx.git # clone a remote repo
 git clone xxx.git new_name # clone a remote repo using "new_name" as the folder name
+git submodule update --init # if this repo has submodules, do it after cloning or use "git clone --recursive"
 git status
 git status -s
 git diff # between staged and unstaged files
@@ -20,6 +21,7 @@ git commit # use vim to enter a multi-line commit message; use after pull and fi
 git push
 
 git pull
+git submodule update --recursive # is this repo has submodules, do it after "git pull"
 git log -3 # view the latest 3 commits
 git rm xxx # untrack and remove a file
 git rm --cached xxx # untrack
