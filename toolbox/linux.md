@@ -1,3 +1,7 @@
+### 准备ubuntu USB安装盘
+- [使用windows电脑](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows)
+- [使用Mac或Ubuntu Desktop (unetbootin)](unetbootin.github.io/)
+
 ### 控制tensorflow显存占用
 
 ```python
