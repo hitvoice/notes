@@ -6,14 +6,16 @@ Natural images have the property of being ”stationary”, meaning that the sta
 ### Convolution
 The dimension after convolution is
 $$
-n = \lfloor\frac{n_{\text{prev}} - \text{filter} + 2\times \text{pad}}{\text{stride}}\rfloor + 1.
+n = \lfloor\frac{n_{\text{prev}} - k + 2\times \text{pad}}{\text{stride}}\rfloor + 1,
 $$
-The receptive field of each hidden units is 
+where $k$ is the kernel size. The receptive field of each hidden units is 
 $$
-((\text{filter} - 1)\times n_{\text{layer}} + 1)^2
+((k - 1)\times n_{\text{layer}} + 1)^2
 $$
-The shape of $W$ is (f, f, n_prev, n). The shape of $b$ is (1, 1, 1, n).
+The shape of $W$ is (k, k, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 ![Convolution_schematic.gif](resources/conv.gif)
+
+If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left padding is $\lfloor\frac{k-1}{2}\rfloor$ and right padding is $\lfloor\frac{k}{2}\rfloor$. In 1d convolution where no future information should involve, one can set both left and right padding to $k-1$ and remove the last $k-1$ units after each convolution.
 
 ### Motivation of pooling
 * Features obtained by convolution is still computationally challenging
@@ -21,7 +23,7 @@ The shape of $W$ is (f, f, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 * Pooled features are "translation invariant", which means the same pooled feature will be active even when the image undergoes (small) translations.
 
 ### Pooling
-After obtaining our convolved features as described earlier, we decide the size of the region, say $m\times n$ to pool our convolved features over. Then, we divide our convolved features into disjoint $m\times n$ regions, and take the mean (or maximum) feature activation over these regions to obtain the pooled convolved features. These pooled features can then be used for classification.
+After obtaining our convolved features as described earlier, we decide the size of the region, say $m\times n$ to pool our convolved features over. Then, we divide our convolved features into disjoint $m\times n$ regions, and take the mean (or maximum) feature activation over these regions to obtain the pooled convolved features. These pooled features can then be used for classification. In max pooling, "-inf" (instead of 0) is used as the padded value.
 
 <img src="resources/pool.gif" width="600">
 
