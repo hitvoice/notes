@@ -8,6 +8,10 @@ The dimension after convolution is
 $$
 n = \lfloor\frac{n_{\text{prev}} - \text{filter} + 2\times \text{pad}}{\text{stride}}\rfloor + 1.
 $$
+The receptive field of each hidden units is 
+$$
+((\text{filter} - 1)\times n_{\text{layer}} + 1)^2
+$$
 The shape of $W$ is (f, f, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 ![Convolution_schematic.gif](resources/conv.gif)
 
