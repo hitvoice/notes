@@ -21,7 +21,7 @@ git commit # use vim to enter a multi-line commit message; use after pull and fi
 git push
 
 git pull
-git submodule update --recursive # is this repo has submodules, do it after "git pull"
+git submodule update --remote --recursive
 git log -3 # view the latest 3 commits
 git rm xxx # untrack and remove a file
 git rm --cached xxx # untrack
@@ -45,6 +45,7 @@ git merge master # merge changes from master into the current branch
 git branch -d feature_x # delete the branch
 # 多说几句：如果已经做了一些改动然后希望把这些改动放在新branch里，master回到上一次commit，做法是新建一个branch（此时修改在两个branch都可见），然后在新branch里commit changes，master就会自动回到上一次commit，而branch更新为修改后的状态
 
+git submodule add <URL> <path>
 git tag -a v1.4 -m "message for this tag" # will launch vim without `-m`
 git show v1.4 # view tag info
 git push origin --tags
