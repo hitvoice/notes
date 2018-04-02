@@ -15,9 +15,9 @@ tf.Session(config=config)
 
 ### MD5 Checksum
 
-​(mac) `​md5 big_file_name`​
+(mac) `md5 big_file_name`
 
-(linux) `md5sum big_file_name`​
+(linux) `md5sum big_file_name`
 
 
 ### 升级相关版本
@@ -64,7 +64,26 @@ sudo apt-get install octave
 ```
 
 ### 安装CUDA
+#### 在ubuntu server上安装
+注意：如果系统使用UEFI，那么需要重启进入BIOS，将Secure Boot设置为disable，否则Secure Boot无法和第三方driver兼容。如果忘了设置这个，在安装Nvidia驱动弹出提示的时候不要在安装程序里配置，终止安装并`sudo apt-get purge nvidia-*`，重启进入BIOS设置完以后重新安装。
+```sh
+sudo apt update
+sudo apt dist-upgrade
+sudo apt ubuntu-drivers-common
+```
+然后运行
+```sh
+ubuntu-drivers devices
+```
+按照建议的驱动版本，执行：
+```sh
+sudo apt install intel-microcode
+sudo apt install nvidia-xxx
+```
+重启机器。此时可能诡异地进入桌面版登录界面（但无法登录），Ctrl+Alt+F1进入命令行以后使用sudo service lightdm stop关停后继续。此时nvidia-smi已经可以正常运行。
+进入[CUDA下载页面](https://developer.nvidia.com/cuda-downloads)选择.deb版本的CUDA下载并按照对应指示安装即可。安装完成后重启机器。
 
+#### 在ubuntu desktop上安装
 1. 从[这里](https://developer.nvidia.com/cuda-downloads)下载CUDA；检查md5sum
 1. 使用纯命令行登录
 1. 清除以往安装：`sudo apt-get purge nvidia-*`
