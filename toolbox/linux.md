@@ -23,8 +23,7 @@ tf.Session(config=config)
 ### 升级相关版本
 ```sh
 sudo apt-get update && sudo apt-get upgrade
-conda update --all --no-channel-priority
-conda update conda
+conda update conda; conda update --all
 conda update python
 conda update numpy
 pip install xpinyin —-upgrade
@@ -39,7 +38,7 @@ conda config --set show_channel_urls yes
 
 ### 数代码行数
 
-`​cloc .`​ （[更多文档](https://github.com/AlDanial/cloc)）
+`cloc .` （[更多文档](https://github.com/AlDanial/cloc)）
 
 ### Anaconda提示PermissionError(13, 'Permission denied')
 
