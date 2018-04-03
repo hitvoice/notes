@@ -1,6 +1,48 @@
+## 完整工作环境搭建
 ### 准备ubuntu USB安装盘
 - [使用windows电脑](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows)
 - [使用Mac或Ubuntu Desktop (unetbootin)](unetbootin.github.io/)
+
+### 安装ubuntu server
+- 确保需要装机的机器机箱内配件完整，记录Nvidia显卡型号，并且插好了网线、键盘和显示器
+- 插入安装U盘，按相关按键进入BIOS（如Dell是F2）将U盘启动顺序置顶，随后进入安装程序
+- 安装中的推荐选项参照[这里](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server#0)。如果BIOS默认Secure Boot安装过程可能会提示是否force UEFI，这里需要选择是，否则系统会无法启动。在这种情况下，安装完成后重启进入BIOS，将Secure Boot设置为disable，否则Secure Boot无法和第三方driver（比如CUDA）兼容。
+- 安装完成后进入系统，用ifconfig查看本机ip并记录
+- 安装过程中如果勾选了openssh，那么可以退出并用另一台机器远程操作；如果忘了勾选，那么先安装并启动openssh，并检查本地连接是否成功：
+```
+sudo apt install ssh openssh-server
+sudo ufw allow 22
+```
+
+### 安装显卡驱动和开发包
+```
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt install ubuntu-drivers-common
+ubuntu-drivers devices
+```
+此时会显示显卡建议的驱动版本（比如390或其他数字），按照建议的驱动版本执行：
+```sh
+sudo apt install intel-microcode
+sudo apt install nvidia-xxx
+```
+如果之前忘了关闭Secure Boot，在安装弹出提示的时候不要在安装程序里做相关设置，终止安装并用`sudo apt-get purge nvidia-*`清除已有安装，重启进入BIOS设置完以后重新安装。
+
+安装完成后重启机器。如果此时忽然进入桌面版登录界面（但无法登录），Ctrl+Alt+F1进入命令行以后使用sudo service lightdm stop关停后继续。此时nvidia-smi已经可以正常运行。
+
+进入[CUDA下载页面](https://developer.nvidia.com/cuda-downloads)选择.deb版本的CUDA下载并按照对应指示安装。安装完成后重启机器。
+
+按照[这个教程](http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html)安装CuDNN。
+
+按照[这个教程](http://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html)安装NCCL。
+
+### 安装开发环境
+- 安装Anaconda、tensorflow、Keras。如果Tensorflow支持的CUDA驱动还是旧版本，从源码编译tensorflow，编译前设置环境变量LD\_LIBRARY\_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64，注意配置安装时不认识的扩展一律不要选yes，正确输入和CUDA、CuDNN相关联的信息，其他用默认选项即可。
+- 从源码编译pytorch。如果之前忘了安装nccl，安装nccl后移除整个pytorch文件夹重新clone重新安装。
+- 在开发机上安装Pycharm Professional并在新机器上配置项目部署以及远程解释器。
+
+---
 
 ### 控制tensorflow显存占用
 
@@ -69,7 +111,7 @@ sudo apt-get install octave
 ```sh
 sudo apt update
 sudo apt dist-upgrade
-sudo apt ubuntu-drivers-common
+sudo apt install ubuntu-drivers-common
 ```
 然后运行
 ```sh
@@ -264,8 +306,8 @@ LANGUAGE="zh_CN:zh:en_US:en"
 import matplotlib
 print(matplotlib.matplotlib_fname()
 ```
-​得到配置文件的位置，打开配置文件，将backend配置为backend: Agg
-​​即可正常使用。注意此时show()无法调用，但savefig()可以正常使用。
+得到配置文件的位置，打开配置文件，将backend配置为backend: Agg
+即可正常使用。注意此时show()无法调用，但savefig()可以正常使用。
 
 ### 远程访问notebook
 ```python
