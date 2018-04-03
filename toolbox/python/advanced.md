@@ -132,16 +132,17 @@ logging.basicConfig(format='%(asctime)s %(message)s',
 log = logging.getLogger(__name__)
 # 分别输出到屏幕和文件
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
-fh = logging.FileHandler('main.log')
-fh.setLevel(logging.DEBUG)
-ch = logging.StreamHandler(sys.stdout)
-ch.setLevel(logging.INFO) # WARN
-formatter = logging.Formatter(fmt='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S')
-fh.setFormatter(formatter)
-ch.setFormatter(formatter)
-log.addHandler(fh)
-log.addHandler(ch)
+if not log.handlers: # avoid adding handlers again
+    log.setLevel(logging.DEBUG)
+    fh = logging.FileHandler('main.log')
+    fh.setLevel(logging.DEBUG)
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(logging.INFO) # WARN
+    formatter = logging.Formatter(fmt='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S')
+    fh.setFormatter(formatter)
+    ch.setFormatter(formatter)
+    log.addHandler(fh)
+    log.addHandler(ch)
 
 #随机数
 import random
