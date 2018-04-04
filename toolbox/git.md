@@ -125,3 +125,8 @@ git config user.email
 git config --global user.email "xxx@gmail.com"
 git config --local user.email "xxx@gmail.com" # repository
 ```
+### working on Windows
+To supress warnings about different line separators:
+```sh
+git config core.autocrlf true
+```
