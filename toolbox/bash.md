@@ -9,6 +9,9 @@ watch -n 1 -d nvidia-smi # 每秒刷新并高亮变化的部分
 nvcc --version # CUDA版本
 lsb_release -a # ubuntu系统版本
 ifconfig # 查看当前IP地址
+lsblk # 查看硬盘空间
+lsblk --fs # 查看文件系统和label
+sudo parted -l # 查看硬盘详细情况
 ```
 
 ```sh
@@ -22,10 +25,24 @@ tar -zxvf xxx.tar.gz # -C /output/dir 可以解压到预先创建好的文件夹
 command | tee output.log
 
 # mount a USB drive
-lsblk # Find what the drive is called
+lsblk # Find the path to the drive
 sudo mkdir /media/usb # Create a mount point
 sudo mount /dev/sdb1 /media/usb # Mount!
 sudo umount /media/usb # fire off after using
+
+# format and mount an external disk
+lsblk # Find the path to the disk
+sudo parted /dev/sdb mklabel gpt # create partion table and use GPT standard
+sudo parted -a opt /dev/sdb mkpart primary ext4 0% 100% # create a new partition
+# use file system ext4: best if the disk is linux only
+sudo mkfs.ext4 -L "some label" /dev/sdb1 # don't forget the tailing number. We're referring to a partition now
+# use file system exfat: ready for Windows, MacOS to read data from it in the future
+sudo apt install exfat-utils exfat-fuse
+sudo mkfs.exfat -n "some label" /dev/sdb1
+lsblk --fs # check the fstype, UUID and label
+# mount the partition on boot
+sudo vi /etc/fstab # add this line: "UUID=B866-DD3A /mnt/data/ ext4 defaults 0 2"
+sudo mount -a # mount it now
 ```
 
 ```sh
