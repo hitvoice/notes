@@ -38,6 +38,7 @@ sudo apt install nvidia-xxx
 按照[这个教程](http://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html)安装NCCL。
 
 ### 安装开发环境
+- 安装基础的开发环境`sudo apt install cmake build-essential`
 - 安装Anaconda、tensorflow、Keras。如果Tensorflow支持的CUDA驱动还是旧版本，从源码编译tensorflow，编译前设置环境变量LD\_LIBRARY\_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64，注意配置安装时不认识的扩展一律不要选yes，正确输入和CUDA、CuDNN相关联的信息，其他用默认选项即可。
 - 从源码编译pytorch。如果之前忘了安装nccl，安装nccl后移除整个pytorch文件夹重新clone重新安装。
 - 在开发机上安装Pycharm Professional并在新机器上配置项目部署以及远程解释器。
