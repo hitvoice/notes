@@ -27,7 +27,11 @@ ubuntu-drivers devices
 sudo apt install intel-microcode
 sudo apt install nvidia-xxx
 ```
-如果之前忘了关闭Secure Boot，在安装弹出提示的时候不要在安装程序里做相关设置，终止安装并用`sudo apt-get purge nvidia-*`清除已有安装，重启进入BIOS设置完以后重新安装。
+如果之前忘了关闭Secure Boot，在安装弹出提示的时候不要在安装程序里做相关设置，终止安装并用`sudo apt-get purge nvidia-*`清除已有安装，重启进入BIOS设置完以后重新安装。如果apt找不到最新的驱动版本，执行以下命令后重试。
+```sh
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+```
 
 安装完成后重启机器。如果此时忽然进入桌面版登录界面（但无法登录），Ctrl+Alt+F1进入命令行以后使用`sudo service lightdm stop`关停后用`sudo systemctl disable lightdm.service`关闭lightdm的自动启动。此时nvidia-smi已经可以正常运行。
 
