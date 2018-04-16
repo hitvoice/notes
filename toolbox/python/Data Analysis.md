@@ -232,7 +232,7 @@ output = output.getvalue() # str
 # parse from string
 df = pd.read_csv(StringIO(text))
 
-pd.read_excel('output.xlsx',sheetname='Sheet1') # no '_'
+pd.read_excel('output.xlsx',sheet_name='Sheet1')
 df.to_excel('output.xlsx',sheet_name='Sheet1',index=False)
 # to multiple sheets
 writer = pd.ExcelWriter('output.xlsx')
