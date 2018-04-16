@@ -14,6 +14,10 @@ conda remove --name env_name --all
 
 ### 基于每个project的本地管理
 
+安装：
+```sh
+conda install virtualenv
+```
 创建：
 
 ```sh
