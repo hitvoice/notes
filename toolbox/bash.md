@@ -41,6 +41,7 @@ sudo apt install exfat-utils exfat-fuse
 sudo mkfs.exfat -n "some label" /dev/sdb1
 lsblk --fs # check the fstype, UUID and label
 # mount the partition on boot
+sudo mkdir /mnt/data
 sudo vi /etc/fstab # add this line: "UUID=B866-DD3A /mnt/data/ ext4 defaults 0 2"
 sudo mount -a # mount it now
 sudo chown -R username:username /mnt/data/ # gain permission
