@@ -45,6 +45,14 @@ sudo mkdir /mnt/data
 sudo vi /etc/fstab # add this line: "UUID=B866-DD3A /mnt/data/ ext4 defaults 0 2"
 sudo mount -a # mount it now
 sudo chown -R username:username /mnt/data/ # gain permission
+
+# speed up scp in a secure environment
+# in target machine:
+ssh -Q cipher localhost | paste -d , -s - # print all the ciphers
+sudo vi /etc/ssh/sshd_config # append "Ciphers 3des-cbc,blowfish-cbc...."
+sudo service sshd restart ; sudo service sshd status
+# in source machine
+scp -rp -C -o 'CompressionLevel 9' -o 'IPQoS throughput' -c arcfour srcDir tgtDir
 ```
 
 ```sh
