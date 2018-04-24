@@ -36,13 +36,13 @@ git merge upstream/master
 git push
 
 git branch # show all the branches
-git branch feature_x # create a new branch copied from master
-git checkout feature_x # switch to another branch (or commit)
-git checkout master # return to master branch, or from a previous commit (detached head)
-git checkout -b feature_x # create a branch and switch to it
-git checkout -b old-state 0d1d7fc32 # create a branch based on a previous commit
+git branch <branch_name> # create a new branch copied from master
+git checkout <branch_name/commit_sha> # switch to another branch (or commit)
+git checkout master # return to master branch, or from a previous commit
+git checkout -b <branch_name> # create a branch and switch to it
+git checkout -b <branch_name> <commit-sha> # create a branch based on a previous commit
 git merge master # merge changes from master into the current branch
-git branch -d feature_x # delete the branch
+git branch -d <branch_name> # delete the branch
 # 多说几句：如果已经做了一些改动然后希望把这些改动放在新branch里，master回到上一次commit，做法是新建一个branch（此时修改在两个branch都可见），然后在新branch里commit changes，master就会自动回到上一次commit，而branch更新为修改后的状态
 
 git submodule add <URL> <path>
@@ -51,9 +51,12 @@ git show v1.4 # view tag info
 git push origin --tags
 
 git commit --amend # commit again and overwrite the last commit (when you commit too early)
+# revert a range of commits (from old to new). Unstaged files not affected by these commits will remain untouched
+git revert --no-commit a867b4af..0766c053 
 # DANGEROUS: the following command can not be undone
 git checkout -- xx.py # discard recent changes and go back to the latest commit
 git checkout -- . # discard all recent changes and go back to the latest commit
+git chekcout <commit-sha> . # return to a certain commit. New files will remain untouched but unstaged modificatoins will be lost
 git reset --hard master@{"10 minutes ago"} # recover from some terrible mistake
 ```
 ### work with git-lfs:
