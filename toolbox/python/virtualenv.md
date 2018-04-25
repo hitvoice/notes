@@ -8,6 +8,7 @@ activate env_name
 deactivate
 conda remove --name env_name --all
 ```
+注意此时ipython仍然是全局的ipython，如果要在虚拟环境内使用ipython，在虚拟环境内先“conda install ipython”。
 
 使用virtualenv [文档](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/)
 --------------------------------------------------------------------------------------
