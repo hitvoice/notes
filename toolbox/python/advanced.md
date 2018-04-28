@@ -92,8 +92,8 @@ def parmap_batch(func, arr, batch_size=64):
 
 # Another library
 from joblib import Parallel, delayed
-res = Parallel(n_jobs=multiprocessing.cpu_count(), backend='threading') (delayed(func) x for x in arr)
-res = Parallel(n_jobs=multiprocessing.cpu_count()) (delayed(func) x for x in arr)
+res = Parallel(n_jobs=multiprocessing.cpu_count(), backend='threading') (delayed(func)(x) for x in arr)
+res = Parallel(n_jobs=multiprocessing.cpu_count()) (delayed(func)(x) for x in arr)
 
 import threading
 tl = threading.local() # 如果要避免反复allocate大空间，可以用局部空间，具体要用到的话研究一下
