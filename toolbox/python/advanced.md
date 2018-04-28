@@ -60,23 +60,23 @@ with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
 import multiprocessing
 from concurrent.futures import ProcessPoolExecutor, as_completed
 def parmap(function, array):
-  with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as pool:
-      futures = [pool.submit(function, x) for x in array]
-      kwargs = {
-          'total': len(futures),
-          'unit': 'it',
-          'unit_scale': True,
-          'leave': True
-      }
-      for f in tqdm(as_completed(futures), **kwargs):
-          pass
-  out = []
-  for i, future in tqdm(enumerate(futures)):
-      try:
-          out.append(future.result())
-      except Exception as e:
-          out.append(e)
-  return out
+    with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as pool:
+        futures = [pool.submit(function, x) for x in array]
+        kwargs = {
+            'total': len(futures),
+            'unit': 'it',
+            'unit_scale': True,
+            'leave': True
+        }
+        for f in tqdm(as_completed(futures), **kwargs):
+            pass
+    out = []
+    for i, future in tqdm(enumerate(futures)):
+        try:
+            out.append(future.result())
+        except Exception as e:
+            out.append(e)
+    return out
 
 # for functions that directly handle series, break up the input array and combine the results
 def parmap_batch(func, arr, batch_size=64):
