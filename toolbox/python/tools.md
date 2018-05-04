@@ -118,7 +118,7 @@ answer = r.json() # a dict containing response
 
 便捷处理URL的包：[beautifier](https://github.com/sachinvettithanam/beautifier)
 
-修复混乱的Unicode编码：[ftfy](https://github.com/LuminosoInsight/python-ftfy)
+修复混乱的Unicode编码：[ftfy](https://github.com/LuminosoInsight/python-ftfy) [unidecode](https://github.com/avian2/unidecode)
 
 主要用的python库：[requests](http://docs.python-requests.org/en/master/user/quickstart/)
 
