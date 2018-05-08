@@ -20,12 +20,13 @@ zip -rq targetFile.zip srcDir # 安静地压缩文件夹
 unzip -q xxx.zip # 安静地解压
 tar -zcvf xxx.tar.gz srcDir # 去掉v可以安静地压缩/解压
 tar -zxvf xxx.tar.gz # -C /output/dir 可以解压到预先创建好的文件夹
-带进度条的压缩
+# 带进度条的压缩
 SRCDIR=dir_with_big_files
 tar cf - $SRCDIR -P | pv -s $(du -sb $SRCDIR | awk '{print $1}') | gzip > $SRCDIR.tar.gz
 zip -qr - $SRCDIR | pv -s $(du -bs $SRCDIR | awk '{print $1}') > $SRCDIR.zip
 # 带进度条的解压
 pv archive.tar.gz | tar -xz 
+pv archive.tar | tar -x
 unzip archive.zip | pv -l >/dev/null
 
 # 程序同时输出到屏幕和文件
