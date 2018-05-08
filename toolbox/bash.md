@@ -69,6 +69,7 @@ scp -rp -C -o 'CompressionLevel 9' -o 'IPQoS throughput' -c arcfour srcDir tgtDi
 du -hs * # 查看文件夹占用空间
 ls -lGFh # 查看文件夹下各一级子文件夹和文件占用空间
 ls -U | head -4 #查看一个文件巨多的文件夹
+find . -type f -printf . | wc -c # 计算该文件夹下总共有多少文件（包括隐藏文件）
 tree -d # 查看目录结构(需要额外安装)
 
 # 看文件
