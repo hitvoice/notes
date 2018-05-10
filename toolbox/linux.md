@@ -35,7 +35,12 @@ sudo apt update
 
 安装完成后重启机器。如果此时忽然进入桌面版登录界面（但无法登录），Ctrl+Alt+F1进入命令行以后使用`sudo service lightdm stop`关停后用`sudo systemctl disable lightdm.service`关闭lightdm的自动启动。此时nvidia-smi已经可以正常运行。
 
-进入[CUDA下载页面](https://developer.nvidia.com/cuda-downloads)选择.deb版本的CUDA下载并按照对应指示安装。安装完成后重启机器。
+进入[CUDA下载页面](https://developer.nvidia.com/cuda-downloads)选择.deb版本的CUDA下载并按照对应指示安装。安装完成后在~/.bashrc末尾加入如下内容：
+```sh
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}$ 
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+重启机器。此时`nvcc -V`已经可以看到CUDA版本信息。
 
 按照[这个教程](http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html)安装CuDNN。
 
