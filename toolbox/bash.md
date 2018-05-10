@@ -102,6 +102,10 @@ rename 's/(\d{9}).+(\.jpg)/$1$2/' *.jpg
 # 去除当前目录下所有空文件
 find . -size 0 -print0 | xargs -0 rm
 
+# remove UTF8 BOM (<U+FEFF>)
+sed -i '1s/^\xEF\xBB\xBF//' orig.txt # inplace
+sed '1s/^\xEF\xBB\xBF//' < orig.txt > new.txt # new file
+
 alias ssh-qc='ssh -i ~/ubuntu.pem ubuntu@xx.xx.xx.xx'
 type ssh-qc # 查看绑定了什么命令
 ```
