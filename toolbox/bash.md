@@ -12,6 +12,7 @@ ifconfig # 查看当前IP地址
 lsblk # 查看硬盘空间
 lsblk --fs # 查看文件系统和label
 sudo parted -l # 查看硬盘详细情况
+sudo netstat -tulpn # 端口监听情况
 ```
 
 ```sh
