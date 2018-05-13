@@ -1,43 +1,45 @@
+### data type and basic operators
 ```python
-#基础知识
-#============================================================#
-x = 1/2 #数学除法
-x = 1//2 #依然做整数除法
+x = 1/2 # result is a float
+x = 1//2 # result is an integer
 r = 78 % 60
 x, r = divmod(78, 60) # 1, 18
-x = 2**3 #乘方
-x = 0xAF #十六进制
-x = 0o10 #八进制
-#表达式跨行
+x = 2**3 # power
+x = 0xAF # hexadecimal
+x = 0o10 # octal
+# binary numbers
+0b1000100 == 34 == int('0b100010', 2)
+bin(34) == '0b1000100'
+f'{4:05b}' == '00100'
+# multi-line expression
 x = 1 + 2 + \
     4 + 5
-#长字符串（三个单/双引号,其中单/双引号就不需要转义）
+
 string = '''This is a very long string.
 It continues here.
 And it's not over yet.
 "Hello, world!"
 Still here.'''
-#原始字符串(最后一个字符不能是反斜线)
-string = r'C:\Program Files\fnord\foo'
-#unicode编码转换
+
+string = r'C:\Program Files\fnord\foo' # cannot end by '\'
+# char encoding
 code = ord('🌟') # 127775
 assert '🌟' == chr(code)
-hash(s) # 对字符串和浮点数做哈希；注意整数（除了-1）哈希还是自己
-#还支持二进制、复数等数据类型
-0b1000100 == 34 == int('0b100010', 2)
-bin(34) == '0b1000100'
-f'{4:05b}' == '00100'
-# 特殊的数
+hash(s) # hash for strings and floats; hash of a integer (except -1) is itself
+
+# special number
 float('nan'), float('inf')
-# 检查是否是nan
+# check if x is NaN
 math.isnan(x)
 np.isnan(x)
 x != x
-# 得到存储环境变量的字典
-locals()
 
-#数据结构
-#============================================================#
+# returns a dict containing environment variables
+locals()
+```
+## Data Structure
+### list
+```python
 #列表[a,b,c,...]
 #索引x[i]
     #从左至右：0,1,2,...
