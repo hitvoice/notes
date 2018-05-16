@@ -43,7 +43,6 @@ git checkout -b <branch_name> # create a branch and switch to it
 git checkout -b <branch_name> <commit-sha> # create a branch based on a previous commit
 git merge master # merge changes from master into the current branch
 git branch -d <branch_name> # delete the branch
-# 多说几句：如果已经做了一些改动然后希望把这些改动放在新branch里，master回到上一次commit，做法是新建一个branch（此时修改在两个branch都可见），然后在新branch里commit changes，master就会自动回到上一次commit，而branch更新为修改后的状态
 
 git submodule add <URL> <path>
 git tag -a v1.4 -m "message for this tag" # will launch vim without `-m`
@@ -58,6 +57,16 @@ git checkout -- xx.py # discard recent changes and go back to the latest commit
 git checkout -- . # discard all recent changes and go back to the latest commit
 git chekcout <commit-sha> . # return to a certain commit. New files will remain untouched but unstaged modificatoins will be lost
 git reset --hard master@{"10 minutes ago"} # recover from some terrible mistake
+```
+If some changes have been made to files in the master branch, but you finally decide to keep the master branch untouched and put the changes in a new branch, you should create a new branch (now the changes are visible in both branches) and commit in the new branch. The  master branch will fall back to its last commit.
+
+If in some scenarios, master branch is deprecated and some other branch should be the new master, do the following:
+```sh
+# https://stackoverflow.com/questions/2763006/make-the-current-git-branch-a-master-branch
+git checkout better_branch
+git merge --strategy=ours master -m "massage'   # keep this branch untouched, but record a merge
+git checkout master
+git merge better_branch                         # fast-forward master up to the merge
 ```
 ### work with git-lfs:
 ```sh
