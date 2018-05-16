@@ -40,7 +40,7 @@ git branch <branch_name> # create a new branch copied from master
 git checkout <branch_name/commit_sha> # switch to another branch (or commit)
 git checkout master # return to master branch, or from a previous commit
 git checkout -b <branch_name> # create a branch and switch to it
-git checkout -b <branch_name> <commit-sha> # create a branch based on a previous commit
+git checkout -b <branch_name> <branch_name/commit-sha> # create a branch based on another branch or a previous commit
 git merge master # merge changes from master into the current branch
 git branch -d <branch_name> # delete the branch
 
@@ -58,7 +58,7 @@ git checkout -- . # discard all recent changes and go back to the latest commit
 git chekcout <commit-sha> . # return to a certain commit. New files will remain untouched but unstaged modificatoins will be lost
 git reset --hard master@{"10 minutes ago"} # recover from some terrible mistake
 ```
-If some changes have been made to files in the master branch, but you finally decide to keep the master branch untouched and put the changes in a new branch, you should create a new branch (now the changes are visible in both branches) and commit in the new branch. The  master branch will fall back to its last commit.
+If some changes have been made to files in the master branch, but you somehow decide to keep the master branch untouched and put the changes in a new branch, you should create a new branch (now the changes are visible in both branches) and commit in the new branch. The master branch will fall back to its last commit.
 
 If in some scenarios, master branch is deprecated and some other branch should be the new master, do the following:
 ```sh
