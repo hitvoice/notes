@@ -80,6 +80,7 @@ cat file.txt # print entire file
 less file.txt # open a previou "window" for the file
 wc -l # number of lines in a file
 wc -L # maximum line length in a file
+feh image.jpg # open an image from the terminal (or multiple images at the same time)
 ```
 ### common file processing
 ```sh
@@ -106,6 +107,7 @@ echo 'a new line' >> sample.txt
 du -hs * # disk space taken up by each file and directory
 ls -lGFh # disk space taken up by every directory, sub-directory and file
 ls -U | head -4 # print the first 4 files of a folder (with numerous amount of files)
+ls -lhS # sorted by file size
 find . -type f -printf . | wc -c # count the number of files (including hidden files) in a directory
 tree -d # print the directory stucture as a tree
 ```
