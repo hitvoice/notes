@@ -47,8 +47,7 @@ wget -c http://URL.HERE -O output/file # -c means continue downloading if it's i
 
 # speed up scp in a secure environment
 # in target machine:
-ssh -Q cipher localhost | paste -d , -s - # print all the ciphers
-sudo vi /etc/ssh/sshd_config # append "Ciphers 3des-cbc,blowfish-cbc...."
+echo "Ciphers $(ssh -Q cipher localhost | paste -d , -s -)" | sudo tee --append /etc/apt/sources.list
 sudo service sshd restart ; sudo service sshd status
 # in source machine
 scp -rp -C -o 'CompressionLevel 9' -o 'IPQoS throughput' -c arcfour srcDir tgtDir
@@ -103,6 +102,8 @@ sed '1s/^\xEF\xBB\xBF//' < orig.txt > new.txt # new file
 
 # append a new line
 echo 'a new line' >> sample.txt
+echo 'a new line' | sudo tee --append /etc/apt/sources.list # append with sudo
+echo 'a new line' | sudo tee --append /etc/apt/sources.list > /dev/null # mute terminal output
 ```
 
 ## directory
