@@ -52,6 +52,10 @@ sudo vi /etc/ssh/sshd_config # append "Ciphers 3des-cbc,blowfish-cbc...."
 sudo service sshd restart ; sudo service sshd status
 # in source machine
 scp -rp -C -o 'CompressionLevel 9' -o 'IPQoS throughput' -c arcfour srcDir tgtDir
+
+# cp/mv big files with progress bar
+# build "progress" following https://github.com/Xfennec/progress
+cp bigfile newfile & progress -mp $!
 ```
 ### zip and unzip
 ```sh
