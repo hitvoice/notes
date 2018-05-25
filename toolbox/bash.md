@@ -190,5 +190,10 @@ type ssh-s1 # print what's bound to the alias
 # write output of a program to both stdout and file 
 command | tee output.log
 ```
+
+## vim basics
+- count number of matches `:%s/pattern//ng`
+- print all lines that match a pattern `:g/pattern/p`
+
 ## resources
 - [tutorial](https://bash.cyberciti.biz/guide/Main_Page)
