@@ -20,17 +20,22 @@ git commit -m "add xxx.py"
 git commit # use vim to enter a multi-line commit message; use after pull and fix a conflict
 git push
 
-git pull
-git submodule update --remote --recursive
 git log -3 # view the latest 3 commits
 git rm xxx # untrack and remove a file
 git rm --cached xxx # untrack
 git mv ReadMe ReadMe.md # rename a file
 
+# add remote origin
+git remote add origin https://xxx.git
+git remote -v # remote info
+git remote set-url origin https://xxx.git # change it later
+git pull # update from origin
+git submodule update --remote --recursive
+
 # sync with upstream repo when working on a forked one
 git remote add upstream https://xxx.git
 git remote -v # remote info
-git remote set-url origin https://xxx.git # change it later
+git remote set-url upstream https://xxx.git # change it later
 git fetch upstream
 git merge upstream/master
 git push
