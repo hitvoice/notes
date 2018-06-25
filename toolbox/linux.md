@@ -223,6 +223,12 @@ export CUDA_ROOT=/usr/local/cuda
 export PATH=$PATH:$CUDA_ROOT/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64
 ```
+如果远程机器上没有ROOT权限然而需要安装其他版本的CuDNN，此时可以自定义PATH
+```sh
+export PATH=/usr/local/cuda-9.0/bin:$PATH 
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/username/cuda/lib64 # custom path
+```
 
 ### 安装Boost
 
