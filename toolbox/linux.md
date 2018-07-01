@@ -48,12 +48,43 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 
 ### 安装开发环境
 - 安装基础的开发环境`sudo apt install cmake build-essential`
-- 安装Anaconda、tensorflow、Keras。如果Tensorflow支持的CUDA驱动还是旧版本，从源码编译tensorflow，编译前设置环境变量LD\_LIBRARY\_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64，注意配置安装时不认识的扩展一律不要选yes，正确输入和CUDA、CuDNN相关联的信息，其他用默认选项即可。
+- 安装Anaconda、tensorflow、Keras。强烈建议从源码编译tensorflow，编译前设置环境变量LD\_LIBRARY\_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64，注意配置安装时不认识的扩展一律不要选yes，正确输入和CUDA、CuDNN相关联的信息，其他用默认选项即可。
 - 从源码编译pytorch。如果之前忘了安装nccl，安装nccl后移除整个pytorch文件夹重新clone重新安装。
 - 在开发机上安装Pycharm Professional并在新机器上配置项目部署以及远程解释器。
 - 配置[docker](https://github.com/hitvoice/notes/blob/master/toolbox/docker.md)、[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)和[tmux](https://github.com/hitvoice/notes/blob/master/toolbox/tmux.md)
 - 配置[git](https://github.com/hitvoice/notes/blob/master/toolbox/git.md)：设置默认编辑器为vim，配置git-lfs
 - 格式化并挂载其他硬盘；
+
+
+注：如果不从源码编译tensorflow，可能会遇到两个问题：
+1. 默认环境的CUDA版本不兼容，比如Tensorflow只支持CUDA 9.0/CUDNN 7.0而不是CUDA 9.1/CUDNN 7.1，或默认环境只有旧版CUDA，此时可以同时安装对应版本的CUDA，并下载解压CUDNN包到一个自定义路径（比如~/downloads/cuda/），创建一个虚拟环境，并做以下操作：
+```sh
+cd ~/anaconda3/envs/tf
+mkdir -p ./etc/conda/activate.d
+mkdir -p ./etc/conda/deactivate.d
+touch ./etc/conda/activate.d/env_vars.sh
+touch ./etc/conda/deactivate.d/env_vars.sh
+```
+编辑`./etc/conda/activate.d/env_vars.sh`：
+```sh
+#!/bin/sh
+export OLD_PATH=${PATH}
+export PATH=/usr/local/cuda-9.0/bin:$PATH
+export OLD_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64;
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/downloads/cuda/lib64
+```
+编辑`./etc/conda/deactivate.d/env_vars.sh`：
+```sh
+#!/bin/sh
+export PATH=${OLD_PATH}
+export LD_LIBRARY_PATH=${OLD_LD_LIBRARY_PATH}
+unset OLD_PATH
+unset OLD_LD_LIBRARY_PATH
+```
+这样可以在虚拟环境中链接不同的CUDA/CUDNN。
+
+2. 有些机器不支持AVX指令，但tensorflow 1.6及以上版本默认按照AVX指令编译，如果不自己从源码编译，安装tensorflow-gpu==1.5即可。
 
 ---
 
