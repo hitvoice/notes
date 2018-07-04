@@ -419,7 +419,21 @@ class Subclass(Superclass):
     @classmethod
     def cmethod(cls):
         #不需要和类的实例交互但要和类本身交互的静态方法，传入参数为类本身，可通过类的实例或类本身访问，访问时不需传入参数
+	# can be used as a factory: return cls(args)
         pass
+
+    @property
+    def x(self): # dynamically adding an attribute
+        """I'm the 'x' property."""
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+    @x.deleter
+    def x(self):
+        del self._x
 
     #若实例为可迭代对象
     def __iter__(self):
