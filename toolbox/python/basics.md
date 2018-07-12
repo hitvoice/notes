@@ -34,8 +34,8 @@ math.isnan(x)
 np.isnan(x)
 x != x
 
-# returns a dict containing environment variables
-locals()
+locals() # returns a dict containing local variables
+globals()  # returns a dict containing global variables
 ```
 ## Data Structure
 ### list
