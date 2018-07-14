@@ -1,3 +1,8 @@
+### 从命令行调用sublime text
+```sh
+ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+```
+
 ### Mac突然黑屏按键无法唤醒
 
 移开Mac附近带磁性的东西，尤其是带磁扣的电脑包...参考[豆瓣讨论](https://www.douban.com/group/topic/42531618/)。
