@@ -84,6 +84,10 @@ git lfs install
 
 # add track files
 git lfs track "*.psd"
+
+# list track files
+git lfs ls-files
+
 # (optional) link to SourceTree
 ln -s /usr/local/bin/git-lfs /Applications/SourceTree.app/Contents/Resources/git_local/bin
 ```
