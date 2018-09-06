@@ -183,7 +183,9 @@ m.end()
 ms = re.findall(pattern, string) # return a list
 s = re.sub(pattern, replaced_by, s) 
 # replace_by can be a str or function 
-# (in: a match object https://docs.python.org/3/library/re.html#match-objects; out: str)
+# if str, can specify group as \g<1>, \g<2>, ...
+# if function, in: a match object https://docs.python.org/3/library/re.html#match-objects; out: str
+
 re.split(' |\n', s) # return a list
 re.escape(s) # treat s as a literal
 regex = re.compile(pattern) # re has internal caches, so most of the time compiling is not needed
