@@ -1,9 +1,14 @@
-# Convolutional Neural Network
+# Table of contents
+<!--ts-->
+   * [Convolutional Neural Network](#convolutional-neural-network)
+   * To be continued...   
+<!--te-->
 
-### Motivation of convolution
+# Convolutional Neural Network
+## Motivation of convolution
 Fully connected networks are computationally expensive when the number of input units is large. Locally connected networks, in which each hidden unit will connect to only a small contiguous region of pixels in the input, are feasible for high resolution images.
 Natural images have the property of being ”stationary”, meaning that the statistics of one part of the image are the same as any other part. This suggests that the features that we learn at one part of the image can also be applied to other parts of the image, and we can use the same features at all locations.
-### Convolution
+## Convolution
 The dimension after convolution is
 $$
 n = \lfloor\frac{n_{\text{prev}} - k + 2\times \text{pad}}{\text{stride}}\rfloor + 1,
@@ -17,23 +22,23 @@ The shape of $W$ is (k, k, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 
 If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left padding is $\lfloor\frac{k-1}{2}\rfloor$ and right padding is $\lfloor\frac{k}{2}\rfloor$. In 1d convolution where no future information should involve, one can set both left and right padding to $k-1$ and remove the last $k-1$ units after each convolution.
 
-### Motivation of pooling
+## Motivation of pooling
 * Features obtained by convolution is still computationally challenging
 * Aggregating statistics of features at various locations is a natural way to describe a large image
 * Pooled features are "translation invariant", which means the same pooled feature will be active even when the image undergoes (small) translations.
 
-### Pooling
+## Pooling
 After obtaining our convolved features as described earlier, we decide the size of the region, say $m\times n$ to pool our convolved features over. Then, we divide our convolved features into disjoint $m\times n$ regions, and take the mean (or maximum) feature activation over these regions to obtain the pooled convolved features. These pooled features can then be used for classification. In max pooling, "-inf" (instead of 0) is used as the padded value.
 
 <img src="resources/pool.gif" width="600">
 
-### Architecture
+## Architecture
 A CNN consists of a number of convolutional and subsampling layers optionally followed by fully connected layers. The architecture of a CNN is designed to take advantage of the 2D structure of an input image (or other 2D input such as a speech signal). This is achieved with local connections and tied weights followed by some form of pooling which results in translation invariant features.
 
-### Back Propagation
+## Back Propagation
 - **propagate error through a pooling layer**: The weight $W$ is $\frac{1}{mn}$ in mean pooling and 1 for the maximun, 0 for others in max pooling. The bias is 0. 
 - **update weights in a convolutional layer**: convolve the iuput of the convolutional layer with the incoming error.
 
-### reference
+# reference
 - http://deeplearning.stanford.edu/tutorial/
 - [Stanford CS224d Lecture 13](http://cs224d.stanford.edu/lectures/CS224d-Lecture13.pdf)
