@@ -109,7 +109,7 @@ python code to use the API:
 import requests
 headers = {'Content-Type': 'application/json'}
 r = requests.post('http://localhost:5000/app_name', json={"key": "value"}, headers=headers)
-answer = r.json() # a dict containing response
+answer = r.json() # a python object containing response
 ```
 
 ## Crawler
