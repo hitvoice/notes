@@ -40,7 +40,8 @@ git fetch upstream
 git merge upstream/master
 git push
 
-git branch # show all the branches
+git branch # show all local branches
+git branch -r # show all remote branches
 git branch <branch_name> # create a new branch copied from master
 git checkout <branch_name/commit_sha> # switch to another branch (or commit)
 git checkout master # return to master branch, or from a previous commit
