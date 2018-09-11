@@ -71,7 +71,6 @@ Adam is the abbreviation for "adaptive moment estimation".Because $(1-\epsilon)^
 
 # Learning Rate Scheduling
 Most mini-batch optimization algorithms have the learning rate hyperparameter. Strategies include fixed learning rate, learning rate decay, cyclic learning rate (with snapshot ensemble). Common learning rate decay schemes:
-- step decay, say decaying learning rate by half every few epochs
 - exponential decay
 $$
 \alpha=\alpha_0\mathrm{e}^{-kt}\ (k>0)
@@ -80,6 +79,7 @@ or
 $$
 \alpha=\alpha_0 k^t\ (k<1)
 $$
+
 - linear decay
 $$
 \alpha = \alpha_0 \max(\epsilon, k-ct)
@@ -92,8 +92,18 @@ In the definitions above, $k$ is called the decay rate and $t$ is the number of 
 
 - Inversed sigmoid decay
 $$
-\alpha = \frac{k}{k+\exp (i/k)}\ (k \geq 1)
+\alpha = \frac{k}{k+\exp (t/k)}\ (k \geq 1)
 $$
+
+In pratice, the above decay schemes are often implemented step-wise:
+$$
+t = \lfloor i/T\rfloor
+$$
+where $i$ is the number of updates (or "global step"), and $T$ is the step size.
+
+- slanted triangular learning rates
+
+The learning rate quickly increases to a relatively large value and then slowly decrease, allowing the model to quickly converge to a suitable region of the parameter space in the beginning of training and then refine its parameters. It is described in [this paper](https://arxiv.org/abs/1801.06146).
 
 Relation between the learning rate and convergence:
 <div align="center">
