@@ -124,17 +124,20 @@ The gradient tells how to update each parameter, under the assumption that the o
 
 
 # Regularization
-A visualization of training/validation error with time is helpful for diagnostics. When the training error keeps going down and down, even &lt;1%, and the validation error gets stuck, it's likely that the model is memorizing all the training data and is overfitting.
+A visualization of training/validation error with time is helpful for diagnostics. When the training error keeps going down, even &lt;1%, and the validation error gets stuck, it's likely that the model is memorizing all the training data and is overfitting.
 
 * Simple first step: Reduce model size by lowering number of units and layers and other parameters
+* large learning rate and small batch size also have regularization effects
 * Standard L1 or L2 regularization on weights ($\lambda$ can be different on different layers if the computational cost is acceptable). L2 regularization is also called "weight decay" because parameters will be multiplied by $1-\alpha\lambda/m$ after each update ($\alpha$ is the learning rate and $m$ is the batch size).
 * Constrain L2 norms of weight vectors to fixed number $s$. If $\|W\|_2^2>s$, then rescale it so that $\|W\|_2^2=s$.
 * Sparse activation by L1 regularizer.
-* Dataset augmentation (discussed later)
-* Label smoothing for softmax output.
+* Collect more data or use dataset augmentation (discussed later)
+* Label smoothing for cross entropy loss.
 * Early Stopping (discussed later)
 * If the network is small, ensemble multiple (e.g 5) networks
-* Dropout
+* Dropout (discussed later)
+
+The amount of regularization must be balanced for each dataset and architecture. For example, when learning rate is increased, other forms of regularization should be appropriately reduced. A large weight decay can be used for small dataset, but a small or even no weight decay is best for very large datasets and complex architectures.
 
 ## Dataset Argumentation
 * Easiest for classification: apply (hand-designed) transformations that would not change the correct class. It's something you should always do. Just a matter of what kind and how much.
@@ -197,14 +200,15 @@ Solutions for dead neurons:
 - Polyak averaging: keep a moving average of the parameters and use that at test time
 
 # Reference
-- [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
-- [Stanford CS231n Lecture 7](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture7.pdf)
-- [Stanford CS224d Lecture 6](http://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf)
-- [Stanford CS224d Lecture 8](http://cs224d.stanford.edu/lectures/CS224d-Lecture8.pdf) ([Vanishing gradient example](http://cs224d.stanford.edu/notebooks/vanishing_grad_example.html))
-- [Stanford CS224d Midterm Solutions](http://cs224d.stanford.edu/midterm/midterm_solutions.pdf)
-- [Oxford Deep NLP 2017 Lecture 4](https://github.com/oxford-cs-deepnlp-2017/lectures/blob/master/Lecture%204%20-%20Language%20Modelling%20and%20RNNs%20Part%202.pdf)
-- [Random Search for Hyper-Parameter Optimization](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
-- [A primer on neural network models for natural language processing](http://arxiv.org/pdf/1510.00726)
-- [Deep Learning Book](http://www.deeplearningbook.org/)
-- [deeplearning.ai Course 2: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/learn/deep-neural-network/home/welcome)
+- [1] [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
+- [2][Stanford CS231n Lecture 7](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture7.pdf)
+- [3] [Stanford CS224d Lecture 6](http://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf)
+- [4] [Stanford CS224d Lecture 8](http://cs224d.stanford.edu/lectures/CS224d-Lecture8.pdf) ([Vanishing gradient example](http://cs224d.stanford.edu/notebooks/vanishing_grad_example.html))
+- [5] [Stanford CS224d Midterm Solutions](http://cs224d.stanford.edu/midterm/midterm_solutions.pdf)- 
+- [6] [Oxford Deep NLP 2017 Lecture 4](https://github.com/oxford-cs-deepnlp-2017/lectures/blob/master/Lecture%204%20-%20Language%20Modelling%20and%20RNNs%20Part%202.pdf)
+- [7] [Random Search for Hyper-Parameter Optimization](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
+- [8] [A primer on neural network models for natural language processing](http://arxiv.org/pdf/1510.00726)
+- [9] [Deep Learning Book](http://www.deeplearningbook.org/)
+- [10] [deeplearning.ai Course 2: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/learn/deep-neural-network/home/welcome)
+- [11] [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay](https://arxiv.org/abs/1803.09820)
 
