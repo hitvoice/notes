@@ -82,9 +82,9 @@ $$
 
 - linear decay
 $$
-\alpha = \alpha_0 \max(\epsilon, k-ct)
+\alpha = \max(\epsilon, \alpha_0(1-kt))
 $$
-$\alpha_0\epsilon$ is the minimun amount of learning rate. $k$ and $c$ provide the offset and slope of the decay.
+$\alpha_0\epsilon$ is the minimun amount of learning rate.
 
 - 1/t decay
 $$\alpha=\alpha_0/(1+kt)$$
@@ -92,14 +92,15 @@ In the definitions above, $k$ is called the decay rate and $t$ is the number of 
 
 - Inversed sigmoid decay
 $$
-\alpha = \frac{k}{k+\exp (t/k)}\ (k \geq 1)
+\alpha = \alpha_0\frac{1}{1+\exp ((t-m)/k)}
 $$
+The learning rate decays more slowly with larger $k$.
 
 In pratice, the above decay schemes are often implemented step-wise:
 $$
 t = \lfloor i/T\rfloor
 $$
-where $i$ is the number of updates (or "global step"), and $T$ is the step size.
+where $i$ is the number of updates (or "global step"), and $T$ is the step size. If the size of data is small, $t$ can be set to the number of epochs.
 
 - slanted triangular learning rates
 
