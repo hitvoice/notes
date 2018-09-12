@@ -92,9 +92,14 @@ In the definitions above, $k$ is called the decay rate and $t$ is the number of 
 
 - Inversed sigmoid decay
 $$
-\alpha = \alpha_0\frac{1}{1+\exp ((t-m)/k)}
+\alpha = \frac{\alpha_0}{1+\exp ((t-m)/k)}
 $$
 The learning rate decays more slowly with larger $k$.
+
+When decaying to 10% after 10 decays:
+<div align="center">
+ <img src="resources/decay.png" width="400">
+</div>
 
 In pratice, the above decay schemes are often implemented step-wise:
 $$
