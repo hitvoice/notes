@@ -36,10 +36,6 @@ P(y=1|x) &= h_\theta(x) = \frac{1}{1 + \exp(-\theta^\top x)}\\\\
 P(y=0|x) &= 1 - P(y=1|x) = 1 - h_\theta(x).
 \end{align*}
 $$
-Sigmoid function... (left to be expanded)
-$$
-f(z) = \frac{1}{1+\exp(-z)}.
-$$
 
 ### Reference
 - http://ufldl.stanford.edu/tutorial/supervised/LogisticRegression/
