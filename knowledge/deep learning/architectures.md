@@ -13,6 +13,7 @@
   - fix pretrained embeddings and hash others to one of N random embeddings [4]
 - make them trainable/finetunable
 - fix embeddings and train a projection layer
+- concat fixed and trainable embeddings [6]
 ## Handle unknown categories/out-of-vocabulary words
 What are treated as OOV
 - outside pretrained
@@ -44,18 +45,47 @@ pad with -inf
 pad with zeros and / actual sequence length
 ## Aggregation models
 ### Self-attention 
+#### version 1
+$$
+\begin{align*}
+\alpha_i &=\frac{\exp(Wx_i + b)}{\sum_i \exp(Wx_i + b)}\\\\
+v &= \sum_i \alpha_i x_i
+\end{align*}
+$$
+#### version 2
+$$
+\begin{align*}
+h_i &= \tanh(Wx_i + b)\\\\
+\alpha_i &=\frac{\exp(h_i^Tu)}{\sum_i \exp(h_i^Tu)}\\\\
+v &= \sum_i \alpha_i x_i
+\end{align*}
+$$
+$u$ is called context vector. You can have multiple context vectors to performed multi-view self-attention[7].
 ### RNN
 - RNN: last hidden vector
 - BiRNN: concatenation of two last hidden vectors
 - multi-layered RNN: concatenation of last hidden vectors in all layers
+- biRNN + mean/max pooling
+### CNN
+- AdaSent
+- Hierarchical ConvNet[7]: concatenation of the max pooling of each convolutional layer's feature maps
 # Interaction
 ## Interaction of two vectors
 - concatenation: [a, b]
-- substraction: a - b, use |a-b| in symetric case
+- addition: a + b
+- substraction: a - b, use |a - b| in symetric case
 - element-wise multiplication: a \* b
 - Element-wise Bilinear Matching [3] (discuss later)
 ### Element-wise Bilinear Matching
 ## Interaction of two sequences
+
+- attention score
+  - dot product
+  - cosine
+  - concat-MLP
+- attention activation
+  - softmax
+  - sparse attention [5]
 # Meta Architecture
 ## Residual Connection
 ## Highway Connection
@@ -105,4 +135,6 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [2] [Stanford CS224d Lecture 13](http://cs224d.stanford.edu/lectures/CS224d-Lecture13.pdf)
 - [3] Element-wise Bilinear Sentence Matching [SEM18](http://aclweb.org/anthology/S18-2012)
 - [4] A Decomposable Attention Model for Natural Language Inference
-
+- [5] GLoMo: Unsupervisedly Learned Relational Graphs as Transferable Representations
+- [6] Sematic Sentence Matching with Densely-connected Recurrent and Co-attentive Information
+- [7] Supervised Learning of Universal Sentence Representations from Natural Language Inference Data
