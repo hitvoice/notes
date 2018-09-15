@@ -20,10 +20,10 @@ and $x_i\sim \operatorname{F}(\bar \theta_i)$.
 </div>
 $\pi\sim\operatorname{GEM}(\alpha)$ is the stick-breaking construction:
 $$
-\begin{align}
-\beta_k&{}=\operatorname{Beta}(1,\alpha)\\
+\begin{align*}
+\beta_k&{}=\operatorname{Beta}(1,\alpha)\\\\
 \pi_k&{}=\beta_k(1-\sum_{l=1}^{k-1}\pi_l)
-\end{align}
+\end{align*}
 $$
 
 Another representation:
@@ -44,7 +44,7 @@ $$
 p(z_i=k| z_{- i},\alpha)=
 \begin{cases}
 \frac{N_{k,-i}}{\alpha+N-1}
-&\text{if k has been seen before}\\
+&\text{if k has been seen before}\\\\
 \frac{\alpha}{\alpha+N-1}
 &\text{if k is a new cluster}
 \end{cases}
@@ -65,7 +65,7 @@ Gibbs sampling for choosing cluster:
 $$
 p(\left.z_i=k\right|z_{-i},x,\alpha)=
 \begin{cases}
-\left(\frac{N_k}{N+\alpha}\right)\mathcal N\left(x,\frac{N_k\bar x}{N_k+1},1\right)&\text{existing cluster k}\\
+\left(\frac{N_k}{N+\alpha}\right)\mathcal N\left(x,\frac{N_k\bar x}{N_k+1},1\right)&\text{existing cluster k}\\\\
 \frac{\alpha}{N+\alpha}\mathcal N(x,0,1) &\text{new cluster}
 \end{cases}
 $$
