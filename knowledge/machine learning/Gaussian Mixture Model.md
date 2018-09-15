@@ -11,11 +11,11 @@ until convergence
 ```
 likelyhood (on the assumption that covariance matrix is diagonal):
 $$
-\begin{align}
+\begin{align*}
 p(x|c=k)
-&{}\propto N(\mu_k,\Sigma_k)\\
+&{}\propto N(\mu_k,\Sigma_k)\\\\
 &{}\propto-\|x-\mu_k\|^2
-\end{align}
+\end{align*}
 $$
 
 ### Reference
