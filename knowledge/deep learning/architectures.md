@@ -12,8 +12,9 @@ $$
 #### version 1
 $$
 \begin{align*}
+z &= \operatorname{relu}(W_p x+b) \\\\
 g &= \operatorname{sigmoid}(W_g x+b)\\\\
-x'&=g\cdot \operatorname{relu}(W_p x+b) + (1-g)\cdot x
+x'&=g\circ z + (1-g)\circ x
 \end{align*}
 $$
 #### version 2
@@ -22,7 +23,7 @@ $$
 z &= \tanh(W_1x + b_1) \\\\
 r &= \operatorname{sigmoid}(W_2x + b_2)\\\\
 f &= \operatorname{sigmoid}(W_3x + b_3)\\\\
-x'&=r\odot x + f\odot z
+x'&=r\circ x + f\circ z
 \end{align*}
 $$
 ### factorized bilinear layer
