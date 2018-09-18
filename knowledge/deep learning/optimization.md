@@ -107,9 +107,10 @@ t = \lfloor i/T\rfloor
 $$
 where $i$ is the number of updates (or "global step"), and $T$ is the step size. If the size of data is small, $t$ can be set to the number of epochs.
 
-- slanted triangular learning rates
-
+- slanted triangular learning rates<br>
 The learning rate quickly increases to a relatively large value and then slowly decrease, allowing the model to quickly converge to a suitable region of the parameter space in the beginning of training and then refine its parameters. It is described in [this paper](https://arxiv.org/abs/1801.06146).
+- warmup/slow start<br>
+Shrink the initialized learning rate by a tenth and gradually increases the learning rate to the regular level in several epochs (e.g. 3 epochs). This treatment learns a good initialization and is beneficial for converging. ([reference](https://arxiv.org/pdf/1611.05709.pdf))
 
 Relation between the learning rate and convergence:
 <div align="center">
