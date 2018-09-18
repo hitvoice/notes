@@ -8,11 +8,28 @@
 $$
 x'=\sigma(Wx+b)
 $$
+### highway layer
+#### version 1
+$$
+\begin{align*}
+g &= \operatorname{sigmoid}(W_g x+b)\\\\
+x'&=g\cdot \operatorname{relu}(W_p x+b) + (1-g)\cdot x
+\end{align*}
+$$
+#### version 2
+$$
+\begin{align*}
+z &= \tanh(W_1x + b_1) \\\\
+r &= \operatorname{sigmoid}(W_2x + b_2)\\\\
+f &= \operatorname{sigmoid}(W_3x + b_3)\\\\
+x'&=r\odot x + f\odot z
+\end{align*}
+$$
 ### factorized bilinear layer
 $$
 x_i'=x^TF^TFx + Wx + b
 $$
-Dropout in factorized bilinear layer (DropFactor[9]): each factor is retained with a fixed probability $p$.
+$F\in \mathcal{R}^{k\times d}$ ($k \ll d$). Dropout in factorized bilinear layer (DropFactor[9]): each **factor** is retained with a fixed probability $p$.
 ## Embedding of Discrete Variables
 ### Usage of pretrained embeddings
 - fix
@@ -23,12 +40,6 @@ Dropout in factorized bilinear layer (DropFactor[9]): each factor is retained wi
 - fix embeddings and train a projection layer
 - concat fixed and trainable embeddings [6]
 - fix embeddings and train a highway layer [8]
-$$
-\begin{align*}
-g &= \operatorname{sigmoid}(W_g x+b)\\\\
-x'&=g\cdot \operatorname{relu}(W_p x+b) + (1-g)\cdot x
-\end{align*}
-$$
 ### Handle unknown categories/out-of-vocabulary words
 What are treated as OOV
 - outside pretrained
