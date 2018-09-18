@@ -168,8 +168,12 @@ Save parameters after each, say 3 epochs (or 1/3 epoch for a large dataset like 
 
 ## Dropout
 ### How
-* Training time: at each instance of evaluation (in online SGD training), randomly set $p\in [0,1]$ of the inputs to each neuron to 0 (say an input unit is included with probability 0.8 and a hidden unit is included with probability 0.5).
+#### original version
+* Training time: at each instance of evaluation, randomly set $p\in [0,1]$ of the neurons to 0.
 * Test time: scale the model weights, multiply them by $p$.
+#### inverted dropout
+* Training time: at each instance of evaluation, randomly set $p\in [0,1]$ of the neurons to 0, and scale the outputs by a factor of $1/(1-p)$.
+* Test time: compute an identity function.
 ### Why
 * This prevents feature co-adaptation: A feature cannot only be useful in the presence of particular other features.
 * In a single layer: A kind of middle-ground between Naïve Bayes (where all feature weights are set independently) and logistic regression models (where weights are set in the context of all others).
