@@ -4,7 +4,15 @@
    * To be continued...   
 <!--te-->
 ## Projection
-### MLP
+### dense layer/perceptron
+$$
+x'=\sigma(Wx+b)
+$$
+### factorized bilinear layer
+$$
+x_i'=x^TF^TFx + Wx + b
+$$
+Dropout in factorized bilinear layer (DropFactor[9]): each factor is retained with a fixed probability $p$.
 ## Embedding of Discrete Variables
 ### Usage of pretrained embeddings
 - fix
@@ -14,6 +22,13 @@
 - make them trainable/finetunable
 - fix embeddings and train a projection layer
 - concat fixed and trainable embeddings [6]
+- fix embeddings and train a highway layer [8]
+$$
+\begin{align*}
+g &= \operatorname{sigmoid}(W_g x+b)\\\\
+x'&=g\cdot \operatorname{relu}(W_p x+b) + (1-g)\cdot x
+\end{align*}
+$$
 ### Handle unknown categories/out-of-vocabulary words
 What are treated as OOV
 - outside pretrained
@@ -90,6 +105,8 @@ $u$ is called context vector. You can have multiple context vectors to performed
 ### Residual Connection
 ### Highway Connection
 ### Dense Connection
+Input of next layer is the concatenation of outputs of all previous layers.
+
 
 
 
@@ -138,3 +155,5 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [5] GLoMo: Unsupervisedly Learned Relational Graphs as Transferable Representations
 - [6] Sematic Sentence Matching with Densely-connected Recurrent and Co-attentive Information
 - [7] Supervised Learning of Universal Sentence Representations from Natural Language Inference Data
+- [8] A Compare-Propagate Architecture with Alignment Factorization for Natural Language Inference
+- [9] Factorized Bilinear Models for Image Recognition
