@@ -105,14 +105,20 @@ $u$ is called context vector. You can have multiple context vectors to performed
 - Element-wise Bilinear Matching [3] (discuss later)
 #### Element-wise Bilinear Matching
 ### Interaction of two sequences
+There're usually 4 steps in the interaction of 2 sequences, namely computing attention score, computing attention activation/normalization, computing the weighted average, and fusing the attended information with the original one. 
 
 - attention score
   - dot product
   - cosine
   - concat-MLP
-- attention activation
+  - bilinear [10]
+  - element-wise product + MLP [10]
+  - substraction + MLP [10]
+- attention activation/normalization
   - softmax
-  - sparse attention [5]
+  - sparse attention (square-relu) [5]
+- weighted average: no much variations
+- fusion: can use position-wise projection or sequence encoding here
 ## Meta Architecture
 ### Residual Connection
 ### Highway Connection
@@ -169,3 +175,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [7] Supervised Learning of Universal Sentence Representations from Natural Language Inference Data
 - [8] A Compare-Propagate Architecture with Alignment Factorization for Natural Language Inference
 - [9] Factorized Bilinear Models for Image Recognition
+- [10] Multiway Attention Networks for Modeling Sentence Pairs
