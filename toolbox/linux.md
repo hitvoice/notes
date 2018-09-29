@@ -94,6 +94,11 @@ unset OLD_LD_LIBRARY_PATH
 config = tf.ConfigProto() config.gpu_options.allow_growth=True
 tf.Session(config=config)
 ```
+### npm i不用sudo时提示权限不够
+```sh
+sudo chown -R $(whoami) ~/.npm
+sudo chown -R $(whoami) /usr/local/lib/node_modules
+```
 
 ### PyCharm中运行tensorflow找不到CUDA
 
