@@ -8,6 +8,7 @@ git push
 cd project_repo; git init # setup a new local repo
 git clone xxx.git # clone a remote repo
 git clone xxx.git new_name # clone a remote repo using "new_name" as the folder name
+git clone -b <branch_name> xxx.git  # clone a specific branch
 git submodule update --init # if this repo has submodules, do it after cloning or use "git clone --recursive"
 git status
 git status -s
