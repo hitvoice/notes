@@ -50,6 +50,14 @@ J(\theta)=
 \frac{1}{m} \sum_{i=1}^m\log \left( 1+ \exp\left(-\left( h_{\theta}(x^{(i)}_p)-h_{\theta}(x^{(i)}_n)\right)\right) \right)
 $$
 </div>
+#### Distance Loss
+The objective is to make the representation of an input sample closer to the class centroid of its correct class. ([reference](http://papers.nips.cc/paper/6996-prototypical-networks-for-few-shot-learning.pdf))
+<div>
+$$
+J(\theta)=
+\frac{1}{m} \sum_{i=1}^m-\log \left(\frac{\exp(-d(x, c'))}{\sum_{c}\exp(-d(x, c))} \right)
+$$
+</div>
 
 #### Rating Prediction
 Assume that all the ratings lie in $[1,K]$. Real-valued scores are allowed for ground-truth ratings that are an average over the evaluations of several human annotators. 
