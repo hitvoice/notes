@@ -88,6 +88,9 @@ unset OLD_LD_LIBRARY_PATH
 
 ---
 
+### 调试时CUDA给出error但没有正确的stacktrace
+运行时加入CUDA_LAUNCH_BLOCKING=1
+
 ### 控制tensorflow显存占用
 
 ```python
