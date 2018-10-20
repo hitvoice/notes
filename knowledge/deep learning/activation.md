@@ -100,6 +100,17 @@ $$
 h = f(VUx+b)
 $$
 If $U$ produces $q$ outputs, then $U$ and $V$ together contain only $(n + p)q$ parameters, while $W$ contains $np$ parameters. For small $q$, this can be a considerable saving in parameters. It comes at the cost of constraining the linear transformation to be **low-rank**, but these low-rank relationships are often sufficient. Linear hidden units thus offer an effective way of reducing the number of parameters in a network.
+
+## Gated Linear Units
+The hidden size before gated linear units is multiplied by 2. Let's denote $x = [A\ B]$, where $A, B\in \mathcal{R}^d$
+$$
+v(x) = A\otimes \sigma(B)
+$$
+Another version:
+$$
+v(x) = \tanh(A)\otimes \sigma(B)
+$$
+
 ## Last words for activation functions
 It is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.
 
@@ -109,3 +120,4 @@ It is very rare to mix and match different types of neurons in the same network,
 - [Deep Learning Book](http://www.deeplearningbook.org/)
 - [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
 - [Stanford CS224d Lecture 6](http://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf)
+- [Language Modeling With Gated Linear Units](https://arxiv.org/abs/1612.08083)
