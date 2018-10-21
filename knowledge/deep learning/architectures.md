@@ -31,6 +31,8 @@ $$
 x_i'=x^TF^TFx + Wx + b
 $$
 $F\in \mathcal{R}^{k\times d}$ ($k \ll d$). Dropout in factorized bilinear layer (DropFactor[9]): each **factor** is retained with a fixed probability $p$.
+### Maxout Networks
+See [maxout networks](https://github.com/hitvoice/notes/blob/master/knowledge/deep%20learning/activation.md#maxout-networks).
 ## Embedding of Discrete Variables
 ### Usage of pretrained embeddings
 - fix
@@ -52,24 +54,36 @@ What to do with them
 - hash to one of N random embeddings
 ## Sequence Encoding
 ### Recurrent Neural Networks
-#### Vanilla RNN
 #### LSTM
+TBD.
 #### GRU
+TBD.
 ### Convolutional Neural Networks
-#### 1d Convolution
-### Self-attention
+1D convolution. See [Appendix](#convolutional-neural-network).
+
+### Disconnected Recurrent Neural Networks
+The state at each step only depends on the previous $k-1$ words and the current word. This method incorporate the position invariance into RNN by disconnecting the information flow[13].
+
+### Self-attention/Transformer
+TBD.
 ### Positional Encoding
+Positional encodings are useful for CNNs and attention based models, giving them a sense of position.
 #### postional Embedding
+Embed the obsolute position, and then concatenated or added [12] to the sequence encoding.
 #### Sine Wave-like
+TBD.
 #### Distance-sensitive bias/mask
 distances greater than N share the same bias/mask [4]
+
 ## Sequence Aggregation
 ### Pooling
 Pooling operators have no learnable parameters.
 #### Max pooling
-pad with -inf
+pad with -inf.
 #### Mean pooling/summation
-pad with zeros and / actual sequence length
+Pad with zeros, sum up and divide by actual sequence length
+#### Min pooling
+Mentioned in [14]. Pad with inf.
 ### Aggregation models
 #### Self-attention 
 ##### version 1
@@ -102,8 +116,7 @@ $u$ is called context vector. You can have multiple context vectors to performed
 - addition: a + b
 - substraction: a - b, use |a - b| in symetric case
 - element-wise multiplication: a \* b
-- Element-wise Bilinear Matching [3] (discuss later)
-#### Element-wise Bilinear Matching
+- Element-wise Bilinear Matching [3]
 ### Interaction of two sequences
 There're usually 4 steps in the interaction of 2 sequences, namely computing attention score, computing attention activation/normalization, computing the weighted average, and fusing the attended information with the original one. 
 
@@ -122,12 +135,23 @@ There're usually 4 steps in the interaction of 2 sequences, namely computing att
   - weighted average/alignment pooling
   - extractive pooling [11]: softmax(max(score, dim=1)) * a
 - fusion: can use position-wise projection or sequence encoding here
+
+The weighted sum can be scaled by $\sqrt{1/L}$ to counteract a change in variance. Under the assumption that the attention scores are uniformly distributed (which is generally not the case but found to work well in practice [12]), the weighted sum can be scaled by $L\sqrt{1/L}$.
 ## Meta Architecture
 ### Residual Connection
+$$
+x_k = h(x_{k-1}) + x_{k-1}
+$$
+The summation can be multiplied by $\sqrt{0.5}$ to halve the variance, assuming that both summands have the same variance which is not always true but effective in some cases [12]. 
 ### Highway Connection
+See [highway layer](#highway-layer)
 ### Dense Connection
 Input of next layer is the concatenation of outputs of all previous layers.
-
+### Weighted Connection
+$$
+y = \gamma\sum_{l=0}^L\alpha_l h_l
+$$
+$\alpha$ are softmax-normalized weights and $\gamma$ allows the model to scale the entire vector [15].
 
 
 
@@ -149,7 +173,11 @@ $$
 The shape of $W$ is (k, k, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 ![Convolution_schematic.gif](resources/conv.gif)
 
-If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left padding is $\lfloor\frac{k-1}{2}\rfloor$ and right padding is $\lfloor\frac{k}{2}\rfloor$. In 1d convolution where no future information should involve, one can set both left and right padding to $k-1$ and remove the last $k-1$ units after each convolution.
+If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left padding is $\lfloor\frac{k-1}{2}\rfloor$ and right padding is $\lfloor\frac{k}{2}\rfloor$. 
+
+In 1d convolution where no future information should involve, one can set both left and right padding to $k-1$ and remove the last $k-1$ units after each convolution [12]. 
+
+With kernel width $k$ and number of layers $l$, the network has a input field (perception field) of size $(k-1)\times l + 1$
 
 #### Motivation of pooling
 * Features obtained by convolution is still computationally challenging
@@ -180,3 +208,7 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [9] Factorized Bilinear Models for Image Recognition
 - [10] Multiway Attention Networks for Modeling Sentence Pairs
 - [11] Hermitian Co-Attention Networks for Text Matching in Asymmetrical Domains
+- [12] Convolutional Sequence to Sequence Learning
+- [13] [Disconnected Recurrent Neural Networks for Text Categorization](http://aclweb.org/anthology/P18-1215)
+- [14] Learned in Translation: Contextual Word Vecotrs
+- [15] Deep Contextualized word representations
