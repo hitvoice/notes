@@ -9,6 +9,7 @@
        * [Exponential linear units](#exponential-linear-units)
        * [Maxout networks](#maxout-networks)
    * [Indentical function](#indentical-function)
+   * [Gated Linear Units](#gated-linear-units)
    * [Reference](#reference)
 <!--te-->
 
