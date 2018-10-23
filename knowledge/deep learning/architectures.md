@@ -31,6 +31,18 @@ $$
 x_i'=x^TF^TFx + Wx + b
 $$
 $F\in \mathcal{R}^{k\times d}$ ($k \ll d$). Dropout in factorized bilinear layer (DropFactor[9]): each **factor** is retained with a fixed probability $p$.
+### neural arithmetic logic units
+$$
+\begin{align*}
+W &= \tanh(\hat W) \odot \sigma(\hat M) \\\\
+a &= Wx\\\\
+m &= \exp W(\log(|x|+\epsilon))\\\\
+g &= \sigma(Gx)\\\\
+y &= g\odot a + (1 - g) \odot m
+\end{align*}
+$$
+Elements of $W$ are biased to be close to −1, 0, or 1. $W$ for $a$ performs addition or substraction, while for $m$ it operates in log space and is therefore capable of learning multiplication, division and power functions. NALU functions in a way that extrapolates to numbers outside of the range observed during training [16].
+
 ### Maxout Networks
 See [maxout networks](https://github.com/hitvoice/notes/blob/master/knowledge/deep%20learning/activation.md#maxout-networks).
 ## Embedding of Discrete Variables
@@ -212,3 +224,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [13] [Disconnected Recurrent Neural Networks for Text Categorization](http://aclweb.org/anthology/P18-1215)
 - [14] Learned in Translation: Contextual Word Vecotrs
 - [15] Deep Contextualized word representations
+- [16] Neural Arithmetic Logic Units
