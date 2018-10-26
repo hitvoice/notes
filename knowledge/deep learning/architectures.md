@@ -55,6 +55,12 @@ See [maxout networks](https://github.com/hitvoice/notes/blob/master/knowledge/de
 - fix embeddings and train a projection layer
 - concat fixed and trainable embeddings [6]
 - fix embeddings and train a highway layer [8]
+
+When there're duplicated words in pretrained embeddings after some kind of normalization (conversion to lower case, NFD normalization, etc.):
+- Use the embedding of the most frequent one
+- Use the average of them [17]
+- Use the one that strictly match the form after normalization
+
 ### Handle unknown categories/out-of-vocabulary words
 What are treated as OOV
 - outside pretrained
@@ -225,3 +231,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [14] Learned in Translation: Contextual Word Vecotrs
 - [15] Deep Contextualized word representations
 - [16] Neural Arithmetic Logic Units
+- [17] Reading Wikipedia to Answer Open-Domain Questions
