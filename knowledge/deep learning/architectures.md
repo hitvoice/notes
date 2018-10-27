@@ -91,7 +91,7 @@ Embed the obsolute position, and then concatenated or added [12] to the sequence
 #### sinusoidal positional encoding
 $$
 \begin{align*}
-E_{(p, 2i)} & = \sin(p/10000^{2i/d})\\
+E_{(p, 2i)} & = \sin(p/10000^{2i/d})\\\\
 E_{(p, 2i+1)} & = \cos(p/10000^{2i/d})
 \end{align*}
 $$
