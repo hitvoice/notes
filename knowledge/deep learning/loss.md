@@ -24,6 +24,20 @@ $$
 For reference see [this paper](https://arxiv.org/pdf/1701.06548.pdf)(ICLR'17).
 
 When applying cross entropy loss for generating discrete policy in reinforcement learning or for some other generation tasks, it's sometimes useful to tune the "temperature" $t$ in softmax function. With the temperature parameter, $x$ becomes $x/t$ before the softmax tranformation. As the result, the lower the temperature is, the higher the entropy of the generated distribution will be. It's sometimes useful to set the temperature high in the begining and then "anneal" it repeatedly to encourage exploration first and then put emphasis on exploitation in reinforcement learning. In contrast, in supervised learning, it's desired to have a quick convergence at the beginning while preventing overfitting near the end of training.
+
+#### Focal Loss
+Focal loss is a variant of cross entropy loss designed to address class imbalance by down-weighting easy inliers. It focuses training on a sparse set of hard examples. It's first applied to object dectection models where the object classifier has to classfy a lot of easy background anchors and a small number of foreground objects.
+$$
+\mathrm{FL}(p_t) = -\alpha_t(1-p_t)^\gamma \log(p_t)
+$$
+$\alpha_t$ is a hyperparameter that is usually set by inverse class frequency or by cross validation. $p_t$ is the predicted probability of the true class and $\gamma$ is another hyperparameter. In general, $\alpha$ should be decreased slightly as $\gamma$ is increased. A example configuration is $\gamma =2,\ \alpha=0.25$. Here's an illustraction of different values of $\gamma$:
+
+<div align="center">
+<img src="resources/focal_loss.png" width="500">
+</div>
+
+Combined with focal loss, the bias of the final prediction layer can be initialized to $-\log((1-\pi)/\pi)$, where $\pi$ specifies that at the start of training every anchor should be labeled as foreground with confidence of $~\pi$. This initialization prevents the large number of easy examples from generating a large, destabilizing loss value in the first interation of training. For details see [this paper](https://arxiv.org/abs/1708.02002)
+
 #### Hinge Loss
 $$
 J(\theta)=
