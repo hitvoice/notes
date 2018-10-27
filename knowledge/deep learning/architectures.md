@@ -88,10 +88,17 @@ TBD.
 Positional encodings are useful for CNNs and attention based models, giving them a sense of position.
 #### postional Embedding
 Embed the obsolute position, and then concatenated or added [12] to the sequence encoding.
-#### Sine Wave-like
-TBD.
-#### Distance-sensitive bias/mask
-distances greater than N share the same bias/mask [4]
+#### sinusoidal positional encoding
+$$
+\begin{align*}
+E_{(p, 2i)} & = \sin(p/10000^{2i/d})\\
+E_{(p, 2i+1)} & = \cos(p/10000^{2i/d})
+\end{align*}
+$$
+where $p$ is the position and $i$ is is one of the hidden dimensions. The postional encoding is added to the sequence [19].
+#### Distance-sensitive weights/bias
+- multiply by hand-designed linearly decayed weight based on the distance [20]
+- add learnable distance-sensitive bias, where distances greater than N share the same value [4]
 
 ## Sequence Aggregation
 ### Pooling
@@ -135,6 +142,18 @@ $u$ is called context vector. You can have multiple context vectors to performed
 - substraction: a - b, use |a - b| in symetric case
 - element-wise multiplication: a \* b
 - Element-wise Bilinear Matching [3]
+- Neural tensor network [18]
+$$
+s(v_1, v_2) = u^T \tanh \left(
+v_1^T M^{[1:k]}v_2 + V
+\begin{bmatrix}
+    v_1 \\
+    v_2
+\end{bmatrix}
++b
+\right)
+$$
+$M^{[1:k]}\in \mathcal R^{d\times d\times k}$ is a tensor and the bilinear tensor product $v_1^T M^{[1:k]}v_2$ results in a vector $h\in \mathcal R^k$, where each entry is computed by one slice of the tensor $h_i=v_1^TM^iv_2$.
 ### Interaction of two sequences
 There're usually 4 steps in the interaction of 2 sequences, namely computing attention score, computing attention activation/normalization, computing the weighted average, and fusing the attended information with the original one. 
 
@@ -154,7 +173,9 @@ There're usually 4 steps in the interaction of 2 sequences, namely computing att
   - extractive pooling [11]: softmax(max(score, dim=1)) * a
 - fusion: can use position-wise projection or sequence encoding here
 
-The weighted sum can be scaled by $\sqrt{1/L}$ to counteract a change in variance. Under the assumption that the attention scores are uniformly distributed (which is generally not the case but found to work well in practice [12]), the weighted sum can be scaled by $L\sqrt{1/L}$.
+If attention score is the inner product, the product should be scale by $\sqrt{1/d}$ to counteract a change in variance under the assumption that the two vectors are independent random variables. Softmax with large values will have extremely small gradients. \[19\]
+
+The weighted sum can be scaled by $\sqrt{1/L}$ to counteract a change in variance \[12\]. Under the assumption that the attention scores are uniformly distributed (which is generally not the case but found to work well in some cases), the weighted sum can be scaled by $L\sqrt{1/L}$ [12].
 ## Meta Architecture
 ### Residual Connection
 $$
@@ -232,3 +253,6 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [15] Deep Contextualized word representations
 - [16] Neural Arithmetic Logic Units
 - [17] Reading Wikipedia to Answer Open-Domain Questions
+- [18] [Reasoning With Neural Tensor Networks for Knowledge Base Completion](https://nlp.stanford.edu/pubs/SocherChenManningNg_NIPS2013.pdf)
+- [19] Attention is All You Need
+- [20] [Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17036/16171)
