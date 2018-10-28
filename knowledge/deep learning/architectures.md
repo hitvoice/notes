@@ -111,30 +111,44 @@ Pad with zeros, sum up and divide by actual sequence length
 Mentioned in [14]. Pad with inf.
 ### Aggregation models
 #### Self-attention 
-##### version 1
+The general form:
 $$
 \begin{align*}
-\alpha_i &=\frac{\exp(Wx_i + b)}{\sum_i \exp(Wx_i + b)}\\\\
+\alpha_i &= \frac{\exp(e_i)}{\sum_i \exp(e_i)}\\\\
 v &= \sum_i \alpha_i x_i
 \end{align*}
+$$
+$e_i$ is the attention score of position $i$. There're various ways to compute $e_i$.
+##### version 1
+$$
+e_i &= Wx_i + b 
 $$
 ##### version 2
 $$
-\begin{align*}
-h_i &= \tanh(Wx_i + b)\\\\
-\alpha_i &=\frac{\exp(h_i^Tu)}{\sum_i \exp(h_i^Tu)}\\\\
-v &= \sum_i \alpha_i x_i
-\end{align*}
+e_i &= \tanh(Wx_i + b)^Tu
 $$
-$u$ is called context vector. You can have multiple context vectors to performed multi-view self-attention[7].
+$u$ is called the context vector. You can have multiple context vectors to performed multi-view self-attention[7].
 #### RNN
 - RNN: last hidden vector
 - BiRNN: concatenation of two last hidden vectors
 - multi-layered RNN: concatenation of last hidden vectors in all layers
-- biRNN + mean/max pooling
+- mean/max pooling of all time steps of RNN/BiRNN
 #### CNN
 - Self-Adaptive Hierarchical Sentence Mdoel (AdaSent)
 - Hierarchical ConvNet[7]: concatenation of the max pooling of each convolutional layer's feature maps
+### Aggregation with Context
+#### RNN
+Set the initial RNN hidden states by the context vector.
+#### Attention
+The context vector is denoted by $c$.
+##### version 1
+$$
+e_i = v\tanh(Wx_i + Uc + b)
+$$
+##### version 2
+$$
+e_i = (W_1x_i + b_1)^Tc
+$$
 ## Interaction
 ### Interaction of two vectors
 - concatenation: [a, b]
