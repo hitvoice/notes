@@ -121,13 +121,13 @@ $$
 $e_i$ is the attention score of position $i$. There're various ways to compute $e_i$.
 ##### version 1
 $$
-e_i &= Wx_i + b 
+e_i = Wx_i + b 
 $$
 ##### version 2
 $$
-e_i &= \tanh(Wx_i + b)^Tu
+e_i = \tanh(Wx_i + b)^Tu
 $$
-$u$ is called the context vector. You can have multiple context vectors to performed multi-view self-attention[7].
+Trainable parameter $u$ is called the context vector. You can have multiple context vectors to performed multi-view self-attention[7].
 #### RNN
 - RNN: last hidden vector
 - BiRNN: concatenation of two last hidden vectors
@@ -147,7 +147,7 @@ e_i = v\tanh(Wx_i + Uc + b)
 $$
 ##### version 2
 $$
-e_i = (W_1x_i + b_1)^Tc
+e_i = \tanh(Wx_i + b)^Tc
 $$
 ## Interaction
 ### Interaction of two vectors
