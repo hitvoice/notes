@@ -50,9 +50,31 @@ A clean python implementation and illustration for neural network can be found [
 # Initialization
 Because of gradient-based optimization and early stopping, the final parameters are usually  close to the initial parameters. Initialization acts like some kind of prior. A general principle for initialization is to initialize with values close to 0. This prior says that it is more likely that units do not interact with each other than that they do interact. Units interact only if the likelihood term of the objective function expresses a strong preference for them to interact. In practice, it also prevents saturation of tanh units and thus accelerate convergence. 
 
-A typical recipe is to initialize all the parameters $\propto\mathcal N(0,\epsilon^2)$ for some small $\epsilon$, say 0.01 or $\sqrt{2/\operatorname{fan-in}}$; another choice is initializing hidden layer biases to 0, weights $\propto \operatorname{Uniform}(-r,r)$, $r=\alpha \sqrt{6/(\operatorname{fan-in}+\operatorname{fan-out})}\ $, where "fan-in" is the size of the previous layer and "fan-out" is the size of the next layer, which is equivalant to the number of rows and columns of this weight matrix. The $\alpha$ is a gain value dependending on the following activation, 1 for identity and sigmoid, $\frac{5}{3}$ for tanh and $\sqrt{2}$ for relu ([reference](https://pytorch.org/docs/stable/nn.html#torch.nn.init.calculate_gain)). This is called Xavier initialization or Glorot initialization, which is initially described in [this paper](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf). In [another paper](https://arxiv.org/abs/1705.03122), weights are initialized from $\mathcal{N}(0, \sqrt{1/\operatorname{fan-in}})$ when their outputs are not directly fed to a non-linear activation. For weights before the GLU activation, their initial values are drawn from $\mathcal{N}(0, \sqrt{4/\operatorname{fan-in}})$
+Initialization methods for weights:
+- a simple recipe: initialize all the parameters $\propto\mathcal N(0,\epsilon^2)$ for some small $\epsilon$, say 0.01
+- He initialization (Kaiming initialization)
+$$
+W\propto \alpha \mathcal{N}(0, \sqrt{1/\operatorname{fan-in}})
+$$
+- [Xavier initialization](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf) (Glorot initialization)
+$$
+W\proto \alpha \sqrt{2/(\operatorname{fan-in}+\operatorname{fan-out})}
+$$
 
-[This paper](https://arxiv.org/abs/1710.10196) mentions a way to initialize parameters with equalized learning rate. Weights are initialized trivially by $\mathcal{N}(0,1)$ and explicitly scaled by the normalization constant from He's innitializer at runtime. In adaptive SGD methods like RMSProp or Adam, it ensures the scale-invariance, so the learining spped is the same for all weights. 
+"fan-in" is the size of the previous layer and "fan-out" is the size of the next layer, which is equivalant to the number of rows and columns of this weight matrix. In He initialization, choosing fan-in preserves the magnitude of the variance of the weights in the forward pass. Choosing fan-out preserves the magnitudes in the backwards pass. The $\alpha$ is a gain value dependending on the following activation:
+
+|activation|$\alpha$|
+|---|---|
+|identity|	1|
+|sigmoid|	1|
+|tanh|$\frac{5}{3}$|
+|relu|$\sqrt{2}$|
+|leaky relu|$\sqrt{2/(1+\text{slope}^2)}$|
+|GLU|2|
+
+Prove of the gain value for GLU can be found in [this paper](https://arxiv.org/abs/1705.03122).
+
+There's a way to initialize parameters with equalized learning rate mentioned in [This paper](https://arxiv.org/abs/1710.10196). Weights are initialized trivially by $\mathcal{N}(0,1)$ and explicitly scaled by the normalization constant from He's innitializer at runtime. In adaptive SGD methods like RMSProp or Adam, it ensures the scale-invariance, so the learining spped is the same for all weights. 
 
 The bias term is usually set to zero, with the following exceptions:
 * Set the bias of a ReLU hidden unit to 0.1 rather than 0 to avoid saturating the ReLU at initialization.
