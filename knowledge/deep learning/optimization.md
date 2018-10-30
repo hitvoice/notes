@@ -58,7 +58,7 @@ W\propto \alpha \mathcal{N}(0, \sqrt{1/\operatorname{fan-in}})
 $$
 - [Xavier initialization](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf) (Glorot initialization)
 $$
-W\proto \alpha \sqrt{2/(\operatorname{fan-in}+\operatorname{fan-out})}
+W\propto \alpha \mathcal{N}(0, \sqrt{2/(\operatorname{fan-in}+\operatorname{fan-out})})
 $$
 
 "fan-in" is the size of the previous layer and "fan-out" is the size of the next layer, which is equivalant to the number of rows and columns of this weight matrix. In He initialization, choosing fan-in preserves the magnitude of the variance of the weights in the forward pass. Choosing fan-out preserves the magnitudes in the backwards pass. The $\alpha$ is a gain value dependending on the following activation:
@@ -67,7 +67,7 @@ $$
 |---|---|
 |identity|	1|
 |sigmoid|	1|
-|tanh|$\frac{5}{3}$|
+|tanh|$5/3$|
 |relu|$\sqrt{2}$|
 |leaky relu|$\sqrt{2/(1+\text{slope}^2)}$|
 |GLU|2|
