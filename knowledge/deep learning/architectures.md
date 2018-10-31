@@ -1,7 +1,15 @@
 ## Table of contents
 <!--ts-->
-   * [Convolutional Neural Network](#convolutional-neural-network)
-   * To be continued...   
+   * [Projection](#projection)
+   * [Embedding of Discrete Variables](#embedding-of-discrete-variables)
+   * [Sequence Encoding](#sequence-encoding)
+   * [Sequence Aggregation](#sequence-aggregation)
+   * [Interaction](#interaction)
+     * [Interaction of two vectors](#interaction-of-two-vectors) 
+     * [Interaction of two sequences](#interaction-of-two-sequences)
+   * [Meta Architecture](#meta-architecture)
+   * [Appendix](#appendix)
+   * [Reference](#reference)
 <!--te-->
 ## Projection
 ### dense layer/perceptron
@@ -128,6 +136,13 @@ $$
 e_i = \tanh(Wx_i + b)^Tu
 $$
 Trainable parameter $u$ is called the context vector. You can have multiple context vectors to performed multi-view self-attention[7].
+
+Another form of self-attention does not normalize the attention scores [21]:
+$$
+v =
+\sum_i\sigma(e_i)\odot\tanh(Wx_i + b)
+$$
+
 #### RNN
 - RNN: last hidden vector
 - BiRNN: concatenation of two last hidden vectors
@@ -249,24 +264,25 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - **propagate error through a pooling layer**: The weight $W$ is $\frac{1}{mn}$ in mean pooling and 1 for the maximun, 0 for others in max pooling. The bias is 0. 
 - **update weights in a convolutional layer**: convolve the iuput of the convolutional layer with the incoming error.
 
-## reference
+## Reference
 - [1] http://deeplearning.stanford.edu/tutorial/
 - [2] [Stanford CS224d Lecture 13](http://cs224d.stanford.edu/lectures/CS224d-Lecture13.pdf)
-- [3] Element-wise Bilinear Sentence Matching [SEM18](http://aclweb.org/anthology/S18-2012)
-- [4] A Decomposable Attention Model for Natural Language Inference
-- [5] GLoMo: Unsupervisedly Learned Relational Graphs as Transferable Representations
-- [6] Sematic Sentence Matching with Densely-connected Recurrent and Co-attentive Information
-- [7] Supervised Learning of Universal Sentence Representations from Natural Language Inference Data
-- [8] A Compare-Propagate Architecture with Alignment Factorization for Natural Language Inference
-- [9] Factorized Bilinear Models for Image Recognition
-- [10] Multiway Attention Networks for Modeling Sentence Pairs
-- [11] Hermitian Co-Attention Networks for Text Matching in Asymmetrical Domains
-- [12] Convolutional Sequence to Sequence Learning
-- [13] [Disconnected Recurrent Neural Networks for Text Categorization](http://aclweb.org/anthology/P18-1215)
-- [14] Learned in Translation: Contextual Word Vecotrs
-- [15] Deep Contextualized word representations
-- [16] Neural Arithmetic Logic Units
-- [17] Reading Wikipedia to Answer Open-Domain Questions
-- [18] [Reasoning With Neural Tensor Networks for Knowledge Base Completion](https://nlp.stanford.edu/pubs/SocherChenManningNg_NIPS2013.pdf)
-- [19] Attention is All You Need
-- [20] [Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17036/16171)
+- [3] (SEM'18) [Element-wise Bilinear Sentence Matching](http://aclweb.org/anthology/S18-2012)
+- [4] (EMNLP'16) [A Decomposable Attention Model for Natural Language Inference](https://arxiv.org/abs/1606.01933)
+- [5] (NIPS'18) [GLoMo: Unsupervisedly Learned Relational Graphs as Transferable Representations](http://www.cs.cmu.edu/~bdhingra/papers/glomo.pdf)
+- [6] [Sematic Sentence Matching with Densely-connected Recurrent and Co-attentive Information](https://arxiv.org/abs/1805.11360)
+- [7] (EMNLP'17) [Supervised Learning of Universal Sentence Representations from Natural Language Inference Data](https://arxiv.org/abs/1705.02364)
+- [8] (EMNLP'18) [A Compare-Propagate Architecture with Alignment Factorization for Natural Language Inference](https://arxiv.org/abs/1801.00102)
+- [9] (ICCV'17) [Factorized Bilinear Models for Image Recognition](http://openaccess.thecvf.com/content_ICCV_2017/papers/Li_Factorized_Bilinear_Models_ICCV_2017_paper.pdf)
+- [10] (IJCAI'18) [Multiway Attention Networks for Modeling Sentence Pairs](https://www.ijcai.org/proceedings/2018/0613.pdf)
+- [11] (IJCAL'18) [Hermitian Co-Attention Networks for Text Matching in Asymmetrical Domains](https://www.ijcai.org/proceedings/2018/0615.pdf)
+- [12] (ICML'17) [Convolutional Sequence to Sequence Learning](http://proceedings.mlr.press/v70/gehring17a.html)
+- [13] (ACL'18) [Disconnected Recurrent Neural Networks for Text Categorization](http://aclweb.org/anthology/P18-1215)
+- [14] (NIPS'17) [Learned in Translation: Contextual Word Vecotrs](http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf)
+- [15] (NAACL'18) [Deep Contextualized word representations](http://aclweb.org/anthology/N18-1202)
+- [16] [Neural Arithmetic Logic Units](https://arxiv.org/abs/1808.00508)
+- [17] (ACL'17) [Reading Wikipedia to Answer Open-Domain Questions](http://www-cs.stanford.edu/people/danqi/papers/acl2017.pdf)
+- [18] (NIPS'13) [Reasoning With Neural Tensor Networks for Knowledge Base Completion](https://nlp.stanford.edu/pubs/SocherChenManningNg_NIPS2013.pdf)
+- [19] (NIPS'17) [Attention is All You Need](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)
+- [20] (AAAI'18) [Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17036/16171)
+- [21] (ICLR'16) [Gated Graph Sequence Neural Networks](http://arxiv.org/abs/1511.05493)
