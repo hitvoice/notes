@@ -128,7 +128,7 @@ v &= \sum_i \alpha_i x_i
 $$
 or [7]
 $$
-v &= \sum_i \alpha_i \tanh(Wx+b)
+v = \sum_i \alpha_i \tanh(Wx+b)
 $$
 $e_i$ is the attention score of position $i$. There're various ways to compute $e_i$.
 ##### version 1
