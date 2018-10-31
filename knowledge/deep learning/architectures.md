@@ -126,6 +126,10 @@ $$
 v &= \sum_i \alpha_i x_i
 \end{align*}
 $$
+or [7]
+$$
+v &= \sum_i \alpha_i \tanh(Wx+b)
+$$
 $e_i$ is the attention score of position $i$. There're various ways to compute $e_i$.
 ##### version 1
 $$
@@ -147,7 +151,7 @@ $$
 - RNN: last hidden vector
 - BiRNN: concatenation of two last hidden vectors
 - multi-layered RNN: concatenation of last hidden vectors in all layers
-- mean/max pooling of all time steps of RNN/BiRNN
+- mean/max pooling of all time steps of RNN/BiRNN [7]
 #### CNN
 - Self-Adaptive Hierarchical Sentence Mdoel (AdaSent)
 - Hierarchical ConvNet[7]: concatenation of the max pooling of each convolutional layer's feature maps
