@@ -14,6 +14,7 @@
       * [Saturation and Dead Neurons](#saturation-and-dead-neurons)
       * [Issues for RNN](#issues-for-rnn)
       * [Model Ensemble](#model-ensemble)
+      * [Tricks for batching](#tricks-for-batching)
    * [Reference](#reference)
       
 <!--te-->
@@ -249,6 +250,11 @@ Solutions for dead neurons:
 - train N models independently and average the output
 - snapshot ensemble
 - Polyak averaging: keep a moving average of the parameters and use that at test time
+
+## Tricks for batching
+There're several tricks to speed up training (while barely affect the learning process) when preparing samples in batches for sequential data.
+- sort by sequence length, make batches and just shuffle these batches. ([examples in DrQA](https://github.com/facebookresearch/DrQA/blob/50d0e49bb77fe0c6e881efb4b6fe2e61d3f92509/scripts/reader/train.py#L436))
+- bucket by sequence lengths, shuffle samples in bucket and add each bucket ([examples in CSRAN](https://github.com/vanzytay/EMNLP2018_NLI/blob/master/train_acc.py#L588))
 
 # Reference
 - [1] [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
