@@ -45,17 +45,19 @@ J(\theta)=
  \max\left(0,1-\left(\hat y_t^{(i)} - \hat y_k^{(i)}\right) \right)
 $$
 where $k=\operatorname{argmax}_{j\neq t}\hat y_j$. Hinge loss attempts to score the correct class above all other classes with a margin of at least 1.
+
 #### Ranking Loss (hinge)
-The goal is to score correct items above incorrect ones, given pairs of correct and incorrect items $x_p$ and $x_n$. Such training situations arise when we have only positive examples, and generate negative examples by corrupting a positive example.
+The goal is to score correct items above incorrect ones, given pairs of correct and incorrect items $x_p$ and $x_n$. 
 
 <div>
 $$
 J(\theta)=
-\frac{1}{m} \sum_{i=1}^m\max \left( 0,1- \left( h_{\theta}(x^{(i)}_p)-h_{\theta}(x^{(i)}_n)\right) \right)
+\frac{1}{m} \sum_{i=1}^m\max \left( 0,\lambda- \left( h_{\theta}(x^{(i)}_p)-h_{\theta}(x^{(i)}_n)\right) \right)
 $$
 </div>
 
-The objective is to score correct inputs over incorrect ones with a margin of at least 1.
+The objective is to score correct inputs over incorrect ones with a margin of at least $\lambda$.
+
 #### Ranking Loss (log)
 
 <div>
