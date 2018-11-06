@@ -14,14 +14,16 @@ git status
 git status -s
 git diff # between staged and unstaged files
 git difftool
-git add xxx.py # put this file into the project
+git add xxx # put this file into the project
 git add -A # add all the files in the directory
 git diff --staged # between staged files and last commit
-git commit -m "add xxx.py"
+git commit -m "add xxx"
 git commit # use vim to enter a multi-line commit message; use after pull and fix a conflict
 git push
 
 git log -3 # view the latest 3 commits
+git reset xxx  # change a file from staged to unstaged
+git reset  # unstage all files
 git rm xxx # untrack and remove a file
 git rm --cached xxx # untrack
 git mv ReadMe ReadMe.md # rename a file
