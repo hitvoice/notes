@@ -7,6 +7,7 @@
    * [Generalizations of ReLU](#generalizations-of-relu)
        * [Slope methods](#slope-methods)
        * [Exponential linear units](#exponential-linear-units)
+       * [Concatenated rectified linear Units](#concatenated-rectified-linear-units)
        * [Maxout networks](#maxout-networks)
    * [Indentical function](#indentical-function)
    * [Gated Linear Units](#gated-linear-units)
@@ -80,6 +81,14 @@ x \ &\mbox{if } x\geq 0 \\\\
 \end{cases}
 \end{align*}
 $$
+
+
+### Concatenated rectified linear units
+$$
+f(z) = [\max(0,x), \max(0, -x)]
+$$
+[CReLU](https://arxiv.org/pdf/1603.05201.pdf) conserves both negative and positive linear responses, with the property of information preservation.
+
 
 ### Maxout networks
 $$
