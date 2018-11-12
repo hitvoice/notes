@@ -358,7 +358,8 @@ Matplotlib Colortable
 ## Other Resources
 - [tutorial](http://www.labri.fr/perso/nrougier/teaching/matplotlib/) 
 - [gallery](http://matplotlib.org/gallery.html) 
-- [Choosing colormaps](http://matplotlib.org/users/colormaps.html) `xxx(cmap=‘cmapname’)`
+- [choosing colormaps](http://matplotlib.org/users/colormaps.html) `xxx(cmap=‘cmapname’)`
+- [colormaps in Seaborn](https://seaborn.pydata.org/tutorial/color_palettes.html)
 
 Apply colormap manually:
 
