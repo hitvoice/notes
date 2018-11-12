@@ -75,8 +75,8 @@ What are treated as OOV
 - document frequency < threshold
 
 What to do with them
-- Set to zero (when unknown categories do not matter)
-- Use one learnable vector as the embedding of OOV
+- set to zero (when unknown categories do not matter)
+- use one learnable vector as the embedding of OOV
 - hash to one of N random embeddings
 ## Sequence Encoding
 ### Recurrent Neural Networks
@@ -85,7 +85,8 @@ TBD.
 #### GRU
 TBD.
 ### Convolutional Neural Networks
-1D convolution. See [Appendix](#convolutional-neural-network).
+- vanilla 1D convolution. See [Appendix](#convolutional-neural-network).
+- depthwise separable convolution: a depthwise convolution (a spatial convolution performed independently over each channel) followed by a pointwise convolution (1x1 convolution), without any internal activations. This is under the assumption that the mapping of cross-channels correlations and spatial correlations can be entirely decoupled and it's preferable not to map them jointly. [22]
 
 ### Disconnected Recurrent Neural Networks
 The state at each step only depends on the previous $k-1$ words and the current word. This method incorporate the position invariance into RNN by disconnecting the information flow[13].
@@ -290,3 +291,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [19] (NIPS'17) [Attention is All You Need](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)
 - [20] (AAAI'18) [Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17036/16171)
 - [21] (ICLR'16) [Gated Graph Sequence Neural Networks](http://arxiv.org/abs/1511.05493)
+- [22] (CVPR'17) [Xception: Deep Learning with Depthwise Separable Convolutions](https://arxiv.org/abs/1610.02357)
