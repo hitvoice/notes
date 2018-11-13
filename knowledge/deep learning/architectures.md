@@ -78,6 +78,9 @@ What to do with them
 - set to zero (when unknown categories do not matter)
 - use one learnable vector as the embedding of OOV
 - hash to one of N random embeddings
+### character embeddings
+- multi-filters convolutional network, an exmaple configuration is 5, 10, 15 with hidden size 50, 100, 150, respectively [23].
+
 ## Sequence Encoding
 ### Recurrent Neural Networks
 #### LSTM
@@ -156,6 +159,7 @@ $$
 #### CNN
 - Self-Adaptive Hierarchical Sentence Mdoel (AdaSent)
 - Hierarchical ConvNet[7]: concatenation of the max pooling of each convolutional layer's feature maps
+
 ### Aggregation with Context
 #### RNN
 Set the initial RNN hidden states by the context vector.
@@ -168,6 +172,11 @@ $$
 ##### version 2
 $$
 e_i = \tanh(Wx_i + b)^Tc
+$$
+#### version 3
+Use bilinear weight $M$ [23] 
+$$
+e_i = cMx_i
 $$
 ## Interaction
 ### Interaction of two vectors
@@ -292,3 +301,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [20] (AAAI'18) [Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17036/16171)
 - [21] (ICLR'16) [Gated Graph Sequence Neural Networks](http://arxiv.org/abs/1511.05493)
 - [22] (CVPR'17) [Xception: Deep Learning with Depthwise Separable Convolutions](https://arxiv.org/abs/1610.02357)
+- [23] [Stochastic Answer Networks for Natural Languag Inference](https://arxiv.org/abs/1804.07888)
