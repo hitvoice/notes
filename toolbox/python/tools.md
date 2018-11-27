@@ -122,6 +122,8 @@ answer = r.json() # a python object containing response
 
 主要用的python库：[requests](http://docs.python-requests.org/en/master/user/quickstart/)
 
+正文抽取的库：[goose](https://github.com/grangier/python-goose)
+
 主要用的辅助软件：postman
 
 [The Ultimate Wget Guide](http://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples)
