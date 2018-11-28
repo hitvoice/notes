@@ -107,6 +107,21 @@ set Xcode FileMerge (opendiff) as default difftool:
 sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 git config --global merge.tool opendiff
 ```
+set PyCharm as default difftool: 
+
+In PyCharm, select "Tools | Create Command-line Launcher", use default settings. Make sure that the command line tool is in PATH. Add the following line to "~/.gitconfig":
+```
+[diff]
+        tool = pycharm
+[difftool "pycharm"]
+        cmd = /usr/local/bin/charm diff "$LOCAL" "$REMOTE" && echo "Press enter to continue..." && read
+[merge]
+        tool = pycharm
+[mergetool "pycharm"]
+        cmd = /usr/local/bin/charm merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+        keepBackup = false
+```
+
 ### commit message conventions
 Here's a [example convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) from AngularJS.
 
