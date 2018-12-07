@@ -225,6 +225,11 @@ $$
 x_k = h(x_{k-1}) + x_{k-1}
 $$
 The summation can be multiplied by $\sqrt{0.5}$ to halve the variance, assuming that both summands have the same variance which is not always true but effective in some cases [12]. 
+
+A variant is called "dense residual connection" with skip connections from each layer to all previous layers [24]:
+$$
+x_k = h(x_{k-1}) + \sum_{i=0}^{k-1} x_i
+$$
 ### Highway Connection
 See [highway layer](#highway-layer)
 ### Dense Connection
@@ -302,3 +307,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [21] (ICLR'16) [Gated Graph Sequence Neural Networks](http://arxiv.org/abs/1511.05493)
 - [22] (CVPR'17) [Xception: Deep Learning with Depthwise Separable Convolutions](https://arxiv.org/abs/1610.02357)
 - [23] [Stochastic Answer Networks for Natural Languag Inference](https://arxiv.org/abs/1804.07888)
+- [24] [Massive Exploration of Neural Machine Translation Architectures](https://arxiv.org/abs/1703.03906)
