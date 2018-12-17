@@ -73,6 +73,10 @@ zip -qr - $SRCDIR | pv -s $(du -bs $SRCDIR | awk '{print $1}') > $SRCDIR.zip
 pv archive.tar.gz | tar -xz 
 pv archive.tar | tar -x
 unzip archive.zip | pv -l >/dev/null
+
+# zip into pieces and unzip
+tar czpvf - /path/to/archive | split -d -b 100M - fileprefix
+cat fileprefix* | tar xzpvf -
 ```
 ### file info
 ```sh
