@@ -84,9 +84,28 @@ What to do with them
 ## Sequence Encoding
 ### Recurrent Neural Networks
 #### LSTM
-TBD.
+$$
+\begin{align*}
+i_t &= \sigma \left( W^{(i)}x_t + U^{(i)}h_{t-1}\right)\\\\
+f_t &= \sigma \left( W^{(i)}x_t + U^{(i)}h_{t-1}\right)\\\\
+o_t &= \sigma \left( W^{(o)}x_t + U^{(o)}h_{t-1}\right)\\\\
+\tilde c_t &= \tanh \left( W^{(c)}x_t + U^{(c)}h_{t-1}\right)\\\\
+c_t &= f_t \circ c_{t-1} + i_t \circ \tilde c_t \\\\
+h_t &= o_t \circ \tanh(c_t)
+\end{align*}
+$$
+$i_t$, $f_t$ and $o_t$ is called input gate, forget gate, output gate, respectively. $c_t$ is the internal memory cell and $h_t$ is the hidden state. Bias terms are omitted for clarity.
 #### GRU
-TBD.
+$$
+\begin{align*}
+z_t &= \sigma \left( W^{(z)}x_t + U^{(z)}h_{t-1}\right)\\\\
+r_t &= \sigma \left( W^{(r)}x_t + U^{(r)}h_{t-1}\right)\\\\
+\tilde h_t &= \tanh \left( Wx_t + r_t\circ Uh_{t-1}\right)\\\\
+h_t &=z_t\circ h_{t-1} + (1 - z_t)\circ\tilde h_t
+\end{align*}
+$$
+$z_t$ is called update gate and $r_t$ is called reset gate. $\tanh$ is used to set the memory at the same scale and make the blending more stable. Bias terms are omitted for clarity.
+
 ### Convolutional Neural Networks
 - vanilla 1D convolution. See [Appendix](#convolutional-neural-network).
 - depthwise separable convolution: a depthwise convolution (a spatial convolution performed independently over each channel) followed by a pointwise convolution (1x1 convolution), without any internal activations. This is under the assumption that the mapping of cross-channels correlations and spatial correlations can be entirely decoupled and it's preferable not to map them jointly. [22]
