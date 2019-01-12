@@ -1,17 +1,3 @@
-## opencv
-```python
-import cv2
-img = cv2.imread('xxx.png') # `img` is a numpy array
-height, width, channel = img.shape  # color in channels: BGR
-# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color=(255, 255, 255), thickness=2)
-cv2.putText(img, '%.2f' % box['score'], (xmin, ymax), # put text in lower left corner of the rect
-            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(255, 255, 255), thickness=1) 
-cv2.line(img, (100, 100), (100, 200), color=(32, 32, 32), thickness=2)
-cv2.imshow('window_title', img)
-cv2.waitkey(0) # in milliseconds, 0 means wait forever, return ASCII code (int)
-cv2.imwrite('xxx.jpg', img)
-```
 matplotlib
 ----------
 
@@ -312,11 +298,6 @@ df = pd.DataFrame(np.random.randn(1000, 2), columns=['a', 'b'])
 df.plot.hexbin(x='a',y='b',gridsize=25,cmap='Oranges')
 ```
 
-Plotly
-------
-
-Powerful interactive visualization tool. see <https://plot.ly/> 
-
 Images
 ------
 
@@ -324,6 +305,30 @@ Images
 from PIL import Image
 Image.open(filename) # you should see it in a notebook
 ```
+
+## opencv
+```python
+import cv2
+img = cv2.imread('xxx.png') # `img` is a numpy array
+height, width, channel = img.shape  # color in channels: BGR
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+cv2.rectangle(img, (xmin, ymin), (xmax, ymax), color=(255, 255, 255), thickness=2)
+cv2.putText(img, '%.2f' % box['score'], (xmin, ymax), # put text in lower left corner of the rect
+            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(255, 255, 255), thickness=1) 
+cv2.line(img, (100, 100), (100, 200), color=(32, 32, 32), thickness=2)
+cv2.imshow('window_title', img)
+cv2.waitkey(0) # in milliseconds, 0 means wait forever, return ASCII code (int)
+cv2.imwrite('xxx.jpg', img)
+```
+
+## Others
+- [Plotly](https://plot.ly/): a powerful interactive visualization tool
+- [Maps](https://github.com/python-visualization/folium)
+- [WordCloud](http://amueller.github.io/word_cloud/index.html)
+- [Bokeh](http://bokeh.pydata.org/en/latest/): interactive visualization in web browser, a capsulation for **d3.js**
+- app
+    - [rawgraphs](http://rawgraphs.io/) 
+    - [orange](https://orange.biolab.si/#Orange-Features)
 
 Jupyter Notebook Widgets [install guide](https://ipywidgets.readthedocs.io/en/latest/user_install.html)
 -------------------------------------------------------------------------------------------------------
