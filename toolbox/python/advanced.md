@@ -157,6 +157,7 @@ sp = subprocess.Popen('git log -1 | head -n 1', shell=True,
 stdout, stderr = sp.communicate()
 stdout, stderr = stdout.decode(), stderr.decode()
 ```
+or use [Pexpect](https://pexpect.readthedocs.io/en/stable/).
 ### dump python object
 ```python
 # for speed and minmum space, use msgpack (pip install msgpack-python)
@@ -173,8 +174,8 @@ with open('data.msgpack', 'rb') as f:
 ### regex
 ```python
 import re
-# 如果没有匹配以下都返回None，可以直接用作判断
-re.match(pattern, string) # match from the beginning
+# if there's no match, "m" will be None
+m = re.match(pattern, string) # match from the beginning
 m = re.search(pattern, string) # match in any position
 m.group() # empty or use 0: get the entire matched result; use group id (starting from 1) to fetch a group
 m.groups() # return a tuple
@@ -218,6 +219,8 @@ dirname='dir/'
 # 脚本不是逐行反馈结果，而是整个脚本执行完毕后一起显示输出，所以不能通过输出情况判断进度
 
 %run -i 'prepro.py' # 执行脚本，并且共享变量空间
+
+%load\_ext oct2py.ipython # 在notebook中调用matlab函数
 
 ??some_function # 可以直接看到源码，或者按两次shift+TAB
 from IPython.display import FileLink
