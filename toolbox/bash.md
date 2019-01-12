@@ -44,6 +44,7 @@ sudo chown -R username:username /mnt/data/ # gain permission
 ```sh
 # download
 wget -c http://URL.HERE -O output/file # -c means continue downloading if it's interrupted before
+# advanced usage of wget: https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples
 
 # speed up scp in a secure environment
 # in target machine:
