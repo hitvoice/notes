@@ -167,6 +167,8 @@ git config user.email
 git config --global user.email "xxx@gmail.com"
 git config --local user.email "xxx@gmail.com" # repository
 ```
+If you're on a completely private server, `git config credential.helper store` can be used to store the password for the remote server. NEVER use this command on a shared server because the password is stored in plain text.
+
 ### working on Windows
 To supress warnings about different line separators:
 ```sh
