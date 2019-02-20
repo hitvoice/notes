@@ -1,7 +1,6 @@
-### 从命令行调用sublime text
-```sh
-ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-```
+### Alfred
+- [official guide](https://www.alfredapp.com/)
+- [powerful plugins](https://github.com/zenorocha/alfred-workflows)
 
 ### Mac突然黑屏按键无法唤醒
 
@@ -57,7 +56,7 @@ source /etc/bashrc
 
 备注：
 
-1. Mac下配置用户系统路径的文件在`​~/.bash_profile`​ （Linux下在~/.bashrc）
+1. Mac下配置用户系统路径的文件在`~/.bash_profile` （Linux下在~/.bashrc）
 2. Mac下Java 8的自动安装地址需要设置JAVA\_Home到：
 
   /Library/Java/JavaVirtualMachines/jdk1.8.0\_[版本号].jdk/Contents/Home
@@ -141,8 +140,6 @@ myfont = FontProperties(fname="/Library/Fonts/华文黑体.ttf")
 sns.set(font=myfont.get_name()) # 纯matplotlib加入前两行就行
 ```
 
-### Alfred使用指南 [这里](https://www.alfredapp.com/)
-
 ### 解压带中文的、windows过来的zip文件出现文件名乱码
 
 App store下载The Unarchiver，并在文件信息里设置为解压.zip文件的默认程序。
@@ -153,10 +150,10 @@ App store下载The Unarchiver，并在文件信息里设置为解压.zip文件�
 
 ![](resources/mac1.png)
 
-将图示的选项取消勾选。编辑.bash\_profile文件，加入：`​`
-
-export LANG=en\_US.UTF-8`​`​
-
+将图示的选项取消勾选。编辑.bash\_profile文件，加入：
+```
+export LANG=en\_US.UTF-8
+```
 回到命令行，执行`source ~/.bash_profile`。重启Jupyter Notebook即可。
 
 ### matlab 2015及以前的版本mex无法识别新版Xcode 7:
@@ -165,7 +162,7 @@ export LANG=en\_US.UTF-8`​`​
 
 ### 配置git全局忽略文件：
 
-创建`​.gitignore_global`​ （我放在了GithubProjects文件夹下）
+创建文件`.gitignore_global`：
 
 ```
 # Compliled source
