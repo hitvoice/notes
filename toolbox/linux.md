@@ -57,7 +57,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 
 
 注：如果不从源码编译tensorflow，可能会遇到两个问题：
-1. 默认环境的CUDA版本不兼容，比如Tensorflow只支持CUDA 9.0/CUDNN 7.0而不是CUDA 9.1/CUDNN 7.1，或默认环境只有旧版CUDA，此时可以同时安装对应版本的CUDA，并下载解压CUDNN包到一个自定义路径（比如~/downloads/cuda/），创建一个虚拟环境，并做以下操作：
+1. 默认环境的CUDA版本不兼容，比如Tensorflow只支持CUDA 9.0/CUDNN 7.0而不是CUDA 9.1/CUDNN 7.1，或默认环境只有旧版CUDA，此时可以同时安装对应版本的CUDA，并下载解压CUDNN包到一个自定义路径（比如~/downloads/cudnn7/），创建一个虚拟环境，并做以下操作：
 ```sh
 cd ~/anaconda3/envs/tf
 mkdir -p ./etc/conda/activate.d
@@ -72,7 +72,7 @@ export OLD_PATH=${PATH}
 export PATH=/usr/local/cuda-9.0/bin:$PATH
 export OLD_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64;
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/downloads/cuda/lib64
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/downloads/cudnn7/lib64
 ```
 编辑`./etc/conda/deactivate.d/env_vars.sh`：
 ```sh
