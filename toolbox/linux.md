@@ -87,6 +87,21 @@ unset OLD_LD_LIBRARY_PATH
 2. 有些机器不支持AVX指令，但tensorflow 1.6及以上版本默认按照AVX指令编译，如果不自己从源码编译，安装tensorflow-gpu==1.5即可。
 
 ---
+### bash显示当前的git branch
+在~/.bashrc中加上
+```
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+acolor() {
+  [[ -n $(git status --porcelain=v2 2>/dev/null) ]] && echo 31 || echo 32
+}
+
+# export PS1="\h:\u@\W\[\033[\$(acolor)m\]\$(git_branch)\[\033[00m\]\$ "
+export PS1="\W\[\033[\$(acolor)m\]\$(git_branch)\[\033[00m\]\$ "
+```
+注意如果是conda有显示当前env的脚本，需要加在conda的脚本之前。
 
 ### 调试时CUDA给出error但没有正确的stacktrace
 运行时加入CUDA_LAUNCH_BLOCKING=1
