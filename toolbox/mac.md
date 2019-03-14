@@ -2,6 +2,63 @@
 - [official guide](https://www.alfredapp.com/)
 - [powerful plugins](https://github.com/zenorocha/alfred-workflows)
 
+### Brew is slow in China
+Mirrors in China:
+- [USTC](https://mirrors.ustc.edu.cn) ([guide](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git))
+- [Tsinghua](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+
+If still not successful, first uninstall brew using:
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+```
+Then reinstall brew by the following commands:
+```sh
+cd /usr/local/
+sudo git clone https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+sudo chown -R $(whoami) brew/
+echo "export PATH=/usr/local/brew/bin:$PATH" >> ~/.bash_profile
+cd brew && mkdir -p Library/Taps/homebrew/ && cd Library/Taps/homebrew/
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+brew update
+
+```
+
+Example usage of homebrew:
+```sh
+brew install cloc
+brew upgrade mongodb
+brew remove cloc
+```
+
+### Install fonts
+
+Move font files to `/Library/Fonts/`
+
+
+### "no such kernel named python3" when runnning jupyter in Pycharm
+
+```python
+conda update nb_conda nb_conda_kernels nb_anacondacloud
+```
+
+### Install Spark & PySpark
+
+After installing Java & Scala,
+
+```sh
+brew install apache-spark
+```
+
+Run PySpark in Jupyter notebook:
+
+```sh
+export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS=notebook
+pyspark
+```
+
+now there's a SparkContext named `spark` in the notebook.
+
 ### Mac突然黑屏按键无法唤醒
 
 移开Mac附近带磁性的东西，尤其是带磁扣的电脑包...参考[豆瓣讨论](https://www.douban.com/group/topic/42531618/)。
@@ -17,78 +74,6 @@
 3. 关闭编辑页脚的模式
 4. 光标放在实际上的第一页开头，从后往前删掉这个空白页。
 
-### Brew速度慢
-[中科大源](https://mirrors.ustc.edu.cn) [教程](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
-
-[清华源](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)（或者直接用默认源开翻墙）
-
-coding.net源：
-```sh
-cd "$(brew --repo)" && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
-cd $home && brew update
-```
-
-```sh
-brew install cloc
-brew upgrade mongodb
-brew remove cloc
-```
-
-### 系统路径（MAC）
-
-```sh
-sudo chmod +w /etc/bashrc
-sudo vi /etc/bashrc
-```
-
-按`i`键进入编辑状态，在末尾加入（下面是一个例子，注意根目录后面不要再加“／”）
-
-```sh
-export ANT_HOME=/usr/local/apache/ant/1.9.7
-export PATH=${PATH}:${ANT_HOME}/bin
-```
-
-按`Esc`退出编辑状态，输入`:wq!`保存并退出，最后输入
-
-```sh
-source /etc/bashrc
-```
-
-备注：
-
-1. Mac下配置用户系统路径的文件在`~/.bash_profile` （Linux下在~/.bashrc）
-2. Mac下Java 8的自动安装地址需要设置JAVA\_Home到：
-
-  /Library/Java/JavaVirtualMachines/jdk1.8.0\_[版本号].jdk/Contents/Home
-
-### 安装字体/查看现有字体
-
-将字体文件拖动到`/Library/Fonts/`
-
-
-### PyCharm中运行jupyter报错no such kernel named python3
-
-```python
-conda update nb_conda nb_conda_kernels nb_anacondacloud
-```
-
-### 安装Spark & PySpark
-
-在确保安装了Java和Scala后，
-
-```sh
-brew install apache-spark
-```
-
-在Jupyter notebook环境里运行PySpark:
-
-```sh
-export PYSPARK_DRIVER_PYTHON=jupyter
-export PYSPARK_DRIVER_PYTHON_OPTS=notebook
-pyspark
-```
-
-此时在notebook中已经自动具有SparkContext，变量名为`spark`。
 
 ### 安装cx\_Oracle
 
@@ -227,7 +212,7 @@ sudo pip install --ignore-installed --upgrade $TF_BINARY_URL
 
 参见[这里](https://medium.com/coder-snorts/gephi-is-broken-on-mac-os-97fbaef4305e#.1r8imyolg)。
 
-### 清除文件夹下所有.DS\_Store
+### remove all ".DS\_Store" in a folder
 
 ```sh
 find ./ -name ".DS_Store" -depth -exec rm {} \;
