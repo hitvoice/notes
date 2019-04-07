@@ -82,6 +82,18 @@ x \ &\mbox{if } x\geq 0 \\\\
 \end{align*}
 $$
 
+Original ELU is not continuously differentiable. An improved version is called Continuously Differentiable Exponential Linear Units (CELU for short):
+$$
+\begin{align*}
+f(z)= 
+\begin{cases} 
+x \ &\mbox{if } x\geq 0 \\\\
+\alpha (e^{x/a}-1)    &\mbox{if }x<0
+\end{cases}
+\end{align*}
+$$
+
+Illustrative plots can be found in the [paper](https://arxiv.org/pdf/1704.07483.pdf).
 
 ### Concatenated rectified linear units
 $$
