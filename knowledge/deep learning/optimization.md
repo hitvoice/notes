@@ -163,6 +163,8 @@ where $\varepsilon$ is a small positive value (e.g. $10^{-8}$) to avoid undefine
 
 The gradient tells how to update each parameter, under the assumption that the other layers do not change. In practice, we update all of the layers simultaneously. The effect of an update to the parameters for one layer depends so strongly on all of the previous layers and unexpected results can happen because of this (this is called "covariate shift"). Batch normalization acts to standardize the mean and variance of each unit in order to stabilize learning, while allowing the relationships between units and the nonlinear statistics of a single unit to change. The new parameters $\gamma$ and $\beta$ have much lower learning dynamics, because they are not determined by a complicated interaction between the parameters in the previous layers. The estimation of mean and variance is based simply on a mini-batch and is not accurate. This adds some noise to the $z$ values and has a slight regularization effect (the larger the batch size, the smaller the regularization effect). With batch normalization, the model can have higher learning rates, more resiliant training, and less need for dropout.
 
+The ordering of layers is typically "Conv-ReLU-BN".
+
 **Instance normalization** can be seen (and implemented) as batch normalization with batch size 1 and dimension $m\times d$, except that running average and variance originally in the same dimension are collected together and copied to corresponding dimensions when a new batch comes.
 
 **Weight normalization** reparameterizes each weight as
@@ -213,10 +215,11 @@ Save parameters after each, say 3 epochs (or 1/3 epoch for a large dataset like 
 
 ### Tips
 * Because dropout is a regularization technique, it reduces the effective capacity of a model. To offset this effect, the size of the model and the number of iterations should be larger. For very large datasets, regularization confers little reduction in generalization error.
-* If the training accuracy is always lower than the validation accuracy, you may regulate too much and the model goes underfitting. Try reducing the dropout rate or removing dropout in early layers (Since the general rule of thumb is to gradually increase dropout rate from beginning to end). When finetuning a model with the dropout rate adjusted, relevant weights should be rescaled. If the implementation is "inverted dropout" (e.g. in Keras), there's no need to adjust the weights.
+* If the training accuracy is always lower than the validation accuracy, you may regulate too much and the model goes underfitting. Try reducing the dropout rate or removing dropout in early layers (Since the general rule of thumb is to gradually increase dropout rate from beginning to end). When finetuning a model with the dropout rate adjusted, relevant weights should be rescaled. If the implementation is "inverted dropout" (e.g. in Keras/PyTorch), there's no need to adjust the weights.
 * For networks containing recurrent units, do not apply dropout on recurrent connections. (for design of recurrent dropout mask, refer to [Baysian Dropout](https://arxiv.org/abs/1512.05287), NIPS 2016)
 * When extremely few labeled training examples are available, dropout is less effective. Unsupervised feature learning can gain an advantage over dropout.
 * multiplying the weights by $\mu\sim N(1,\sigma)$ (instead of a stochasitic binary vector) is another possible choice
+* In some scenarios, no dropout is better (see [this repo](https://github.com/juefeix/pnn.pytorch.update))
 
 # Other Issues
 ## Vanishing and Exploding Gradients in Deep Networks
