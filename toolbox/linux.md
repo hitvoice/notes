@@ -247,6 +247,13 @@ IdentityFile ~/.ssh/xxx-rsa
 ```
 then use `ssh alias` to login.
 
+add new user and configure ssh:
+```sh
+sudo adduser username
+sudo usermod -aG sudo username
+# then create /home/username/.ssh/authorized_keys
+```
+
 ### 安装libstdc++
 ```sh
 sudo apt-get update && sudo apt-get upgrade
