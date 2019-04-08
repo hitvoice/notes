@@ -227,12 +227,26 @@ nvcc -V
 nvidia-smi
 ```
 
-### 配置SSH
+### Configure SSH
 ```sh
 sudo apt-get update
 sudo apt-get install ssh openssh-server
 sudo ufw allow 22
 ```
+
+On client:
+- Use `ssh-keygen` to generate a key pair. **Don't overwrite existed keys**. Save to an unique name like "xxx-rsa". A password for local verification is optional and can be ommitted on purely personal machines.
+- copy the content of "~/.ssh/xxx-rsa.pub" which starts with "ssh-rsa " and paste to "~/.ssh/authorized_keys" on the server.
+- edit "~/.ssh/config" on client (can have multiple configurations):
+```
+Host alias  # an alias
+Hostname xxx.xx # URL or IP address
+User username # username for the remote server
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/xxx-rsa
+```
+then use `ssh alias` to login.
+
 ### 安装libstdc++
 ```sh
 sudo apt-get update && sudo apt-get upgrade
