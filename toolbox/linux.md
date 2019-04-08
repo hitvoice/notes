@@ -103,6 +103,21 @@ export PS1="\W\[\033[\$(acolor)m\]\$(git_branch)\[\033[00m\]\$ "
 ```
 注意如果是conda有显示当前env的脚本，需要加在conda的脚本之前。
 
+### 解决vim粘贴时会不断累计缩进
+add the following to `~/.vimrc`:
+```
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+```
+
 ### 调试时CUDA给出error但没有正确的stacktrace
 运行时加入CUDA_LAUNCH_BLOCKING=1
 
