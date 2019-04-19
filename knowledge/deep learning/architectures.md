@@ -109,6 +109,9 @@ $z_t$ is called update gate and $r_t$ is called reset gate. $\tanh$ is used to s
 ### Convolutional Neural Networks
 - vanilla 1D convolution. See [Appendix](#convolutional-neural-network).
 - depthwise separable convolution: a depthwise convolution (a spatial convolution performed independently over each channel) followed by a pointwise convolution (1x1 convolution), without any internal activations. This is under the assumption that the mapping of cross-channels correlations and spatial correlations can be entirely decoupled and it's preferable not to map them jointly. [22]
+- dilated convolution: fast, large context [27][28]
+- convolve over ancestors and siblings in dependency trees [25]
+- convolve over dependency graph [26]
 
 ### Disconnected Recurrent Neural Networks
 The state at each step only depends on the previous $k-1$ words and the current word. This method incorporate the position invariance into RNN by disconnecting the information flow[13].
@@ -327,3 +330,7 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [22] (CVPR'17) [Xception: Deep Learning with Depthwise Separable Convolutions](https://arxiv.org/abs/1610.02357)
 - [23] [Stochastic Answer Networks for Natural Languag Inference](https://arxiv.org/abs/1804.07888)
 - [24] [Massive Exploration of Neural Machine Translation Architectures](https://arxiv.org/abs/1703.03906)
+- [25] (ACL'15) [Dependency-based Convolutional Neural Networks for Sentence Embedding](https://www.aclweb.org/anthology/P15-2029)
+- [26] (EMNLP'17) [Encoding Sentences with Graph Convolutional Networks for Semantic Role Labeling](https://www.aclweb.org/anthology/D17-1159)
+- [27] [Neural Machine Translation in Linear Time](https://arxiv.org/pdf/1610.10099.pdf)
+- [28] (EMNLP'17) [Fast and Accurate Entity Recognition with Iterated Dilated Convolutions](https://arxiv.org/pdf/1702.02098.pdf)
