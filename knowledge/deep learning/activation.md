@@ -2,12 +2,15 @@
 <!--ts-->
    * [Sigmoid function](#sigmoid-function)
    * [Hyperbolic tangent](#hyperbolic-tangent)
-   * [Hard tanh](#hard-tanh)
+       * [Hard tanh](#hard-tanh)
+       * [Penalized tanh](#penalized-tanh)
+       * [Swish](#swish)
    * [Rectified linear units](#rectified-linear-units)
    * [Generalizations of ReLU](#generalizations-of-relu)
        * [Slope methods](#slope-methods)
        * [Exponential linear units](#exponential-linear-units)
        * [Concatenated rectified linear Units](#concatenated-rectified-linear-units)
+       * [Gaussian Error Linear Units](#gaussian-error-linear-units)
        * [Maxout networks](#maxout-networks)
    * [Indentical function](#indentical-function)
    * [Gated Linear Units](#gated-linear-units)
@@ -39,7 +42,8 @@ The widespread saturation of sigmoidal units can make gradient-based learning ve
 
 Another drawback of sigmoid/tanh is that $\exp$ is a bit computational expensive.
 
-## Hard tanh
+Variations of tanh:
+### Hard tanh
 $$
 \begin{align*}
 f(z)= 
@@ -51,6 +55,16 @@ f(z)=
 \end{align*}
 $$
 Hard tangent performs silimarly to tanh, but is computationally cheaper.
+
+### Penalized tanh
+$$
+f(x)=\left\{\begin{array}{ll}{\tanh (x)} & {x>0} \\ {0.25 \tanh (x)} & {x \leq 0}\end{array}\right
+$$
+It can be used in place of tanh in LSTM or GRU cells.
+### Swish
+$$
+f(x) =x\cdot \sigma(x)
+$$
 
 ## Rectified linear units
 (neither bounded nor continuously differentiable)
@@ -101,6 +115,20 @@ f(z) = [\max(0,x), \max(0, -x)]
 $$
 [CReLU](https://arxiv.org/pdf/1603.05201.pdf) conserves both negative and positive linear responses, with the property of information preservation.
 
+### Gaussian Error Linear Units
+Let $\Phi(x)=P(X\leq x),\ X\sim \mathcal N(0,1)$ be the cumulative distribution function of the standard normal distribution. GELU is defined as:
+
+$$
+\operatorname{GELU}(x)=x \Phi(x)
+$$
+
+In this setting, inputs have a higher probability of being “dropped” as $x$ decreases. Loosely, this expression states that we scale x by how much greater it is than other inputs. It works the best when the input is (normalized to) standard normal distributions. We can approximate GELU with:
+
+$$
+\operatorname{GELU}(x)= 0.5 x\left(1+\tanh \left[\sqrt{2 / \pi}\left(x+0.044715 x^{3}\right)\right]\right)
+$$
+
+or `0.5 * x * (1 + tanh(x * 0.7978845608 * (1 + 0.044715 * x * x)))` or `sigmoid(1.702 * x) * x` (less accurate).
 
 ### Maxout networks
 $$
@@ -142,4 +170,5 @@ It is very rare to mix and match different types of neurons in the same network,
 - [Deep Learning Book](http://www.deeplearningbook.org/)
 - [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
 - [Stanford CS224d Lecture 6](http://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf)
-- [Language Modeling With Gated Linear Units](https://arxiv.org/abs/1612.08083)
+- [Language Modeling With Gated Linear Units](https://arxiv.org/abs/1612.08083) ([github](https://github.com/hendrycks/GELUs))
+- [Gaussian Error Linear Units](https://arxiv.org/pdf/1606.08415.pdf)
