@@ -58,9 +58,9 @@ Hard tangent performs silimarly to tanh, but is computationally cheaper.
 
 ### Penalized tanh
 $$
-f(x)=\left\{\begin{array}{ll}{\tanh (x)} & {x>0} \\ {0.25 \tanh (x)} & {x \leq 0}\end{array}\right
+f(x)=\left\{\begin{array}{ll}{\tanh (x)} & {x>0} \\ {0.25 \tanh (x)} & {x \leq 0}\end{array}\right.
 $$
-It can be used in place of tanh in LSTM or GRU cells.
+It can be used in place of tanh as a new type of gate in LSTM or GRU cells and can yield better performance in some tasks.
 ### Swish
 $$
 f(x) =x\cdot \sigma(x)
@@ -128,7 +128,7 @@ $$
 \operatorname{GELU}(x)= 0.5 x\left(1+\tanh \left[\sqrt{2 / \pi}\left(x+0.044715 x^{3}\right)\right]\right)
 $$
 
-or `0.5 * x * (1 + tanh(x * 0.7978845608 * (1 + 0.044715 * x * x)))` or `sigmoid(1.702 * x) * x` (less accurate).
+== `0.5 * x * (1 + tanh(x * 0.7978845608 * (1 + 0.044715 * x * x)))` or `sigmoid(1.702 * x) * x` (less accurate).
 
 ### Maxout networks
 $$
@@ -172,3 +172,4 @@ It is very rare to mix and match different types of neurons in the same network,
 - [Stanford CS224d Lecture 6](http://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf)
 - [Language Modeling With Gated Linear Units](https://arxiv.org/abs/1612.08083) ([github](https://github.com/hendrycks/GELUs))
 - [Gaussian Error Linear Units](https://arxiv.org/pdf/1606.08415.pdf)
+- [Is it Time to Swish? Comparing Deep Learning Activation Functions Across NLP tasks](https://aclweb.org/anthology/D18-1472)
