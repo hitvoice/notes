@@ -48,8 +48,8 @@ $$
 \begin{align*}
 f(z)= 
 \begin{cases} 
--1 \ &\mbox{if } x<-1 \\\\
-0    &\mbox{if } -1<=x<=1\\\\
+-1   &\mbox{if } x<-1 \\\\
+0    &\mbox{if } -1\leq x\leq 1\\\\
 1    &\mbox{if } x>1
 \end{cases}
 \end{align*}
@@ -58,13 +58,22 @@ Hard tangent performs silimarly to tanh, but is computationally cheaper.
 
 ### Penalized tanh
 $$
-f(x)=\left\{\begin{array}{ll}{\tanh (x)} & {x>0} \\ {0.25 \tanh (x)} & {x \leq 0}\end{array}\right.
+\begin{align*}
+f(z)= 
+\begin{cases} 
+\tanh (x)     & x>0 \\\\
+0.25\tanh (x) & x\leq 0\\\\
+\end{cases}
+\end{align*}
 $$
+
 It can be used in place of tanh as a new type of gate in LSTM or GRU cells and can yield better performance in some tasks.
+
 ### Swish
 $$
 f(x) =x\cdot \sigma(x)
 $$
+
 
 ## Rectified linear units
 (neither bounded nor continuously differentiable)
