@@ -104,7 +104,7 @@ r_t &= \sigma \left( W^{(r)}x_t + U^{(r)}h_{t-1}\right)\\\\
 h_t &=z_t\circ h_{t-1} + (1 - z_t)\circ\tilde h_t
 \end{align*}
 $$
-$z_t$ is called update gate and $r_t$ is called reset gate. $\tanh$ is used to set the memory at the same scale and make the blending more stable. Bias terms are omitted for clarity.
+$z_t$ is called update gate and $r_t$ is called reset gate. $\tanh$ is used to set the memory at the same scale and make the blending more stable. Bias terms are omitted for clarity. Some researches report no significant difference between GRU and LSTM[29], but others point out that GRU cannot do things like simple counting (see [this](http://phontron.com/class/nn4nlp2019/assets/slides/nn4nlp-05-rnn.pdf)).
 
 ### Convolutional Neural Networks
 - vanilla 1D convolution. See [Appendix](#convolutional-neural-network).
@@ -334,3 +334,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [26] (EMNLP'17) [Encoding Sentences with Graph Convolutional Networks for Semantic Role Labeling](https://www.aclweb.org/anthology/D17-1159)
 - [27] [Neural Machine Translation in Linear Time](https://arxiv.org/pdf/1610.10099.pdf)
 - [28] (EMNLP'17) [Fast and Accurate Entity Recognition with Iterated Dilated Convolutions](https://arxiv.org/pdf/1702.02098.pdf)
+- [29] (NIPS'14 Workshop) [Empirical evaluation of gated recurrent neural networks on sequence modeling](https://arxiv.org/pdf/1412.3555.pdf)
