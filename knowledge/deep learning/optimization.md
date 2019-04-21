@@ -75,7 +75,7 @@ $$
 
 Prove of the gain value for GLU can be found in [this paper](https://arxiv.org/abs/1705.03122). If dropout is applied with probability $p$ using the implementation of "inverted dropout", the gain value should be multiplied by $\sqrt{1-p}$. ([example](https://github.com/pytorch/fairseq/blob/6381cc977fa909bd53c8915a18684e49b3507332/fairseq/models/fconv.py#L637))
 
-There's a way to initialize parameters with equalized learning rate mentioned in [This paper](https://arxiv.org/abs/1710.10196). Weights are initialized trivially by $\mathcal{N}(0,1)$ and explicitly scaled by the normalization constant from He's innitializer at runtime. In adaptive SGD methods like RMSProp or Adam, it ensures the scale-invariance, so the learining spped is the same for all weights. 
+There's a way to initialize parameters with equalized learning rate mentioned in [This paper](https://arxiv.org/abs/1710.10196). Weights are initialized trivially by $\mathcal{N}(0,1)$ and explicitly scaled by the normalization constant from He's innitializer at runtime. In adaptive SGD methods like RMSProp or Adam, it ensures the scale-invariance, so the learining speed is the same for all weights. 
 
 The bias term is usually set to zero, with the following exceptions:
 * Set the bias of a ReLU hidden unit to 0.1 rather than 0 to avoid saturating the ReLU at initialization.
