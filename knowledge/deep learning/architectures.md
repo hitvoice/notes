@@ -94,7 +94,8 @@ c_t &= f_t \circ c_{t-1} + i_t \circ \tilde c_t \\\\
 h_t &= o_t \circ \tanh(c_t)
 \end{align*}
 $$
-$i_t$, $f_t$ and $o_t$ is called input gate, forget gate, output gate, respectively. $c_t$ is the internal memory cell and $h_t$ is the hidden state. Bias terms are omitted for clarity.
+$i_t$, $f_t$ and $o_t$ is called input gate, forget gate, output gate, respectively. $c_t$ is the internal memory cell and $h_t$ is the hidden state. Bias terms are omitted for clarity. Performance of vanilla LSTM is quite stable, while coupling input and forget gates ($i_t = 1 - f_t$) can be faster and perform equally well in some tasks [30].
+
 #### GRU
 $$
 \begin{align*}
@@ -335,3 +336,4 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [27] [Neural Machine Translation in Linear Time](https://arxiv.org/pdf/1610.10099.pdf)
 - [28] (EMNLP'17) [Fast and Accurate Entity Recognition with Iterated Dilated Convolutions](https://arxiv.org/pdf/1702.02098.pdf)
 - [29] (NIPS'14 Workshop) [Empirical evaluation of gated recurrent neural networks on sequence modeling](https://arxiv.org/pdf/1412.3555.pdf)
+- [30] (TNNLS'17) [LSTM: A Search Space Odyssey](https://arxiv.org/pdf/1503.04069.pdf)
