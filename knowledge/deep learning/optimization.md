@@ -12,9 +12,9 @@
    * [Other Issues](#other-issues)
       * [Vanishing and Exploding Gradients](#vanishing-and-exploding-gradients-in-deep-networks)
       * [Saturation and Dead Neurons](#saturation-and-dead-neurons)
-      * [Issues for RNN](#issues-for-rnn)
       * [Model Ensemble](#model-ensemble)
-      * [Tricks for batching](#tricks-for-batching)
+      * [Tricks for Batching](#tricks-for-batching)
+      * [Approximating Softmax Computation](#approximating-softmax-computation)
    * [Reference](#reference)
       
 <!--te-->
@@ -244,20 +244,31 @@ Solutions for dead neurons:
 * changing the initialization
 * reducing the learning rate
 
-## Issues for RNN
-* Long range dependencies -> vanishing (or exploding) gradients: additive gated architectures (LSTM, GRU..)
-* Increasing the size of the recurrent layer cost a quadratic slow down: deep RNN in both direction scales linearly
-* Large vocabularies -> slow softmax calculations: factorising the softmax or sampling
-
 ## Model Ensemble
 - train N models independently and average the output
 - snapshot ensemble
 - Polyak averaging: keep a moving average of the parameters and use that at test time
 
-## Tricks for batching
+## Tricks for Batching
 There're several tricks to speed up training (while barely affect the learning process) when preparing samples in batches for sequential data.
 - sort by sequence length, make batches and just shuffle these batches. ([examples in DrQA](https://github.com/facebookresearch/DrQA/blob/50d0e49bb77fe0c6e881efb4b6fe2e61d3f92509/scripts/reader/train.py#L436))
 - bucket by sequence lengths, shuffle samples in bucket and add each bucket ([examples in CSRAN](https://github.com/vanzytay/EMNLP2018_NLI/blob/master/train_acc.py#L588))
+
+## Approximating Softmax Computation
+Especially useful when predicting words from a large vocabulary. 
+
+sampling-based approximations:
+- negative sampling: sample 1 positive N negative examples
+- [mini-batching negative sampling](https://www.aclweb.org/anthology/N16-1145): use the same negative samples for one minibatch
+
+Structure-based approximations:
+- [class-based softmax](https://arxiv.org/pdf/cs/0108006.pdf): (1) assign each word to a class; (2) predict class first, then word given class
+- [hierarchical softmax](https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf): create a tree structure where we make one decision at every node
+- [binary code prediction](https://arxiv.org/pdf/1704.06918): encode each word in a binary code, and choose all bits in a single prediction with sigmoid (fast on GPU)
+
+Improvements of binary code prediction:
+  - hybrid model: predict frequent tokens and a "OTHER" token with vanilla softmax, other rare tokens with binary code
+  - use error correction codes (ECC) to encode words
 
 # Reference
 - [1] [Stanford CS231n Lecture 6](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture6.pdf)
@@ -271,4 +282,5 @@ There're several tricks to speed up training (while barely affect the learning p
 - [9] [Deep Learning Book](http://www.deeplearningbook.org/)
 - [10] [deeplearning.ai Course 2: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/learn/deep-neural-network/home/welcome)
 - [11] [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay](https://arxiv.org/abs/1803.09820)
+- [12] [CMU CS 11-747 2019 Lecture 6](http://phontron.com/class/nn4nlp2019/schedule/efficiency-tricks.html)
 
