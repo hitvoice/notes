@@ -190,6 +190,10 @@ s = re.sub(pattern, replaced_by, s)
 re.split(' |\n', s) # return a list
 re.escape(s) # treat s as a literal
 regex = re.compile(pattern) # re has internal caches, so most of the time compiling is not needed
+
+# in python, to match "whitespace or start(end)", the following should be used instead of "(?<=\s|^)",
+# otherwise you'll get an error: "look-behind requires fixed-width pattern"
+re.compile(r'(?:(?<=\s)|(?<=^))')
 ```
 ### random
 ```python
