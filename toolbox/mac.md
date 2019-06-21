@@ -20,7 +20,14 @@ echo "export PATH=/usr/local/brew/bin:$PATH" >> ~/.bash_profile
 cd brew && mkdir -p Library/Taps/homebrew/ && cd Library/Taps/homebrew/
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
 brew update
+```
+If brew update is still not successful, update manually by:
+```
+cd "$(brew --repo)"
+git pull
 
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git pull
 ```
 
 Example usage of homebrew:
