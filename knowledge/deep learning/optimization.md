@@ -195,7 +195,9 @@ The amount of regularization must be balanced for each dataset and architecture.
 * Adding noise to the weights can be interpreted as a stochastic implementation of a Bayesian inference over the weights, which reflect the uncertainty of a probability distribution. It can also be interpreted as pushing the model to points that are not merely minima, but minima surrounded by flat regions. It has been shown to be an effective in the context of RNN.
 
 ## Early Stopping
-Save parameters after each, say 3 epochs (or 1/3 epoch for a large dataset like ImageNet) and use parameters that give best validation error. To reuse data in validation set, there are 2 strategies:
+Stop training when validation performance does not improve after $N$ evaluations. Sometimes training is also stopped when the learning rate drops below a threshold (say $10^{-5}$) in a learning rate decaying scheme. After tranining, the model with the best validation performance is chosen for testing.
+
+To reuse data in validation set, there are 2 strategies:
 * initialize the model again and retrain on all of the data for the same number of steps determined by early stopping (not optimal).
 * keep the parameters and continue training using all of the data until the average loss function on the validation set falls below the value of the training set objective when early stopping (not guaranteed to terminate).
 
