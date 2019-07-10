@@ -78,8 +78,10 @@ What to do with them
 - set to zero (when unknown categories do not matter)
 - use one learnable vector as the embedding of OOV
 - hash to one of N random embeddings
-### character embeddings
+- generate its embedding from contexts via meta learning [35]
+### character/subword embeddings
 - multi-filters convolutional network, an exmaple configuration is 5, 10, 15 with hidden size 50, 100, 150, respectively [23].
+- embeddings of sub-word units (wordpieces) [31]. Using wordpieces gives a good balance between the flexibility of single characters and the efficiency of full words for decoding, and also sidesteps the need for special treatment of unknown words.
 
 ## Sequence Encoding
 ### Recurrent Neural Networks
@@ -118,7 +120,7 @@ $z_t$ is called update gate and $r_t$ is called reset gate. $\tanh$ is used to s
 The state at each step only depends on the previous $k-1$ words and the current word. This method incorporate the position invariance into RNN by disconnecting the information flow[13].
 
 ### Self-attention/Transformer
-TBD.
+See [this tutorial](http://nlp.seas.harvard.edu/2018/04/03/attention.html).
 ### Positional Encoding
 Positional encodings are useful for CNNs and attention based models, giving them a sense of position.
 #### postional Embedding
@@ -182,6 +184,10 @@ $$
 #### CNN
 - Self-Adaptive Hierarchical Sentence Mdoel (AdaSent)
 - Hierarchical ConvNet[7]: concatenation of the max pooling of each convolutional layer's feature maps
+#### Transformer
+Append a special [CLS] token to the sequence. 
+- Use the final hidden state of the [CLS] token as the aggregated vector.
+- Concatenation of last $N$ hidden states of the [CLS] token.
 
 ### Aggregation with Context
 #### RNN
@@ -242,6 +248,17 @@ There're usually 4 steps in the interaction of 2 sequences, namely computing att
 If attention score is the inner product, the product should be scale by $\sqrt{1/d}$ to counteract a change in variance under the assumption that the two vectors are independent random variables. Softmax with large values will have extremely small gradients. \[19\]
 
 The weighted sum can be scaled by $\sqrt{1/L}$ to counteract a change in variance \[12\]. Under the assumption that the attention scores are uniformly distributed (which is generally not the case but found to work well in some cases), the weighted sum can be scaled by $L\sqrt{1/L}$ [12].
+### Segment-aware concatenation
+2 sequences are concatenated into a longer single sequence so that any architecture for single-sequence processing can be applied. 
+
+To mark the start/end of the sequences, usually a [SEP] token is inserted between the two or prepend and append to each sequence. 
+
+Segment-aware concatention is often accompanied by positional embeddings, with monotonically increasing numbering [32] or independent numbering in each sequence[34]. 
+
+To mark which segment a token is in:
+- add a learnable segment embedding ([SEG-A] or [SEG-B]) to the original word embedding [32]
+- relative segment encodings (if followed by transformers): use an embedding indicating whether two tokens are from the same segment in self-attention [33]
+
 ## Meta Architecture
 ### Residual Connection
 $$
@@ -337,3 +354,8 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [28] (EMNLP'17) [Fast and Accurate Entity Recognition with Iterated Dilated Convolutions](https://arxiv.org/pdf/1702.02098.pdf)
 - [29] (NIPS'14 Workshop) [Empirical evaluation of gated recurrent neural networks on sequence modeling](https://arxiv.org/pdf/1412.3555.pdf)
 - [30] (TNNLS'17) [LSTM: A Search Space Odyssey](https://arxiv.org/pdf/1503.04069.pdf)
+- [31] [Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation](https://arxiv.org/pdf/1609.08144.pdf)
+- [32] [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
+- [33] [XLNet: Generalized Autoregressive Pretraining for Language Understanding](https://arxiv.org/pdf/1906.08237.pdf)
+- [34] [Cross-lingual Language Model Pretraining](https://arxiv.org/pdf/1901.07291.pdf)
+- [35] [Few-Shot Representation Learning for Out-Of-Vocabulary Words](https://arxiv.org/pdf/1907.00505.pdf)
