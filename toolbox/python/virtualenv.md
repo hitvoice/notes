@@ -2,11 +2,11 @@
 ---------
 
 ```sh
-conda info --envs
+conda info --envs // or `conda env list`
 conda create -n env_name python=3.5
 activate env_name
 deactivate
-conda remove --name env_name --all
+conda remove --name env_name --all // or `conda env remove --name env_name`
 ```
 注意此时ipython仍然是全局的ipython，如果要在虚拟环境内使用ipython，在虚拟环境内先“conda install ipython”。
 
