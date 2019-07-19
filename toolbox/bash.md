@@ -95,6 +95,9 @@ feh image.jpg # open an image from the terminal (or multiple images at the same 
 # create a file shortcut/symbolic file (use absolute path to avoid potential problems)
 ln -s src des 
 
+# filter lines of a file
+grep -i "warn" main.log > warn.log . # -i case insensitive
+
 # shuffle the lines of a file
 myshuf() {
   perl -MList::Util=shuffle -e 'print shuffle(<>);' "$@";
@@ -122,7 +125,7 @@ find . -type f -printf . | wc -c # count the number of files (including hidden f
 tree -d # print the directory stucture as a tree
 ```
 
-### seach and batch processing of files
+### search and batch processing of files
 ```sh
 # search files
 find srcDir -name *.jpg
