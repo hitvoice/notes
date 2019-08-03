@@ -52,7 +52,7 @@ $$
 Elements of $W$ are biased to be close to −1, 0, or 1. $W$ for $a$ performs addition or substraction, while for $m$ it operates in log space and is therefore capable of learning multiplication, division and power functions. NALU functions in a way that extrapolates to numbers outside of the range observed during training [16].
 
 ### Maxout Networks
-See [maxout networks](https://github.com/hitvoice/notes/blob/master/knowledge/deep%20learning/activation.md#maxout-networks).
+See [maxout networks](./activation.md#maxout-networks).
 ## Embedding of Discrete Variables
 ### Usage of pretrained embeddings
 - fix
@@ -82,6 +82,16 @@ What to do with them
 ### character/subword embeddings
 - multi-filters convolutional network, an exmaple configuration is 5, 10, 15 with hidden size 50, 100, 150, respectively [23].
 - embeddings of sub-word units (wordpieces) [31]. Using wordpieces gives a good balance between the flexibility of single characters and the efficiency of full words for decoding, and also sidesteps the need for special treatment of unknown words.
+
+### categorical metadata
+Usage:
+- concatenate the embedding vector of metadata with the aggregated vector of text representations (missing lower-level dependencies; can be accelerated by simplifying to category-specific bias vectors when followed by a dense layer: $W[x;c_k] + b = Wx + b_k$) [36]
+- use a categorical-specific weight for customized linear transformation: $\sum_c W^{(c)}\_k x + b$, can be used in embeddings projection(e.g. an affine transformation[36], or a tanh-activated dense layer with residual connections[38]), lower-level sequence encoder (like in LSTM cells) or higher level prediction layers[38].
+- use a customized context vector in [attention pooling](#self-attention): $\sum_c x^T u^{(c)}\_k$ [37]
+
+When the number of categories are large (like users/items), one can use a set of basis vectors and learn a distribution over the basis vectors for each category[38], to encounter the following limitations:
+- the number of parameters is huge
+- some categories do not have enough data to train (e.g. cold start for new items)
 
 ## Sequence Encoding
 ### Recurrent Neural Networks
@@ -162,13 +172,13 @@ $$
 $e_i$ is the attention score of position $i$. There're various ways to compute $e_i$.
 ##### version 1
 $$
-e_i = Wx_i + b 
+e_i = Wx_i
 $$
 ##### version 2
 $$
 e_i = \tanh(Wx_i + b)^Tu
 $$
-Trainable parameter $u$ is called the context vector. You can have multiple context vectors to performed multi-view self-attention[7].
+Trainable parameter $u$ is called the context vector. If $x$ is already normalized (e.g. when $x$ is the output of an LSTM or GRU), the linear transformation can be omitted($e_i = x_i^Tu$). You can have multiple context vectors to performed multi-view self-attention[7]. Note that $e_i$ does not need the addition of a bias vector, due to a property that softmax is invariant to constant offset: $\operatorname{softmax}(x) = \operatorname{softmax}(x + c)$ (see [softmax]((../machine%20learning/Softmax%20regression.md)))
 
 Another form of self-attention does not normalize the attention scores [21]:
 $$
@@ -359,3 +369,6 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [33] [XLNet: Generalized Autoregressive Pretraining for Language Understanding](https://arxiv.org/pdf/1906.08237.pdf)
 - [34] [Cross-lingual Language Model Pretraining](https://arxiv.org/pdf/1901.07291.pdf)
 - [35] [Few-Shot Representation Learning for Out-Of-Vocabulary Words](https://arxiv.org/pdf/1907.00505.pdf)
+- [36] (ACL'15) [Learning semantic representations of users and products for document level sentiment classification](http://ir.hit.edu.cn/~dytang/paper/acl2015/acl2015.pdf)
+- [37] (EMNLP'16) [Neural sentiment classification with user and product attention](https://aclweb.org/anthology/D16-1171)
+- [38] (ACL'19) [Categorical Metadata Representation for Customized Text Classification](https://arxiv.org/pdf/1902.05196.pdf)
