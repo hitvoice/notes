@@ -157,7 +157,7 @@ $$
 $$
 and
 $$
-\sigma=\sqrt{\varepsilon+\frac{1}{m}\sum_i \left(H-\mu\right)_i^2},
+\sigma=\sqrt{\varepsilon+\frac{1}{m}\sum_i \left(H-\mu\right)\_i^2},
 $$
 where $\varepsilon$ is a small positive value (e.g. $10^{-8}$) to avoid undefined gradient. All the 4 parameters ($\mu, \sigma, \gamma, \beta$) are trainable during back propagation. At test time, we use the exponentially weighted averages of means and variances.
 
@@ -165,7 +165,17 @@ The gradient tells how to update each parameter, under the assumption that the o
 
 The ordering of layers is typically "Conv-ReLU-BN".
 
-**Instance normalization** can be seen (and implemented) as batch normalization with batch size 1 and dimension $m\times d$, except that running average and variance originally in the same dimension are collected together and copied to corresponding dimensions when a new batch comes.
+<div align="center">
+  <img src="resources/normalization.png" width="90%">
+</div>
+
+Different normalization methods have similar normalizing and rescaling formulas. The major difference is in which set the mean and variance are computed as illustrated in the above figure. The following normalization techniques do no rely on batch size and batch statistics so they are more suitable for finetuning, transfer learning, high-definition tasks and so on.
+
+**Instance normalization** can be seen (and implemented) as batch normalization with batch size 1 and dimension $m\times d$, except that running average and variance originally in the same dimension are collected together and copied to corresponding dimensions when a new batch comes. Instance norm can be seen as group norm with number of groups set to the number of channels. IN can only rely on the spatial dimension for computing the mean and variance and it misses the opportunity of exploiting the channel dependence.
+
+**Layer Normalization** can be seen as group norm with number of groups set to 1. LN assumes all channels in a layer make “similar contributions”.
+
+**Group Normalization** lies in the middle of InstanceNorm and LayerNorm. GN is less restricted than LN, because each group of channels (instead of all of them) are assumed to subject to the shared mean and variance; the model still has flexibility of learning a different distribution for each group.
 
 **Weight normalization** reparameterizes each weight as
 $$
@@ -285,4 +295,5 @@ Improvements of binary code prediction:
 - [10] [deeplearning.ai Course 2: Hyperparameter tuning, Regularization and Optimization](https://www.coursera.org/learn/deep-neural-network/home/welcome)
 - [11] [A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay](https://arxiv.org/abs/1803.09820)
 - [12] [CMU CS 11-747 2019 Lecture 6](http://phontron.com/class/nn4nlp2019/schedule/efficiency-tricks.html)
+- [13] [Group Normalization](https://eccv2018.org/openaccess/content_ECCV_2018/papers/Yuxin_Wu_Group_Normalization_ECCV_2018_paper.pdf)
 
