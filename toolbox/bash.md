@@ -96,7 +96,8 @@ feh image.jpg # open an image from the terminal (or multiple images at the same 
 ln -s src des 
 
 # filter lines of a file
-grep -i "warn" main.log > warn.log . # -i case insensitive
+grep -i "warn" main.log > warn.log # -i case insensitive
+grep -E "[0-9.]+$" main.log > num.log . # -E uses regular expression (or "egrep")
 
 # shuffle the lines of a file
 myshuf() {
