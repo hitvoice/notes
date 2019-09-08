@@ -97,7 +97,8 @@ ln -s src des
 
 # filter lines of a file
 grep -i "warn" main.log > warn.log # -i case insensitive
-grep -E "[0-9.]+$" main.log > num.log . # -E uses regular expression (or "egrep")
+grep -E "[0-9.]+$" main.log > num.log  # -E uses regular expression (or "egrep")
+grep -oE "[0-9.]+$" main.log > num.log  # -o only the matched part instead of the whole line
 
 # shuffle the lines of a file
 myshuf() {
