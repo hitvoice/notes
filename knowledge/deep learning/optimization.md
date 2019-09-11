@@ -126,6 +126,15 @@ When decaying to 10% after 10 decays:
  <img src="resources/decay.png" width="400">
 </div>
 
+- exponential decay
+$$
+\alpha = \alpha_T + (\alpha_0 - \alpha_T) \times (1-\min(t, T)/T)^p
+$$
+The learning rate decays from $\alpha_0$ to $\alpha_T$ in $T$ steps. Effects of different $p$s:
+<div align="center">
+ <img src="resources/norm_decay.png" width="500">
+</div>
+
 In pratice, the above decay schemes are often implemented step-wise:
 $$
 t = \lfloor i/T\rfloor
