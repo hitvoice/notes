@@ -5,7 +5,7 @@
 Change linter settings:
 ```json
 "python.linting.pylintArgs": [
-  "--disable=C,R,W,E0611, E0401",
+  "--disable=C,R,W,E0611,E0401,E1101",
   "--enable=unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode"
 ]
 ```
