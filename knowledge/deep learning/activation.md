@@ -137,7 +137,7 @@ $$
 \operatorname{GELU}(x)= 0.5 x\left(1+\tanh \left[\sqrt{2 / \pi}\left(x+0.044715 x^{3}\right)\right]\right)
 $$
 
-== `0.5 * x * (1 + tanh(x * 0.7978845608 * (1 + 0.044715 * x * x)))` or `sigmoid(1.702 * x) * x` (less accurate).
+== `0.5 * x * (1 + tanh(x * 0.7978845608 * (1 + 0.044715 * x * x)))` or `sigmoid(1.702 * x) * x` (less accurate) or `x * 0.5 * (1.0 + torch.erf(x / math.sqrt(2.0)))` in pytorch.
 
 ### Maxout networks
 $$
