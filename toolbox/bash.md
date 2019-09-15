@@ -173,6 +173,9 @@ do
     python process.py ${i}.txt
 done
 
+# while loop (read from stdin)
+ls | grep -E *.txt | while read -r line ; do upload $line ; done
+
 # check script input argument
 if [[ $# -eq 0 ]] ; then
     echo 'error: no argument provided'
