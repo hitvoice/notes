@@ -167,10 +167,15 @@ read -p "enter: " -r v1 v2 v3 # use space to separate multiple inputs
 read -r x1 x2 <<< "3 1" # redirect
 
 # for loop
-for i in `seq 1 30`;
-do
+for i in `seq 1 30`; do
     echo $i
     python process.py ${i}.txt
+done
+
+# loop over tuples
+for i in in1,out1 in2,out2 ; do 
+    IFS=',' read a b <<< "${i}"
+    echo $a-$b  # in1-out1
 done
 
 # while loop (read from stdin)
@@ -185,10 +190,8 @@ fi
 # regex example
 files="models/ssd_mobilenet_train/*.meta"
 regex="ckpt\-([0-9]+)\.meta"
-for f in $files
-do
-    if [[ $f =~ $regex ]]
-    then
+for f in $files ; do
+    if [[ $f =~ $regex ]] ; then
         name="${BASH_REMATCH[1]}" # get the model id (group 1)
         mkdir -p dumps/$name
         # command to dump the model (omitted)
