@@ -106,6 +106,11 @@ myshuf() {
 }
 cat file.txt | myshuf > output.txt
 
+# remove duplication lines in a file
+awk '!a[$0]++' input.txt
+sort -u input.txt  # slower, only when if you need to sort as well
+
+
 # remove UTF8 BOM (<U+FEFF>)
 sed -i '1s/^\xEF\xBB\xBF//' orig.txt # inplace
 sed '1s/^\xEF\xBB\xBF//' < orig.txt > new.txt # new file
