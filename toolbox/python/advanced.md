@@ -25,9 +25,13 @@ for i in trange(10, desc='1st loop'):
         for k in trange(100, desc='3nd loop'):
             sleep(0.01)
 # parallel progress bar:
-from multiprocessing import Pool
-with Pool(n_process, initializer=init) as p:
+from multiprocessing import Pool, Lock
+lock = Lock
+with Pool(n_process, initializer=init, initargs=(lock,)) as p:
     result = list(tqdm(p.imap(func, arr, chunksize=256), total=len(arr), desc='parallel'))
+# "init" assigns values (resources) to global variables then "func" utilize the global resources in each process. 
+# If the initialization of resources involves external IO, 
+# "lock.acquire()" and "lock.release()" should be used in "init" or "func"
 ```
 ### log
 ```python
