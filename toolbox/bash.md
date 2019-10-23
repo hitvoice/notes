@@ -110,6 +110,21 @@ cat file.txt | myshuf > output.txt
 awk '!a[$0]++' input.txt
 sort -u input.txt  # slower, only when if you need to sort as well
 
+# split a file into equally-sized chunks
+split -l 1000 -d -a2 input.txt prefix_  # each file will be named prefix_01, prefix_02 containing 1000 lines 
+split -C 20m -d -a2 input.txt prefix_  # at most 20MB (not breaking lines)
+cat input_* | split -l 1000 -d -a2 - prefix_  # merge and split again
+
+# train-test split by order
+head -n -2000 input.txt > train.txt
+tail -n 2000 input.txt > dev.txt
+# random train-test split 
+shuf input.txt | split -a1 -d -l $(( $(wc -l <input.txt) - 2000 )) - output
+mv output0 train.txt
+mv output1 dev.txt
+
+# extract random samples from a file
+shuf -n 2000 input.txt > sample.txt
 
 # remove UTF8 BOM (<U+FEFF>)
 sed -i '1s/^\xEF\xBB\xBF//' orig.txt # inplace
