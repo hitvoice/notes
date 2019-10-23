@@ -170,6 +170,8 @@ find train/ -name '*.jpg' | myshuf | head -20 | xargs cp -t samples/
 rename 's/(.+)/$1.gif/' *
 # exmaple 2: rename "[Student_ID] [Name].jpg" to "[Student_ID].jpg"
 rename 's/(\d{9}).+(\.jpg)/$1$2/' *.jpg
+# on some systems rename doesn't support regex, for example 1 you can simply do
+for x in *;do mv $x $x.gif; done
 
 # remove all the empty files in the current directory
 find . -size 0 -print0 | xargs -0 rm
