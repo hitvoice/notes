@@ -9,7 +9,8 @@ Change linter settings:
   "--enable=unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode"
 ]
 ```
-
+### Use GNU command line tools in MacOS
+`brew install coreutils`. Then all commands will be installed with the prefix 'g'. For example, "split" will be "gsplit".
 ### Brew is slow in China
 Mirrors in China:
 - [USTC](https://mirrors.ustc.edu.cn) ([guide](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git))
