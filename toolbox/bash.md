@@ -126,6 +126,10 @@ mv output1 dev.txt
 # extract random samples from a file
 shuf -n 2000 input.txt > sample.txt
 
+# extract the different parts between 2 files
+diff file1.txt file2.txt | grep "^>" | cut -c 2- > diff1.txt
+diff file1.txt file2.txt | grep "^<" | cut -c 2- > diff2.txt
+
 # remove UTF8 BOM (<U+FEFF>)
 sed -i '1s/^\xEF\xBB\xBF//' orig.txt # inplace
 sed '1s/^\xEF\xBB\xBF//' < orig.txt > new.txt # new file
