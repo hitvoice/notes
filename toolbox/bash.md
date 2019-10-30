@@ -14,6 +14,7 @@ lsblk # disk space
 lsblk --fs # file system and label of the disks
 sudo parted -l # detailed info of disks
 sudo netstat -tulpn # active ports and which are listening
+lsof -i # list the process (pid) running on port
 ```
 ### external drive
 ```sh
