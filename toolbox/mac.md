@@ -9,6 +9,15 @@ Change linter settings:
   "--enable=unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode"
 ]
 ```
+### Use IPython as pdb interactive shell
+Edit or create `~/.pdbrc`:
+```
+import IPython 
+# Interactive shell
+alias interacti IPython.embed()
+```
+Use `interacti` instead of `interact` to use IPython.
+
 ### Use GNU command line tools in MacOS
 `brew install coreutils`. Then all commands will be installed with the prefix 'g'. For example, "split" will be "gsplit".
 ### Brew is slow in China
