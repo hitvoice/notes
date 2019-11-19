@@ -22,8 +22,9 @@ git commit # use vim to enter a multi-line commit message; use after pull and fi
 git push
 
 git log -3 # view the latest 3 commits
-git reset xxx  # change a file from staged to unstaged
+git reset HEAD xxx  # change a file from staged to unstaged
 git reset  # unstage all files
+git reset --soft HEAD^  # cancel the latest commit (but keep the changes)
 git rm xxx # untrack and remove a file
 git rm --cached xxx # untrack
 git mv ReadMe ReadMe.md # rename a file
