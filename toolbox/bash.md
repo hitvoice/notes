@@ -101,7 +101,8 @@ ln -s src des
 grep -i "warn" main.log > warn.log # -i case insensitive
 grep -E "[0-9.]+$" main.log > num.log  # -E uses regular expression (or "egrep")
 grep -oE "[0-9.]+$" main.log > num.log  # -o only the matched part instead of the whole line
-grep -v "info" main.log > warn.log # select lines NOT containing the keyword
+grep -E $'^[^\t]+\t[^\t]+\t\d$' data.txt > data.clean.txt  # use $'' to enclose special chars
+grep -vE $'^[^\t]+\t[^\t]+\t\d$' > bad_lines.txt # select lines NOT matching the regex
 
 # shuffle the lines of a file
 myshuf() {
