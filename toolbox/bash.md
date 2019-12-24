@@ -101,6 +101,7 @@ ln -s src des
 grep -i "warn" main.log > warn.log # -i case insensitive
 grep -E "[0-9.]+$" main.log > num.log  # -E uses regular expression (or "egrep")
 grep -oE "[0-9.]+$" main.log > num.log  # -o only the matched part instead of the whole line
+grep -v "info" main.log > warn.log # select lines NOT containing the keyword
 
 # shuffle the lines of a file
 myshuf() {
@@ -116,6 +117,10 @@ sort -u input.txt > input_unique.txt  # slower, only when if you need to sort as
 split -l 1000 -d -a2 input.txt prefix_  # each file will be named prefix_01, prefix_02 containing 1000 lines 
 split -C 20m -d -a2 input.txt prefix_  # at most 20MB (not breaking lines)
 cat input_* | split -l 1000 -d -a2 - prefix_  # merge and split again
+
+# merge multiple files
+cat prefix_*.txt > full.txt
+cat file1 file2 > full.txt
 
 # train-test split by order
 head -n -2000 $file > train.txt
