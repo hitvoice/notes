@@ -90,6 +90,8 @@ cat file.txt # print entire file
 less file.txt # open a previou "window" for the file
 wc -l # number of lines in a file
 wc -L # maximum line length in a file
+# average length of a file
+awk ' { thislen=length($0); totlen+=thislen} END { printf("average: %d\n", totlen/NR); } ' file.txt
 feh image.jpg # open an image from the terminal (or multiple images at the same time)
 ```
 ### common file processing
