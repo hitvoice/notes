@@ -67,6 +67,7 @@ git checkout -- xx.py # discard recent changes and go back to the latest commit
 git checkout -- . # discard all recent changes and go back to the latest commit
 git chekcout <commit-sha> . # return to a certain commit. New files will remain untouched but unstaged modificatoins will be lost
 git reset --hard master@{"10 minutes ago"} # recover from some terrible mistake
+git reset --hard <commit-sha> # go back to this commit and discard all following changes
 ```
 If some changes have been made to files in the master branch, but you somehow decide to keep the master branch untouched and put the changes in a new branch, you should create a new branch (now the changes are visible in both branches) and commit in the new branch. The master branch will fall back to its last commit.
 
