@@ -71,7 +71,7 @@ git reset --hard <commit-sha> # go back to this commit and discard all following
 ```
 If some changes have been made to files in the master branch, but you somehow decide to keep the master branch untouched and put the changes in a new branch, you should create a new branch (now the changes are visible in both branches) and commit in the new branch. The master branch will fall back to its last commit.
 
-If some changes have been made to files in the master branch, but you want to switch to another branch and apply changes in that branch, or to pull remote changes first, you can use `git stash`. After switching to another branch or pulling remote changes, use `git stash pop` to apply previous modifications. `git stash drop` can be used to drop stash that's no longer needed.
+If some changes have been made to files in the master branch, but you want to switch to another branch and apply changes in that branch, or to pull remote changes first, you can use `git stash`. After switching to another branch or pulling remote changes, use `git stash pop` to apply previous modifications. `git stash drop` can be used to drop stash that's no longer needed. Use `git stash show` to show the files that changed in your most recent stash. Use `git stash show -p` to show the diff.
 
 If in some scenarios, master branch is deprecated and some other branch should be the new master, do the following:
 ```sh
