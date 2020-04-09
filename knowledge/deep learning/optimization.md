@@ -126,7 +126,7 @@ When decaying to 10% after 10 decays:
  <img src="resources/decay.png" width="400">
 </div>
 
-- exponential decay
+- polynomial decay
 $$
 \alpha = \alpha_T + (\alpha_0 - \alpha_T) \times (1-\min(t, T)/T)^p
 $$
