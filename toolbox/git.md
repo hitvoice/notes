@@ -55,7 +55,12 @@ git merge master # merge changes from master into the current branch
 git branch -d <branch_name> # delete the branch
 
 git submodule add <URL> <path>
+git tag # list your tags
+git tag -l v1.8.* # list tags with prefixes
 git tag -a v1.4 -m "message for this tag" # will launch vim without `-m`
+git tag v1.4 # create a lightweight tag without annotations
+git tag -a v1.2 9fceb02 # tag previous commit 9fceb02
+git tag -d v1.4-lw  # delete a tag
 git show v1.4 # view tag info
 git push origin --tags
 
