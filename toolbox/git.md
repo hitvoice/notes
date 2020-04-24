@@ -62,7 +62,7 @@ git tag v1.4 # create a lightweight tag without annotations
 git tag -a v1.2 9fceb02 # tag previous commit 9fceb02
 git tag -d v1.4-lw  # delete a tag
 git show v1.4 # view tag info
-git push origin --tags
+git push origin <tag_name> # push a single tag
 
 git commit --amend # commit again and overwrite the last commit (when you commit too early)
 # revert a range of commits (from old to new). Unstaged files not affected by these commits will remain untouched
