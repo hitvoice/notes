@@ -112,9 +112,12 @@ myshuf() {
 }
 cat file.txt | myshuf > output.txt
 
-# remove duplication lines in a file
+# remove duplicatd lines in a file
 awk '!a[$0]++' input.txt > input_unique.txt
 sort -u input.txt > input_unique.txt  # slower, only when if you need to sort as well
+
+# select duplicated lines in a file with counts
+sort input.txt | uniq -cd | sort -nr
 
 # split a file into equally-sized chunks
 split -l 1000 -d -a2 input.txt prefix_  # each file will be named prefix_01, prefix_02 containing 1000 lines 
