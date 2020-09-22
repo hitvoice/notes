@@ -52,7 +52,8 @@ git checkout master # return to master branch, or from a previous commit
 git checkout -b <branch_name> # create a branch and switch to it
 git checkout -b <branch_name> <branch_name/commit-sha> # create a branch based on another branch or a previous commit
 git merge master # merge changes from master into the current branch
-git branch -d <branch_name> # delete the branch
+git branch -d <branch_name> # delete a local branch
+git push -d origin <branch_name> # delete a remote branch
 
 git submodule add <URL> <path>
 git tag # list your tags
