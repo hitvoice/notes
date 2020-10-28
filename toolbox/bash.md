@@ -139,6 +139,9 @@ mv output1 dev.txt
 # extract random samples from a file
 shuf -n 2000 input.txt > sample.txt
 
+# extract line n~n+m-1 from a file
+tail +n $file | head -m 
+
 # extract the different parts between 2 files
 diff file1.txt file2.txt | grep "^>" | cut -c 2- > diff1.txt
 diff file1.txt file2.txt | grep "^<" | cut -c 2- > diff2.txt
