@@ -255,6 +255,7 @@ command | tee output.log
 ## vim basics
 - count number of matches `:%s/pattern//ng`
 - print all lines that match a pattern `:g/pattern/p`
+- paste without indent `:set paste`; reset `:set nopaste`
 
 ## resources
 - [tutorial](https://bash.cyberciti.biz/guide/Main_Page)
