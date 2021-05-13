@@ -56,6 +56,7 @@ git branch -d <branch_name> # delete a local branch
 git push -d origin <branch_name> # delete a remote branch
 
 git submodule add <URL> <path>
+git submodule update # when git status says: "modified: xxx (new commits)"
 git tag # list your tags
 git tag -l v1.8.* # list tags with prefixes
 git tag -a v1.4 -m "message for this tag" # will launch vim without `-m`
