@@ -8,6 +8,7 @@
      * [Interaction of two vectors](#interaction-of-two-vectors) 
      * [Interaction of two sequences](#interaction-of-two-sequences)
    * [Meta Architecture](#meta-architecture)
+   * [General Issues](#general-issues)
    * [Appendix](#appendix)
    * [Reference](#reference)
 <!--te-->
@@ -236,6 +237,9 @@ v_1^T M^{[1:k]}v_2 + V
 \right)
 $$
 $M^{[1:k]}\in \mathcal R^{d\times d\times k}$ is a tensor and the bilinear tensor product $v_1^T M^{[1:k]}v_2$ results in a vector $h\in \mathcal R^k$, where each entry is computed by one slice of the tensor $h_i=v_1^TM^iv_2$.
+
+> Regular neural networks cannot represent multiplicative interactions (Being able to approximate something is not the same as represent it)[41]. So bilinear operation enrich the hypothesis space in a meaningful way.
+
 ### Interaction of two sequences
 There're usually 4 steps in the interaction of 2 sequences, namely computing attention score, computing attention activation/normalization, computing the weighted average, and fusing the attended information with the original one. 
 
@@ -290,13 +294,23 @@ y = \gamma\sum_{l=0}^L\alpha_l h_l
 $$
 $\alpha$ are softmax-normalized weights and $\gamma$ allows the model to scale the entire vector [15].
 
+## General Issues
+### Model capacity
+Unlike traditional machine learning, as models grow, their learning dynamics change, and they become less prone to overfitting[39].
 
+<img src="resources/bias_variance.png" width="600">
+
+Although this kind of "double descent" exists, big models still can benefit from regularisation techniques[40].
+
+<img src="resources/regularisation1.png" width="300"><img src="resources/regularisation2.png" width="300">
 
 ## Appendix
 ### Convolutional Neural Network
 #### Motivation of convolution
 Fully connected networks are computationally expensive when the number of input units is large. Locally connected networks, in which each hidden unit will connect to only a small contiguous region of pixels in the input, are feasible for high resolution images.
-Natural images have the property of being ”stationary”, meaning that the statistics of one part of the image are the same as any other part. This suggests that the features that we learn at one part of the image can also be applied to other parts of the image, and we can use the same features at all locations.
+Natural images have the property of being ”stationary”, meaning that the statistics of one part of the image are the same as any other part. This suggests that the features that we learn at one part of the image can also be applied to other parts of the image, and we can use the same features at all locations. In other words, natrual images holds these two properties:
+1. Locality: nearby pixels are more strongly correlated.
+2. Translation invariance: meaningful patterns can occur anywhere in the image.
 
 #### Convolution
 The dimension after convolution is
@@ -310,11 +324,18 @@ $$
 The shape of $W$ is (k, k, n_prev, n). The shape of $b$ is (1, 1, 1, n).
 ![Convolution_schematic.gif](resources/conv.gif)
 
-If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left padding is $\lfloor\frac{k-1}{2}\rfloor$ and right padding is $\lfloor\frac{k}{2}\rfloor$. 
+If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left (and upper) padding is $\lfloor\frac{k-1}{2}\rfloor$ and right (and lower) padding is $\lfloor\frac{k}{2}\rfloor$. In "full" convolution, $k-1$ padding is added to each edge, so the output size is input\_size + kernel\_size - 1.
 
 In 1d convolution where no future information should involve, one can set both left and right padding to $k-1$ and remove the last $k-1$ units after each convolution [12]. 
 
 With kernel width $k$ and number of layers $l$, the network has a input field (perception field) of size $(k-1)\times l + 1$
+
+By design, convnets are only robust against translation. **Data augmentation** makes them robust against other transformations: rotation, scaling, shearing, warping, ... Other solutions include group equivariant convnets (invariance to rotation), recurrence and attention (to exploit topological structure).
+
+Ways to reduce complexity of vanilla convolution:
+- depthwise convolutions
+- separable convolutions
+- inverted bottlenecks (MobileNetV2, MNasNet, EfficientNet)
 
 #### Motivation of pooling
 * Features obtained by convolution is still computationally challenging
@@ -372,3 +393,6 @@ A CNN consists of a number of convolutional and subsampling layers optionally fo
 - [36] (ACL'15) [Learning semantic representations of users and products for document level sentiment classification](http://ir.hit.edu.cn/~dytang/paper/acl2015/acl2015.pdf)
 - [37] (EMNLP'16) [Neural sentiment classification with user and product attention](https://aclweb.org/anthology/D16-1171)
 - [38] (ACL'19) [Categorical Metadata Representation for Customized Text Classification](https://arxiv.org/pdf/1902.05196.pdf)
+- [39] (NAS'19) [Reconciling modern machine learning practice and the bias-variance trade-off](https://www.pnas.org/content/pnas/116/32/15849.full.pdf)
+- [40] [Deep Double Descent: Where Bigger Models And More Data Hurt](https://arxiv.org/pdf/1912.02292.pdf)
+- [41] (ICML'19)[Multiplicative Interactions And Where To Find Them](https://openreview.net/pdf?id=rylnK6VtDH)
