@@ -322,6 +322,7 @@ $$
 ((k - 1)\times n_{\text{layer}} + 1)^2
 $$
 The shape of $W$ is (k, k, n_prev, n). The shape of $b$ is (1, 1, 1, n).
+
 ![Convolution_schematic.gif](resources/conv.gif)
 
 If we apply "valid" padding, no padding is used. If we use "same" padding, the shapes before and after convolution are the same, which means left (and upper) padding is $\lfloor\frac{k-1}{2}\rfloor$ and right (and lower) padding is $\lfloor\frac{k}{2}\rfloor$. In "full" convolution, $k-1$ padding is added to each edge, so the output size is input\_size + kernel\_size - 1.
