@@ -23,16 +23,24 @@ Due to Jensen's inequality:
 $$
 f(\operatorname E[x])\geq\operatorname E[f(x)]\text{, if }f\text{ is concave}
 $$
-Note that $D_{\mathrm{KL}}(Q\|P)= 0$ iff $q(x)=p(x)$.
+Note that $D_{\mathrm{KL}}(Q\|P)= 0$ iff $q(x)=p(x)$. 
+
+If there's no overlapping support between P and Q, $\mathrm{KL}(Q\|P)=\inf$. It's the motivation of using Wasserstein distance instead of KL divergence or Jensen Shannon divergence in GAN.
 
 If P represents the "true" distribution of data, observations, or a precisely calculated theoretical distribution, while Q represents a theory, model, description, or approximation of P:
 * Optimize KL(Q||P): zero-forcing, underestimate (better choice, get at least local optimum)
-![kl1](resources/kl1.png)
+<div align="center">
+<img src="resources/kl1.png" width="500">
+</div>
 * Optimize KL(P||Q): zero-avoiding, overestimate (the output expectation value is not good at all)
-![kl2](resources/kl2.png)
+<div align="center">
+<img src="resources/kl2.png" width="500">
+</div>
 
 1D illustration for this:
-![kl3](resources/kl3.png)
+<div align="center">
+<img src="resources/kl3.png" width="500">
+</div>
 
 Maximum likelihood estimation is equivalant to minimizing the KL divergence between the empirical distribution and the model:
 $$
