@@ -1,6 +1,19 @@
 ### Alfred
 - [official guide](https://www.alfredapp.com/)
 - [powerful plugins](https://github.com/zenorocha/alfred-workflows)
+### show current branch in Mac ZSH
+```sh
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+acolor() {
+  [[ -n $(git status --porcelain=v2 2>/dev/null) ]] && echo red || echo green
+}
+setopt prompt_subst
+PROMPT="%1~%F{\$(acolor)}\$(git_branch)%f$ "
+```
+
 ### vscode gives false positive warnings on importing modules
 Change linter settings:
 ```json
