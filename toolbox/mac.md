@@ -13,7 +13,14 @@ acolor() {
 setopt prompt_subst
 PROMPT="%1~%F{\$(acolor)}\$(git_branch)%f$ "
 ```
-
+### brew version downgrading
+take maven as an example:
+```sh
+brew search maven  # list available versions
+brew install maven@3.5. # pick a version
+brew unlink maven  # remove the previous link
+brew link --overwrite maven@3.5  # replace with the older version
+```
 ### vscode gives false positive warnings on importing modules
 Change linter settings:
 ```json
