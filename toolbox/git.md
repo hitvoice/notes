@@ -180,6 +180,8 @@ If you're on a completely private server, `git config credential.helper store` c
 
 To change the author after a commit, first set the correct account in the current repo, then use `git commit --amend --reset-author --no-edit`. Use `git log` to check the result.
 
+[Setup multiple Github accounts on a single machine](https://gist.github.com/JoaquimLey/e6049a12c8fd2923611802384cd2fb4a)
+
 ### working on Windows
 To supress warnings about different line separators:
 ```sh
