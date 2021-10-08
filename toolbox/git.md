@@ -1,4 +1,4 @@
-### Basics
+## Basics
 ```sh
 # mostly used
 git add -A
@@ -89,7 +89,10 @@ git merge --strategy=ours master -m "massage'   # keep this branch untouched, bu
 git checkout master
 git merge better_branch                         # fast-forward master up to the merge
 ```
-### work with git-lfs:
+## commit message conventions
+Here's a [example convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) from AngularJS.
+
+## work with git-lfs:
 ```sh
 # install (on Mac)
 brew install git-lfs
@@ -107,7 +110,7 @@ git lfs ls-files
 # (optional) link to SourceTree
 ln -s /usr/local/bin/git-lfs /Applications/SourceTree.app/Contents/Resources/git_local/bin
 ```
-### editor and difftool
+## editor and difftool
 set vim as the default editor (sometimes the default editor is nano):
 ```sh
 git config --global core.editor "vim"
@@ -132,10 +135,7 @@ In PyCharm, select "Tools | Create Command-line Launcher", use default settings.
         keepBackup = false
 ```
 
-### commit message conventions
-Here's a [example convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) from AngularJS.
-
-### .gitignore
+## .gitignore
 .gitignore format：
 
 * Blank lines or lines starting with \# are ignored
@@ -169,7 +169,8 @@ doc/*.txt
 # ignore all .pdf files in the doc/ directory and any of its subdirectories
 doc/**/*.pdf
 ```
-### account settings
+## account settings
+### in commit messages
 ```sh
 git config user.name # show username
 git config user.email
@@ -177,15 +178,22 @@ git config user.email
 git config --global user.email "xxx@gmail.com"
 git config --local user.email "xxx@gmail.com" # repository
 ```
+To change the author after a commit, first set the correct account in the current repo, then use `git commit --amend --reset-author --no-edit`. Use `git log` to check the result.
+
+### authentication - password
 If you're on a completely private server, `git config credential.helper store` can be used to store the password for the remote server. NEVER use this command on a shared server because the password is stored in plain text.
 
+### authentication - SSH
 To compare fingerprints of SSH key in the local machine with the Github remote one, use `ssh-keygen -lf ~/.ssh/id_rsa -E sha256`.
-
-To change the author after a commit, first set the correct account in the current repo, then use `git commit --amend --reset-author --no-edit`. Use `git log` to check the result.
 
 [Setup multiple Github accounts on a single machine](https://gist.github.com/JoaquimLey/e6049a12c8fd2923611802384cd2fb4a)
 
-### working on Windows
+If the authentication failure relates to linking to a wrong account:
+- check ~/.ssh/config to see if the correct hostname is used
+- use `ssh -T git@github.com` to verify the current user, `ssh -vT git@github.com` to see debug logs
+- if the wrong account comes from the ssh agent, use `ssh-add -D` to clear its cache
+
+## working on Windows
 To supress warnings about different line separators:
 ```sh
 git config core.eol lf
