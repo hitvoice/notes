@@ -33,6 +33,7 @@ git mv ReadMe ReadMe.md # rename a file
 git remote add origin https://xxx.git
 git remote -v # remote info
 git remote set-url origin https://xxx.git # change it later
+git remote set-url --push origin https://xxx.git
 git pull # update from origin
 git submodule update --remote --recursive
 
@@ -177,6 +178,8 @@ git config --global user.email "xxx@gmail.com"
 git config --local user.email "xxx@gmail.com" # repository
 ```
 If you're on a completely private server, `git config credential.helper store` can be used to store the password for the remote server. NEVER use this command on a shared server because the password is stored in plain text.
+
+To compare fingerprints of SSH key in the local machine with the Github remote one, use `ssh-keygen -lf ~/.ssh/id_rsa -E sha256`.
 
 To change the author after a commit, first set the correct account in the current repo, then use `git commit --amend --reset-author --no-edit`. Use `git log` to check the result.
 
