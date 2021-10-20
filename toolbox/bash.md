@@ -66,6 +66,8 @@ unzip -q xxx.zip # unzip quietly
 tar -zcvf xxx.tar.gz srcDir # remove "v" to tar quietly
 tar -zxvf xxx.tar.gz # remove "v" to untar quietly
 tar -zxvf xxx.tar.gz -C /output/dir # untar to target directory 
+gzip xxx # -> xxx.gz, cannot be applied to a directory
+gzip -dk xxx.gz  # unzip a gz file. use "-k" to keep the original file
 
 # zip with a progress bar
 SRCDIR=dir_with_big_files
