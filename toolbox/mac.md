@@ -39,7 +39,10 @@ alias interacti IPython.embed()
 Use `interacti` instead of `interact` to use IPython.
 
 ### Use GNU command line tools in MacOS
-`brew install coreutils`. Then all commands will be installed with the prefix 'g'. For example, "split" will be "gsplit".
+```bash
+brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+```
+Then all commands will be installed with the prefix 'g'. For example, "split" will be "gsplit".
 ### Brew is slow in China
 Mirrors in China:
 - [USTC](https://mirrors.ustc.edu.cn) ([guide](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git))
