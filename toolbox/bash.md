@@ -251,7 +251,11 @@ alias ssh-s1='ssh -i ~/ubuntu.pem ubuntu@xx.xx.xx.xx'
 type ssh-s1 # print what's bound to the alias
 
 # write output of a program to both stdout and file 
-command | tee output.log
+command | tee output.log  # only stdout
+command | tee -a output.log  # only stdout (append to output.log)
+command |& tee output.log  # stdout + stderr
+command > >(tee stdout.log) 2> >(tee stderr.log >&2)  # write to separate files
+
 ```
 
 ## vim basics
