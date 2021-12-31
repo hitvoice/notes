@@ -98,6 +98,11 @@ feh image.jpg # open an image from the terminal (or multiple images at the same 
 ```
 ### common file processing
 ```sh
+# file creation
+touch file.txt # create if not exists; otherwise update timestamp
+echo -n > file.txt # create if not exists; otherwise truncate to empty
+echo -n >> file.txt # same as `touch file.txt`
+
 # create a file shortcut/symbolic file (use absolute path to avoid potential problems)
 ln -s src des 
 
@@ -154,11 +159,6 @@ sed -i -e 's/\r//g' input.txt # inplace
 # remove UTF8 BOM (<U+FEFF>)
 sed -i '1s/^\xEF\xBB\xBF//' orig.txt # inplace
 sed '1s/^\xEF\xBB\xBF//' < orig.txt > new.txt # new file
-
-# append a new line
-echo 'a new line' >> sample.txt
-echo 'a new line' | sudo tee --append /etc/apt/sources.list # append with sudo
-echo 'a new line' | sudo tee --append /etc/apt/sources.list > /dev/null # mute terminal output
 ```
 
 ## directory
