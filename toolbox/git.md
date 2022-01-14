@@ -184,6 +184,10 @@ To change the author after a commit, first set the correct account in the curren
 ### authentication - password
 If you're on a completely private server, `git config credential.helper store` can be used to store the password for the remote server. NEVER use this command on a shared server because the password is stored in plain text.
 
+When using Github, go to "Settings->Developer settings->Personal access tokens" to generate to new token to use instead of the explicit password.
+
+To update the password/acees token, use `git config --global credential.helper osxkeychain` on MacOS and it will prompt the next time you need authenication. 
+
 ### authentication - SSH
 To compare fingerprints of SSH key in the local machine with the Github remote one, use `ssh-keygen -lf ~/.ssh/id_rsa -E sha256`.
 
