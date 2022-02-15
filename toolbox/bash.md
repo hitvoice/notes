@@ -183,6 +183,9 @@ find srcDir -name '*.jpg' -exec mv {} targetDir \;
 #                                               \ denotes the ending of "-exec" commands
 # find files in srcDir recursively. refer to the manual of "find" for how to limit the maximum recursion depth
 
+# search a string in a directory
+grep -R "text" .
+
 # data sampling
 mkdir samples
 myshuf() {
