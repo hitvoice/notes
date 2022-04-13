@@ -204,3 +204,6 @@ To supress warnings about different line separators:
 git config core.eol lf
 git config core.autocrlf
 ```
+## Trouble shooting
+"The unauthenticated git protocol on port 9418 is no longer supported."
+It can happen when using something like pre-commit. Use `git config --global url."https://".insteadOf git://` to change the default protocol.
