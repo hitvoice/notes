@@ -1,6 +1,10 @@
 ### Alfred
 - [official guide](https://www.alfredapp.com/)
 - [powerful plugins](https://github.com/zenorocha/alfred-workflows)
+
+### turn off terminal focus reporting
+In iterm2, open Preferences -> Advanced, scroll down to Terminal, and set "Apps may turn on Focus Reporting" to "No".
+
 ### show current branch in Mac ZSH
 ```sh
 git_branch() {
